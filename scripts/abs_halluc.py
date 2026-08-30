@@ -29,7 +29,7 @@ CJK = re.compile(r"[一-鿿]")
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--results", default="research/paper/data/results")
+    parser.add_argument("--results", default="data/results")
     parser.add_argument("--split", default="test_data.json")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()

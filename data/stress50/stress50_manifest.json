@@ -1,0 +1,511 @@
+{
+  "purpose": "50-image challenge set selected by measurable difficulty signals (counting, colour, gendered nouns, entity richness)",
+  "signals": {
+    "counting": "max=10",
+    "colour": "max=7",
+    "gendered": "max=8",
+    "entity_richness": "max=10"
+  },
+  "images": [
+    {
+      "image_id": "6065",
+      "file_name": "00000006065.jpg",
+      "counting": 1,
+      "colour": 6,
+      "xanh": 5,
+      "gendered": 4,
+      "entity_richness": 6,
+      "score": 2.4143
+    },
+    {
+      "image_id": "189",
+      "file_name": "00000000189.jpg",
+      "counting": 5,
+      "colour": 5,
+      "xanh": 5,
+      "gendered": 1,
+      "entity_richness": 7,
+      "score": 2.3964
+    },
+    {
+      "image_id": "3034",
+      "file_name": "00000003034.jpg",
+      "counting": 6,
+      "colour": 4,
+      "xanh": 4,
+      "gendered": 3,
+      "entity_richness": 4,
+      "score": 2.2321
+    },
+    {
+      "image_id": "4339",
+      "file_name": "00000004339.jpg",
+      "counting": 0,
+      "colour": 6,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 8,
+      "score": 2.1571
+    },
+    {
+      "image_id": "10922",
+      "file_name": "00000010922.jpg",
+      "counting": 7,
+      "colour": 3,
+      "xanh": 2,
+      "gendered": 3,
+      "entity_richness": 5,
+      "score": 2.1464
+    },
+    {
+      "image_id": "1389",
+      "file_name": "00000001389.jpg",
+      "counting": 1,
+      "colour": 6,
+      "xanh": 0,
+      "gendered": 7,
+      "entity_richness": 3,
+      "score": 2.1321
+    },
+    {
+      "image_id": "115",
+      "file_name": "00000000115.jpg",
+      "counting": 0,
+      "colour": 7,
+      "xanh": 3,
+      "gendered": 4,
+      "entity_richness": 4,
+      "score": 2.1143
+    },
+    {
+      "image_id": "2679",
+      "file_name": "00000002679.jpg",
+      "counting": 4,
+      "colour": 2,
+      "xanh": 1,
+      "gendered": 6,
+      "entity_richness": 6,
+      "score": 2.1071
+    },
+    {
+      "image_id": "1724",
+      "file_name": "00000001724.jpg",
+      "counting": 0,
+      "colour": 5,
+      "xanh": 5,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 2.0964
+    },
+    {
+      "image_id": "510",
+      "file_name": "00000000510.jpg",
+      "counting": 2,
+      "colour": 5,
+      "xanh": 3,
+      "gendered": 4,
+      "entity_richness": 4,
+      "score": 2.0286
+    },
+    {
+      "image_id": "556",
+      "file_name": "00000000556.jpg",
+      "counting": 10,
+      "colour": 0,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 2.025
+    },
+    {
+      "image_id": "10341",
+      "file_name": "00000010341.jpg",
+      "counting": 1,
+      "colour": 5,
+      "xanh": 2,
+      "gendered": 4,
+      "entity_richness": 5,
+      "score": 1.9571
+    },
+    {
+      "image_id": "2880",
+      "file_name": "00000002880.jpg",
+      "counting": 1,
+      "colour": 6,
+      "xanh": 0,
+      "gendered": 3,
+      "entity_richness": 6,
+      "score": 1.9321
+    },
+    {
+      "image_id": "7239",
+      "file_name": "00000007239.jpg",
+      "counting": 1,
+      "colour": 3,
+      "xanh": 2,
+      "gendered": 2,
+      "entity_richness": 10,
+      "score": 1.9214
+    },
+    {
+      "image_id": "749",
+      "file_name": "00000000749.jpg",
+      "counting": 5,
+      "colour": 4,
+      "xanh": 1,
+      "gendered": 2,
+      "entity_richness": 5,
+      "score": 1.8929
+    },
+    {
+      "image_id": "2193",
+      "file_name": "00000002193.jpg",
+      "counting": 3,
+      "colour": 4,
+      "xanh": 2,
+      "gendered": 3,
+      "entity_richness": 5,
+      "score": 1.8893
+    },
+    {
+      "image_id": "5137",
+      "file_name": "00000005137.jpg",
+      "counting": 0,
+      "colour": 4,
+      "xanh": 4,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 1.8821
+    },
+    {
+      "image_id": "1339",
+      "file_name": "00000001339.jpg",
+      "counting": 3,
+      "colour": 6,
+      "xanh": 0,
+      "gendered": 3,
+      "entity_richness": 3,
+      "score": 1.8321
+    },
+    {
+      "image_id": "4657",
+      "file_name": "00000004657.jpg",
+      "counting": 1,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 6,
+      "entity_richness": 4,
+      "score": 1.8214
+    },
+    {
+      "image_id": "4182",
+      "file_name": "00000004182.jpg",
+      "counting": 3,
+      "colour": 1,
+      "xanh": 0,
+      "gendered": 7,
+      "entity_richness": 5,
+      "score": 1.8179
+    },
+    {
+      "image_id": "706",
+      "file_name": "00000000706.jpg",
+      "counting": 3,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 3,
+      "score": 1.7964
+    },
+    {
+      "image_id": "2408",
+      "file_name": "00000002408.jpg",
+      "counting": 3,
+      "colour": 2,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 7,
+      "score": 1.7857
+    },
+    {
+      "image_id": "4107",
+      "file_name": "00000004107.jpg",
+      "counting": 2,
+      "colour": 3,
+      "xanh": 0,
+      "gendered": 2,
+      "entity_richness": 9,
+      "score": 1.7786
+    },
+    {
+      "image_id": "9988",
+      "file_name": "00000009988.jpg",
+      "counting": 0,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 7,
+      "score": 1.7714
+    },
+    {
+      "image_id": "342",
+      "file_name": "00000000342.jpg",
+      "counting": 0,
+      "colour": 5,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 1.7393
+    },
+    {
+      "image_id": "3241",
+      "file_name": "00000003241.jpg",
+      "counting": 3,
+      "colour": 3,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 5,
+      "score": 1.7286
+    },
+    {
+      "image_id": "3562",
+      "file_name": "00000003562.jpg",
+      "counting": 0,
+      "colour": 5,
+      "xanh": 3,
+      "gendered": 4,
+      "entity_richness": 3,
+      "score": 1.7286
+    },
+    {
+      "image_id": "2058",
+      "file_name": "00000002058.jpg",
+      "counting": 3,
+      "colour": 5,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 2,
+      "score": 1.7143
+    },
+    {
+      "image_id": "1847",
+      "file_name": "00000001847.jpg",
+      "counting": 2,
+      "colour": 3,
+      "xanh": 2,
+      "gendered": 1,
+      "entity_richness": 8,
+      "score": 1.6964
+    },
+    {
+      "image_id": "5015",
+      "file_name": "00000005015.jpg",
+      "counting": 0,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 5,
+      "score": 1.6964
+    },
+    {
+      "image_id": "7240",
+      "file_name": "00000007240.jpg",
+      "counting": 0,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 5,
+      "score": 1.6964
+    },
+    {
+      "image_id": "1373",
+      "file_name": "00000001373.jpg",
+      "counting": 3,
+      "colour": 2,
+      "xanh": 1,
+      "gendered": 1,
+      "entity_richness": 9,
+      "score": 1.6821
+    },
+    {
+      "image_id": "3378",
+      "file_name": "00000003378.jpg",
+      "counting": 1,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 4,
+      "entity_richness": 5,
+      "score": 1.6714
+    },
+    {
+      "image_id": "2856",
+      "file_name": "00000002856.jpg",
+      "counting": 4,
+      "colour": 1,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 5,
+      "score": 1.6679
+    },
+    {
+      "image_id": "9652",
+      "file_name": "00000009652.jpg",
+      "counting": 0,
+      "colour": 3,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 6,
+      "score": 1.6536
+    },
+    {
+      "image_id": "11568",
+      "file_name": "00000011568.jpg",
+      "counting": 0,
+      "colour": 7,
+      "xanh": 0,
+      "gendered": 2,
+      "entity_richness": 4,
+      "score": 1.65
+    },
+    {
+      "image_id": "284",
+      "file_name": "00000000284.jpg",
+      "counting": 2,
+      "colour": 3,
+      "xanh": 1,
+      "gendered": 2,
+      "entity_richness": 7,
+      "score": 1.65
+    },
+    {
+      "image_id": "2620",
+      "file_name": "00000002620.jpg",
+      "counting": 2,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 3,
+      "entity_richness": 5,
+      "score": 1.6464
+    },
+    {
+      "image_id": "4515",
+      "file_name": "00000004515.jpg",
+      "counting": 5,
+      "colour": 3,
+      "xanh": 3,
+      "gendered": 0,
+      "entity_richness": 5,
+      "score": 1.6429
+    },
+    {
+      "image_id": "4385",
+      "file_name": "00000004385.jpg",
+      "counting": 3,
+      "colour": 2,
+      "xanh": 0,
+      "gendered": 2,
+      "entity_richness": 8,
+      "score": 1.6357
+    },
+    {
+      "image_id": "6093",
+      "file_name": "00000006093.png",
+      "counting": 2,
+      "colour": 2,
+      "xanh": 1,
+      "gendered": 3,
+      "entity_richness": 7,
+      "score": 1.6321
+    },
+    {
+      "image_id": "834",
+      "file_name": "00000000834.jpg",
+      "counting": 6,
+      "colour": 0,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 1.625
+    },
+    {
+      "image_id": "832",
+      "file_name": "00000000832.jpg",
+      "counting": 1,
+      "colour": 1,
+      "xanh": 0,
+      "gendered": 7,
+      "entity_richness": 5,
+      "score": 1.6179
+    },
+    {
+      "image_id": "522",
+      "file_name": "00000000522.jpg",
+      "counting": 3,
+      "colour": 1,
+      "xanh": 1,
+      "gendered": 4,
+      "entity_richness": 6,
+      "score": 1.6143
+    },
+    {
+      "image_id": "1557",
+      "file_name": "00000001557.jpg",
+      "counting": 0,
+      "colour": 2,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 7,
+      "score": 1.6107
+    },
+    {
+      "image_id": "4074",
+      "file_name": "00000004074.jpg",
+      "counting": 0,
+      "colour": 2,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 7,
+      "score": 1.6107
+    },
+    {
+      "image_id": "10531",
+      "file_name": "00000010531.jpg",
+      "counting": 3,
+      "colour": 3,
+      "xanh": 0,
+      "gendered": 3,
+      "entity_richness": 5,
+      "score": 1.6036
+    },
+    {
+      "image_id": "2668",
+      "file_name": "00000002668.jpg",
+      "counting": 1,
+      "colour": 3,
+      "xanh": 1,
+      "gendered": 4,
+      "entity_richness": 5,
+      "score": 1.6
+    },
+    {
+      "image_id": "4705",
+      "file_name": "00000004705.jpg",
+      "counting": 1,
+      "colour": 0,
+      "xanh": 0,
+      "gendered": 8,
+      "entity_richness": 5,
+      "score": 1.6
+    },
+    {
+      "image_id": "2996",
+      "file_name": "00000002996.jpg",
+      "counting": 0,
+      "colour": 4,
+      "xanh": 0,
+      "gendered": 5,
+      "entity_richness": 4,
+      "score": 1.5964
+    }
+  ]
+}

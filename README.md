@@ -105,8 +105,12 @@ python scripts/doichung.py --method vcd            # VCD baseline (CVPR'24), sam
 python scripts/doichung.py --method selfcorrect    # Self-Correction baseline
 python scripts/run_ablations.py                    # budget × policy grid
 python scripts/measure_latency.py                  # median 0.81 s (short) / 1.88 s (detailed) on RTX 4090
-python scripts/stress50_analysis.py                # 50-image challenge set (gender/count)
-python scripts/agreement.py                        # human audit, Cohen's kappa
+python scripts/stress50_analysis.py \
+    --manifest data/stress50/stress50_manifest.json \
+    --preds "zeroshot=data/results/zeroshot-detailed.preds.json" \
+            "vsps=data/results/vsps-detailed.preds.json" \
+    --out stress50_report.json                     # 50-image challenge set (gender/count/colour)
+python scripts/agreement.py                        # Cohen's kappa (needs the annotation files, available on request)
 ```
 
 ### Optional: preference-tuning exploration (negative result)
@@ -125,9 +129,25 @@ python scripts/plot_qualitative.py && python scripts/plot_pha.py
 
 ## 4. Number-to-file traceability
 
-Every number in the paper traces back to a file in `data/results/`.
-`scripts/validate_replay.py` re-runs the full scoring from the original prediction
-files and compares against the tables — any discrepancy prints `MISMATCH`.
+Every number in the paper traces back to a file in `data/results/`. Two independent
+checks, both CPU-only and both runnable straight from this repository:
+
+```bash
+# Re-score every shipped prediction file from scratch and compare with the shipped
+# summary — verified to reproduce data/results/abs_halluc_summary.json bit-for-bit:
+python scripts/abs_halluc.py --results data/results --out abs_halluc_check.json
+
+# Replay the verification rule engine over the shipped Phase-1a records
+# (default --limit 50; pass --limit 3700 for the full set, ~10 min on CPU):
+python scripts/validate_replay.py --in $NCS_DATA/stage1 --limit 3700
+```
+
+Known property of the replay harness: on the full 3,700 records the stored probe
+samples reproduce 100.0% (381,182/381,182), while verdict reproduction is 98.3%;
+the discrepancies concentrate on UNCERTAIN-adjacent, near-boundary cases
+(REJECTED→SUPPORTED flips: 1 in 192,216). The harness therefore refuses (99% gate)
+to let replay-derived numbers be quoted. All numbers in the paper come from the
+stored verdicts and real model runs, not from the replay harness.
 
 ## 5. License & contact
 

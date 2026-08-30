@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-"""PILOT B-LM: kết xuất giám sát bằng LM-có-ràng-buộc trên 100 ảnh.
+"""PILOT B-LM: constrained-LM supervision rendering on 100 images.
 
     python scripts/constrained_lm_pilot.py --in /root/stage1_person \
         --out /root/clm_pilot.json --n 100
 
-Nền: build_dpo_data gọi realize() KHÔNG truyền model → toàn bộ giám sát rơi
-về khuôn luật (mở "Có một…") — trần văn phong của mọi hệ hiện tại. Đường
-constrained_lm có sẵn trong realize.py: prompt §6.1 + vòng sửa vi phạm +
-đối chiếu cụm↔mệnh đề. Pilot đo trên 100 ảnh (seed 42): văn ra sao, tỷ lệ
-rơi-về-khuôn, tỷ lệ vi phạm ràng buộc, độ dài.
+Background: build_dpo_data calls realize() WITHOUT passing a model → all
+supervision falls back to the rule template (the "Có một…" opener) — the style
+ceiling of every current system. The constrained_lm path already exists in
+realize.py: the §6.1 prompt + violation-repair loop + phrase↔proposition
+cross-check. The pilot measures on 100 images (seed 42): how the prose reads,
+template-fallback rate, constraint-violation rate, length.
 """
 
 from __future__ import annotations
@@ -44,7 +45,7 @@ def main() -> int:
     random.seed(args.seed)
     random.shuffle(files)
 
-    print("nạp qwen2.5-vl-7b (bộ kết xuất)…", flush=True)
+    print("loading qwen2.5-vl-7b (the renderer)…", flush=True)
     vlm = get_vlm("qwen2.5-vl-7b").load()
 
     out_path = Path(args.out)
@@ -60,7 +61,7 @@ def main() -> int:
         rid = f.stem
         props = rec.get("propositions") or []
         entities = rec.get("entities") or []
-        props = clean_props(list(props), _Counter())  # vệ sinh vòng 1 quên
+        props = clean_props(list(props), _Counter())  # the hygiene pass round 1 forgot
         supported = [p for p in props if verdict_name(p) == "SUPPORTED"]
         if len(supported) < 3:
             continue
@@ -104,8 +105,8 @@ def main() -> int:
             out_path.write_text(json.dumps(results, ensure_ascii=False, indent=1),
                                 encoding="utf-8")
             rate = (time.time() - t0) / max(stats["n"], 1)
-            print(f"  {stats['n']}/{args.n} · {rate:.1f}s/ảnh · fallback "
-                  f"{stats['fallback_template']} · vi phạm {stats['captions_with_violation']}",
+            print(f"  {stats['n']}/{args.n} · {rate:.1f}s/image · fallback "
+                  f"{stats['fallback_template']} · violations {stats['captions_with_violation']}",
                   flush=True)
     out_path.write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps(stats, ensure_ascii=False))

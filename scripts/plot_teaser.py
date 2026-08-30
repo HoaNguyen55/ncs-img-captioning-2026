@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Vẽ hình ví dụ định tính (P3, ): ảnh → mệnh đề → phán quyết → A/B/C.
+"""Draw the qualitative example figure (P3, ): image → propositions → verdicts → A/B/C.
 
     python scripts/plot_teaser.py \\
         --record research/backups/stage1/00000000833.json \\
@@ -7,16 +7,17 @@
         --ids P3,P4,P6,P15,P25 \\
         --out research/paper/figures/hinh_vidu_dinhtinh.png
 
-Bài phương pháp mà không có một ví dụ cụ thể nào là điểm trừ đọc-hiểu lớn
-. Hình này thay nửa trang văn xuôi của mục 3.4: người đọc thấy một ảnh
-thật, năm mệnh đề với phán quyết ba trạng thái, và ba biến thể A/B/C dựng từ
-đúng bản ghi đó — không có gì được viết tay.
+A methods paper without a single concrete example is a big readability
+penalty. This figure replaces half a page of prose in section 3.4: the reader
+sees a real image, five propositions with three-state verdicts, and the three
+A/B/C variants built from that exact record — nothing is written by hand.
 
-Ba biến thể lấy từ CHÍNH `build_dpo_data.build_for_image` — cùng đường mã với
-dữ liệu huấn luyện, nên hình không thể lệch khỏi những gì mô hình thực học.
+The three variants come from `build_dpo_data.build_for_image` ITSELF — the same
+code path as the training data, so the figure cannot drift from what the model
+actually learns.
 
-Phán quyết được mã hoá KÉP (màu + ký hiệu ✓/?/✗) — bài in trắng đen vẫn đọc
-được, bài học từ Hình 1.
+Verdicts are DOUBLY encoded (colour + ✓/?/✗ symbols) — the paper stays readable
+in black-and-white print, a lesson learned from Figure 1.
 """
 
 from __future__ import annotations
@@ -43,8 +44,8 @@ def main() -> int:
     parser.add_argument("--record", required=True)
     parser.add_argument("--image", required=True)
     parser.add_argument("--ids", required=True,
-                        help="mệnh đề đưa lên hình, phẩy ngăn cách (chọn tay "
-                             "cho dễ đọc — hình ghi rõ là trích)")
+                        help="propositions to show on the figure, comma-separated "
+                             "(hand-picked for readability — the figure says it is an excerpt)")
     parser.add_argument("--out", default="research/paper/figures/hinh_vidu_dinhtinh.png")
     args = parser.parse_args()
 
@@ -62,12 +63,12 @@ def main() -> int:
     ids = [i.strip() for i in args.ids.split(",") if i.strip()]
     missing = [i for i in ids if i not in props]
     if missing:
-        raise SystemExit(f"không thấy mệnh đề {missing} trong bản ghi")
+        raise SystemExit(f"propositions {missing} not found in the record")
 
     stats: Counter[str] = Counter()
     sft, _, pairs = build_for_image(record, stats)
     if not sft:
-        raise SystemExit("bản ghi này không dựng được bậc A — chọn bản ghi khác")
+        raise SystemExit("this record cannot build variant A — pick another record")
     variant_a = sft["response"]
     variant_b = next((p["rejected"] for p in pairs
                       if p["pair_type"].startswith("A>B")), None)
@@ -79,7 +80,7 @@ def main() -> int:
     n_total = len(record.get("propositions") or [])
 
     fig = plt.figure(figsize=(7.0, 6.2))
-    # hàng trên: ảnh trái, mệnh đề phải; hàng dưới: ba biến thể
+    # top row: image left, propositions right; bottom row: the three variants
     ax_img = fig.add_axes([0.015, 0.565, 0.44, 0.40])
     ax_img.imshow(mpimg.imread(Path(args.image).expanduser()))
     ax_img.set_xticks([]); ax_img.set_yticks([])
@@ -143,7 +144,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300)
     fig.savefig(out.with_suffix(".pdf"))
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

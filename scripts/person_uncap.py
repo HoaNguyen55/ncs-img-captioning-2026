@@ -1,31 +1,32 @@
 #!/usr/bin/env python
-""" (nhật ký NC)b — B-NGƯỜI đường OFFLINE: gỡ trần giới tính bằng bằng chứng ĐÃ LƯU.
+""" (research log)b — B-PERSON OFFLINE path: lift the gender ceiling using SAVED evidence.
 
     python scripts/person_uncap.py \
         --in research/backups/stage1 --out ~/ncs-data/stage1_person
 
-Phát hiện (chẩn đoán 24/08): bản ghi stage-1 lưu TRỌN bằng chứng probe
-(khẳng định/phủ định + samples + grounding_score) và verdict KHÔNG CHẮC của
-mệnh đề người thường là "Được hỗ trợ bởi bằng chứng thị giác" bị ĐÈ bởi trần
-giới tính (verify.py ~2614) + thẻ INFERENCE mà generate.py gắn cho chính danh
-từ giới tính (inference_type="none" — không có suy luận nào khác).
+Finding (diagnosis 24/08): stage-1 records keep the ENTIRE probe evidence
+(affirming/negating + samples + grounding_score), and the UNCERTAIN verdict of a
+person proposition is typically "supported by visual evidence" OVERRIDDEN by the
+gender ceiling (verify.py ~2614) + the INFERENCE tag generate.py attaches to the
+gendered noun itself (inference_type="none" — no other inference involved).
 
-Mệnh đề trung tính hóa ("một người") KHÔNG khẳng định giới tính → mọi lý do
-trần biến mất → verdict đúng của bộ kiểm GỐC là ỦNG HỘ. Gỡ trần offline =
-trung thành tuyệt đối với bằng chứng gốc, không hỏi lại, không nhiễu lấy mẫu.
+The neutralized proposition ("một người") asserts NO gender → every reason for
+the ceiling vanishes → the ORIGINAL verifier's correct verdict is SUPPORTED.
+Offline un-capping = absolute fidelity to the original evidence: no re-asking,
+no sampling noise.
 
-TIÊU CHÍ GỠ (đăng ký trước, máy-đọc-được, KHÔNG parse văn bản giải thích):
+UNCAP CRITERIA (pre-registered, machine-readable, NO parsing of explanation text):
  1. verification.status == UNCERTAIN;
- 2. trung tính hóa THẬT SỰ đổi văn bản (mang đầu giới tính);
- 3. epistemic INFERENCE chỉ do danh từ: external_knowledge.inference_type
-    trong {"none", None} (có suy luận thật thì GIỮ NGUYÊN trần);
- 4. bằng chứng gốc nhất trí: probe khẳng định polarity=affirms với MỌI sample
-    khẳng định, probe phủ định polarity=refutes với MỌI sample phủ nhận,
-    visual_grounding.grounding_score >= 0.9.
-Đạt đủ 4 → text trung tính + status SUPPORTED + vết `backoff{kind:
-"gender_uncap", original_text_vi, grounding_score}`. Registry thực thể của
-các mệnh đề tồn tại được gỡ cũng trung tính hóa đầu + gender khong_xac_dinh.
-Bản ghi khác chép nguyên. Thư mục vào bất biến.
+ 2. neutralization ACTUALLY changes the text (it carries a gendered head);
+ 3. epistemic INFERENCE due to the noun alone: external_knowledge.inference_type
+    in {"none", None} (a real inference KEEPS the ceiling);
+ 4. the original evidence is unanimous: the affirming probe polarity=affirms with
+    EVERY sample affirming, the negating probe polarity=refutes with EVERY sample
+    denying, visual_grounding.grounding_score >= 0.9.
+All 4 met → neutral text + status SUPPORTED + trace `backoff{kind:
+"gender_uncap", original_text_vi, grounding_score}`. The entity registry of
+un-capped existence propositions is also neutralized: head + gender khong_xac_dinh.
+Other records are copied verbatim. The input directory is immutable.
 """
 
 from __future__ import annotations
@@ -104,10 +105,10 @@ def main() -> int:
     ap.add_argument("--out", dest="dst", required=True)
     ap.add_argument(
         "--types", default="entity,attribute,action,counting",
-        help="Chỉ gỡ trần các loại này. MẶC ĐỊNH LOẠI relation/spatial_relation: "
-             "lớp tin cậy thấp nhất theo audit (nhật ký NC) (42,9%% người bác) và "
-             "planner chưa kiểm soát chuỗi quan hệ — giữ trần cho tới khi có "
-             "neo vùng ảnh (bản mở rộng).",
+        help="Only un-cap these types. relation/spatial_relation EXCLUDED BY DEFAULT: "
+             "the least trusted class per the (research log) audit (42.9%% human-rejected) and "
+             "the planner does not yet control relation chains — keep the ceiling until "
+             "image-region anchoring lands (the extended version).",
     )
     args = ap.parse_args()
     allowed_types = {t.strip() for t in args.types.split(",") if t.strip()}

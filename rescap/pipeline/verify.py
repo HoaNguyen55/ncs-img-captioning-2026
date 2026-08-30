@@ -2919,11 +2919,11 @@ def assert_verified(propositions: Sequence[dict], config: VerificationConfig) ->
         pid = str(proposition.get("id"))
         verification = proposition.get("verification") or {}
         if config.mode != Mode.NONE and verification.get("status") is None:
-            problems.append(f"{pid}: thiếu status")
+            problems.append(f"{pid}: missing status")
         if not verification.get("explanation_vi"):
-            problems.append(f"{pid}: thiếu explanation_vi")
+            problems.append(f"{pid}: missing explanation_vi")
         if not verification.get("decision_rule_version"):
-            problems.append(f"{pid}: thiếu decision_rule_version")
+            problems.append(f"{pid}: missing decision_rule_version")
         # A speculative claim must be explained as *not determinable from the
         # image*, never as false: writing "sai" would make the system's own
         # explanation a false claim (formulation/09 §5.1).
@@ -2932,11 +2932,11 @@ def assert_verified(propositions: Sequence[dict], config: VerificationConfig) ->
             not in str(verification.get("explanation_vi", ""))
         ):
             problems.append(
-                f"{pid}: mệnh đề suy đoán phải được giải thích là 'không thể xác định "
-                "trực tiếp từ ảnh', không phải là sai"
+                f"{pid}: a speculative proposition must be explained as 'không thể xác định "
+                "trực tiếp từ ảnh' (not determinable directly from the image), not as false"
             )
     if problems:
-        raise RuntimeError("kết quả kiểm chứng không hợp lệ: " + "; ".join(problems))
+        raise RuntimeError("invalid verification results: " + "; ".join(problems))
 
 
 def verdict_counts(results: Iterable[VerificationResult]) -> dict[str, int]:

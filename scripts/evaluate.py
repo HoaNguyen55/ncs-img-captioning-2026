@@ -58,8 +58,8 @@ PROMPTS = {
         "Mô tả bức ảnh này bằng MỘT câu tiếng Việt ngắn gọn, "
         "giống chú thích ảnh. Không liệt kê, không giải thích."
     ),
-    # baseline instructed-zero-shot: steelman cho câu hỏi "chỉ cần
-    # prompt khéo?"; mọi ràng buộc của hệ chính được nêu tường minh trong prompt.
+    # instructed-zero-shot baseline: the steelman for the question "is a clever
+    # prompt enough?"; every constraint of the main system is stated explicitly in the prompt.
     "instructed": (
         "Mô tả chi tiết bức ảnh này bằng tiếng Việt. CHỈ nêu những gì thấy "
         "rõ ràng trong ảnh, không suy đoán. Nếu không chắc giới tính của "
@@ -139,8 +139,8 @@ def generate(args, image_ids: list[str]) -> dict[str, list[str]]:
             trimmed, skip_special_tokens=True)[0].strip()]
         if n % 25 == 0 or n == len(image_ids):
             rate = (time.time() - started) / n
-            print(f"  [{n}/{len(image_ids)}] {rate:.2f}s/ảnh  "
-                  f"còn ~{(len(image_ids)-n)*rate/60:.0f} phút", flush=True)
+            print(f"  [{n}/{len(image_ids)}] {rate:.2f}s/image  "
+                  f"~{(len(image_ids)-n)*rate/60:.0f} min left", flush=True)
     return out
 
 
@@ -150,25 +150,25 @@ def main() -> int:
     parser.add_argument("--predictions", default=None)
     parser.add_argument("--model", default=None)
     parser.add_argument("--adapter", default=None)
-    parser.add_argument("--name", default="hệ thống")
+    parser.add_argument("--name", default="system")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--max-new-tokens", type=int, default=160)
     parser.add_argument("--max-vision-tokens", type=int, default=512)
     parser.add_argument("--four-bit", action="store_true")
     parser.add_argument(
         "--prompt", default="detailed", choices=sorted(PROMPTS),
-        help=("`short` khớp phong cách tham chiếu KTVIC (một câu); "
-              "`detailed` là thứ bài báo thật sự muốn sinh ra"),
+        help=("`short` matches the KTVIC reference style (one sentence); "
+              "`detailed` is what the paper actually wants to generate"),
     )
     parser.add_argument(
         "--score-here", action="store_true",
-        help="chấm ngay trong tiến trình này (dùng nội bộ khi đã có --predictions)",
+        help="score inside this very process (used internally once --predictions exists)",
     )
     parser.add_argument("--out", default=None)
     parser.add_argument("--segmenter", default="rdrsegmenter")
     parser.add_argument(
         "--also-syllable", action="store_true",
-        help="thêm bảng theo âm tiết (dấu trắng) cho phụ lục",
+        help="add a syllable-level (whitespace) table for the appendix",
     )
     args = parser.parse_args()
     args.prompt_text = PROMPTS[args.prompt]
@@ -177,7 +177,7 @@ def main() -> int:
     image_ids = sorted(refs)
     if args.limit:
         image_ids = image_ids[: args.limit]
-    print(f"{args.split}: {len(image_ids)} ảnh")
+    print(f"{args.split}: {len(image_ids)} images")
 
     if args.predictions:
         raw = json.loads(Path(args.predictions).read_text(encoding="utf-8"))
@@ -192,7 +192,7 @@ def main() -> int:
         pred_path.write_text(
             json.dumps({i: preds[i][0] for i in image_ids}, ensure_ascii=False, indent=1),
             encoding="utf-8")
-        print(f"\n  đã lưu dự đoán -> {pred_path}")
+        print(f"\n  saved predictions -> {pred_path}")
 
         if not args.score_here:
             # A fresh interpreter, so the JVM starts in a process with no CUDA
@@ -209,54 +209,54 @@ def main() -> int:
                 argv += ["--also-syllable"]
             if args.out:
                 argv += ["--out", args.out]
-            print(f"  chấm điểm ở tiến trình riêng (JVM không dùng chung với CUDA)…\n")
+            print(f"  scoring in a separate process (the JVM does not share one with CUDA)…\n")
             return subprocess.call(argv)
     else:
-        raise SystemExit("cần --predictions hoặc --model")
+        raise SystemExit("need --predictions or --model")
 
     missing = [i for i in image_ids if i not in preds]
     if missing:
         # Scoring only the images a model happened to caption would report a
         # number for an easier subset than the one everyone else reports on.
         raise SystemExit(
-            f"thiếu dự đoán cho {len(missing)} / {len(image_ids)} ảnh "
-            f"(vd {missing[:3]}). Không chấm tập con — số sẽ không so được "
-            f"với 558 ảnh của GRIT."
+            f"missing predictions for {len(missing)} / {len(image_ids)} images "
+            f"(e.g. {missing[:3]}). No subset scoring — the number would not be "
+            f"comparable to GRIT's 558 images."
         )
 
     from rescap.metrics import CaptionMetrics
 
     gt = {i: refs[i] for i in image_ids}
     rows = []
-    modes = [("từ (word-level)", args.segmenter)]
+    modes = [("word-level", args.segmenter)]
     if args.also_syllable:
-        modes.append(("âm tiết (dấu trắng)", "whitespace"))
+        modes.append(("syllable (whitespace)", "whitespace"))
 
     for label, segmenter in modes:
         # `tokenize` stays True for both: syllable level is a segmenter that
         # happens to be the identity, not an absence of tokenization. Passing
         # tokenize=False skips the step that turns the aligned structures into
         # plain strings, and the scorers then hang on dicts.
-        # METEOR chạy JVM qua pipe: pycocoevalcap ghi TOÀN BỘ dòng rồi mới
-        # đọc — 558 caption CHI TIẾT tràn buffer pipe và deadlock (đo được
-        # 19/08: chấm short lọt, chấm detailed treo y hệt trên hai máy khác
-        # nhau). Caption ngắn vẫn đo METEOR bình thường.
+        # METEOR runs a JVM over a pipe: pycocoevalcap writes ALL lines before
+        # reading — 558 DETAILED captions overflow the pipe buffer and deadlock
+        # (measured 19/08: scoring short passes, scoring detailed hangs identically
+        # on two different machines). Short captions still get METEOR normally.
         use_meteor = args.prompt != "detailed"
         scorer = CaptionMetrics(language="vi", use_meteor=use_meteor, tokenize=True,
                                 segmenter=segmenter)
         scores = scorer.compute(gt, {i: preds[i] for i in image_ids})
         scaled = {k: (v * PUBLISHED_SCALE if k in SCALED and isinstance(v, float) else v)
                   for k, v in scores.items()}
-        # scorer.segmenter, KHÔNG phải biến vòng lặp: khi VnCoreNLP vắng mặt,
-        # bộ chấm đổi tên thành "...!whitespace-fallback" và tên đó phải theo
-        # điểm số vào JSON — nếu ghi tên được yêu cầu, điểm fallback đội lốt
-        # điểm chuẩn và không phép soát nào phía sau bắt được nữa.
+        # scorer.segmenter, NOT the loop variable: when VnCoreNLP is absent, the
+        # scorer renames itself "...!whitespace-fallback" and that name must follow
+        # the scores into the JSON — writing the requested name instead would let a
+        # fallback score masquerade as a proper one, and no later audit could catch it.
         rows.append({"tokenization": label, "segmenter": scorer.segmenter,
                      "scores_scaled_x100": scaled, "scores_raw": scores,
                      "warnings": list(scorer.warnings)})
 
-    print(f"\n{'='*72}\n  {args.name}   ({len(image_ids)} ảnh, thang ×100 như KTVIC công bố)\n{'='*72}")
-    header = f"  {'chỉ số':<12}" + "".join(f"{r['tokenization']:>24}" for r in rows)
+    print(f"\n{'='*72}\n  {args.name}   ({len(image_ids)} images, ×100 scale as KTVIC publishes)\n{'='*72}")
+    header = f"  {'metric':<12}" + "".join(f"{r['tokenization']:>24}" for r in rows)
     print(header + "\n  " + "-" * (len(header) - 2))
     for key in ("BLEU-1", "BLEU-4", "METEOR", "ROUGE-L", "CIDEr"):
         line = f"  {key:<12}"
@@ -271,16 +271,16 @@ def main() -> int:
     from rescap.chair import chair
 
     chair_result = chair({i: preds[i][0] for i in image_ids}, gt, strict_ids=False)
-    print(f"\n  ảo giác vật thể (CHAIR — gold rút từ caption, là CẬN TRÊN):")
+    print(f"\n  object hallucination (CHAIR — gold drawn from captions, an UPPER BOUND):")
     print(f"    CHAIR_s {chair_result.chair_s*100:>5.1f}%   "
           f"CHAIR_i {chair_result.chair_i*100:>5.1f}%   "
-          f"{chair_result.mentions_per_caption:.2f} vật thể/caption")
+          f"{chair_result.mentions_per_caption:.2f} objects/caption")
     top = ", ".join(f"{k}({v})" for k, v in chair_result.top_hallucinated.most_common(6))
-    print(f"    bịa nhiều nhất: {top}")
-    print(f"    ⚠ CHAIR_s tỉ lệ với ĐỘ DÀI caption — chỉ so giữa các hệ "
-          f"CÙNG độ dài ")
+    print(f"    most invented: {top}")
+    print(f"    ⚠ CHAIR_s scales with caption LENGTH — only compare systems "
+          f"of the SAME length ")
 
-    print(f"\n  đối chiếu — GRIT (KTVIC Bảng 3, cùng 558 ảnh):")
+    print(f"\n  reference — GRIT (KTVIC Table 3, same 558 images):")
     print(f"    CIDEr 136.0 · BLEU-4 34.2 · METEOR 28.5 · ROUGE-L 56.1")
     for r in rows:
         for w in r["warnings"]:
@@ -292,12 +292,12 @@ def main() -> int:
         "name": args.name, "split": args.split, "n_images": len(image_ids),
         "prompt_style": args.prompt, "prompt": args.prompt_text,
         "adapter": args.adapter, "model": args.model,
-        "scale": "x100 (như số công bố của KTVIC)",
+        "scale": "x100 (as KTVIC's published numbers)",
         "results": rows,
         "chair": chair_result.as_dict(),
         "predictions": {i: preds[i][0] for i in image_ids},
     }, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"\n  đã ghi {out}")
+    print(f"\n  wrote {out}")
     return 0
 
 

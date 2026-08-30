@@ -1,18 +1,20 @@
 #!/usr/bin/env python
-""" (nhật ký NC) audit mode — NGƯỜI phán quyết trực tiếp mệnh đề máy-SUPPORTED.
+""" (research log) audit mode — a HUMAN directly judges machine-SUPPORTED propositions.
 
     ~/ncs-data/venv/bin/python scripts/audit_props.py --annotator hoa
-    # người thứ hai, cùng lúc:  --annotator <tên> --port 7861
+    # a second person, simultaneously:  --annotator <name> --port 7861
 
-Khác annotate.py (người viết mệnh đề tự do), tool này ĐƯA SẴN mệnh đề mà máy
-đã chấm ĐƯỢC ỦNG HỘ và chỉ hỏi một câu: nhìn ảnh, mệnh đề này đúng không?
-Mục đích (góp ý phương pháp nội bộ): người viết tự do hiếm khi tự
-nghĩ ra câu sai để bác, nên ô nguy-hiểm (máy ỦNG HỘ / người BÁC) bị thiếu
-phơi nhiễm; đưa thẳng danh sách của máy cho người chấm là cách đo không
-thiên lệch. Danh sách mệnh đề cho sẵn là HỢP LỆ — thứ bắt buộc phải là người
-thật là PHÁN QUYẾT (bài học (nhật ký NC): phán quyết do AI sinh bị cấm tuyệt đối).
+Unlike annotate.py (humans write free-form propositions), this tool PRESENTS the
+propositions the machine already scored SUPPORTED and asks one question: looking
+at the image, is this proposition true?
+Purpose (internal methods feedback): free-form writers rarely invent wrong
+statements to reject, so the danger cell (machine SUPPORTED / human REJECTED)
+gets too little exposure; handing the machine's own list straight to a human
+judge is the unbiased measurement. A pre-supplied proposition list is VALID —
+what must come from a real human is the VERDICT ( (research log) lesson:
+AI-generated verdicts are absolutely forbidden).
 
-Autosave mỗi lần bấm + backup xoay vòng, cùng kỷ luật với annotate.py.
+Autosave on every click + rotating backups, same discipline as annotate.py.
 """
 
 from __future__ import annotations
@@ -45,7 +47,7 @@ def main() -> None:
     ap.add_argument("--annotator", required=True)
     ap.add_argument("--port", type=int, default=7860)
     ap.add_argument("--sample", default=None,
-                    help="đường dẫn mẫu khác (vd audit_round2_sample.json (nhật ký NC))")
+                    help="an alternative sample path (e.g. audit_round2_sample.json (research log))")
     ap.add_argument("--share", action="store_true")
     args = ap.parse_args()
 

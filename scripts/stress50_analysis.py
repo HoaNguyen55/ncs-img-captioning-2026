@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Phân tích bộ 50 ảnh thử thách  trên preds đã có — CPU thuần.
+"""Analyse the 50-image challenge set  on existing preds — pure CPU.
 
     python scripts/stress50_analysis.py \\
         --manifest ~/ncs-data/datasets/ktvic/stress50_manifest.json \\
@@ -7,18 +7,20 @@
                 "VSPS=~/ncs-data/results/vsps-short.preds.json" \\
         --out data/stress50/short.json
 
-Không cần GPU: mọi hệ đã sinh caption đủ 558 ảnh test, 50 ảnh khó là tập
-con — chỉ đọc preds từ đĩa và chấm lại. Ba con số mỗi hệ, phân rã theo
-từng tín hiệu khó (đếm / màu / giới tính / độ giàu thực thể):
+No GPU needed: every system already captioned all 558 test images, and the 50
+hard images are a subset — just read the preds from disk and re-score. Three
+numbers per system, broken down by each hard signal (counting / colour /
+gender / entity richness):
 
-* **CHAIR_i trên tập con** — cận trên ảo giác vật thể, đúng bộ từ điển
-  CHAIR-vi của bảng chính (`rescap.chair`).
-* **vật thể nhắc/caption** — độ chi tiết, để CHAIR không thắng bằng im lặng.
-* **bịa giới tính** — % caption dùng danh từ có giới tính mà KHÔNG chú
-  thích tham chiếu nào của ảnh đó dùng (cùng regex với build_stress_manifest).
+* **CHAIR_i on the subset** — the object-hallucination upper bound, using the
+  main table's exact CHAIR-vi lexicon (`rescap.chair`).
+* **objects mentioned/caption** — detail, so CHAIR cannot win by silence.
+* **gender fabrication** — % of captions using a gendered noun that NO
+  reference caption of that image uses (same regex as build_stress_manifest).
 
-Nhóm "có tín hiệu X" lấy thẳng từ manifest (điểm từng tín hiệu đã ghi kèm
-lúc chọn ảnh), nên bảng phân rã tái tạo được từ hai file đầu vào.
+The "has signal X" groups come straight from the manifest (per-signal scores
+were recorded when the images were picked), so the breakdown table is
+reproducible from the two input files.
 """
 
 from __future__ import annotations
@@ -41,7 +43,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--preds", nargs="+", required=True,
-                        help="tên=đường-dẫn preds.json ({image_id: caption})")
+                        help="name=path to preds.json ({image_id: caption})")
     parser.add_argument("--split", default="test_data.json")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
@@ -55,8 +57,8 @@ def main() -> int:
     signal_of = {str(r["image_id"]): r for r in images}
     refs = references(args.split)
 
-    # vàng-từ-chú-thích của TỪNG ảnh: vật thể và danh từ giới tính mà ít
-    # nhất một trong 5 chú thích tham chiếu nhắc tới.
+    # caption-derived gold for EACH image: the objects and gendered nouns that at
+    # least one of the 5 reference captions mentions.
     gold_objects: dict[str, set] = {}
     gold_gender: dict[str, set] = {}
     for i in ids:
@@ -69,11 +71,11 @@ def main() -> int:
         gold_gender[i] = gens
 
     groups = {
-        "tất cả 50": ids,
-        "đếm": [i for i in ids if signal_of[i]["counting"] > 0],
-        "màu": [i for i in ids if signal_of[i]["colour"] > 0],
+        "all 50": ids,
+        "counting": [i for i in ids if signal_of[i]["counting"] > 0],
+        "colour": [i for i in ids if signal_of[i]["colour"] > 0],
         "xanh (grue)": [i for i in ids if signal_of[i]["xanh"] > 0],
-        "giới tính": [i for i in ids if signal_of[i]["gendered"] > 0],
+        "gender": [i for i in ids if signal_of[i]["gendered"] > 0],
     }
 
     result = {"manifest": str(args.manifest), "groups": {g: len(v) for g, v in groups.items()},
@@ -84,8 +86,8 @@ def main() -> int:
         preds = {str(k): (v[0] if isinstance(v, list) else v) for k, v in preds.items()}
         missing = [i for i in ids if i not in preds]
         if missing:
-            raise SystemExit(f"{name}: thiếu {len(missing)} ảnh của manifest — "
-                             f"preds phải phủ đủ 558 (vd {missing[:3]})")
+            raise SystemExit(f"{name}: missing {len(missing)} manifest images — "
+                             f"preds must cover all 558 (e.g. {missing[:3]})")
 
         per_image = {}
         for i in ids:
@@ -121,8 +123,8 @@ def main() -> int:
         print(f"\n== {name} ==")
         for g, a in by_group.items():
             print(f"  {g:<12} n={a['n']:>2}  CHAIR_i={a['chair_i']}  "
-                  f"vật thể/cap={a['mentions_per_caption']}  bịa giới tính={a['gender_fab_pct']}%")
-    print(f"\nđã ghi {out}")
+                  f"objects/cap={a['mentions_per_caption']}  gender fab={a['gender_fab_pct']}%")
+    print(f"\nwrote {out}")
     return 0
 
 

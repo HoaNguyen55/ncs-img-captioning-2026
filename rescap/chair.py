@@ -200,8 +200,8 @@ def chair(
     missing = [i for i in predictions if i not in references]
     if missing and strict_ids:
         raise ValueError(
-            f"{len(missing)} ảnh có dự đoán nhưng không có tham chiếu "
-            f"(vd {missing[:3]}) — chấm tiếp sẽ ra một con số cho tập khác"
+            f"{len(missing)} images have predictions but no references "
+            f"(e.g. {missing[:3]}) — scoring on would produce a number for a different set"
         )
 
     for image_id, caption in predictions.items():
@@ -341,10 +341,10 @@ def gender_invention(
 
         if not gold:
             report.n_invented += 1
-            kind = "bịa giới tính (tham chiếu trung tính)"
+            kind = "invented gender (neutral reference)"
         elif not (predicted & gold):
             report.n_contradicted += 1
-            kind = "sai giới tính"
+            kind = "wrong gender"
         else:
             continue
         if len(report.examples) < 20:

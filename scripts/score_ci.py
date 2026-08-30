@@ -1,28 +1,28 @@
 #!/usr/bin/env python
-"""Khoảng tin cậy bootstrap + kiểm định cặp cho CIDEr và CHAIR_i.
+"""Bootstrap confidence intervals + paired tests for CIDEr and CHAIR_i.
 
     python scripts/score_ci.py \\
         --a ~/ncs-data/results/zeroshot-short.preds.json --name-a "zero-shot" \\
-        --b ~/ncs-data/results/chungcat-short.preds.json --name-b "chưng cất"
+        --b ~/ncs-data/results/chungcat-short.preds.json --name-b "distilled"
 
-Vì sao tồn tại : chênh vài điểm CIDEr trên 558 ảnh mà không có
-khoảng tin cậy là chỗ phản biện IEEE soi đầu tiên. Mọi kết luận "hơn/kém"
-trong bài phải có ±CI và kiểm định đi kèm.
+Why this exists: a few CIDEr points of difference over 558 images without a
+confidence interval is the first thing an IEEE reviewer pokes at. Every
+"better/worse" conclusion in the paper must come with a ±CI and a test.
 
-Cách làm — bootstrap CẶP trên ảnh (B=5000, seed cố định):
+How — PAIRED bootstrap over images (B=5000, fixed seed):
 
-* CIDEr: IDF tính MỘT lần trên toàn bộ tham chiếu (đúng như số công bố), rồi
-  tái lấy mẫu vector điểm-từng-ảnh. Điểm corpus của pycocoevalcap là trung
-  bình điểm từng ảnh nên cách này tái tạo đúng con số gốc.
-* CHAIR_i: tái lấy mẫu cặp (số vật thể bịa, số vật thể nhắc) từng ảnh, lấy
-  tỷ số trên mẫu — KHÔNG lấy trung bình các tỷ số từng ảnh (ảnh ít vật thể
-  sẽ bị phóng đại).
-* Cặp: hai hệ thống dùng CHUNG chỉ số tái lấy mẫu — đúng phép kiểm cho câu
-  hỏi "trên cùng những ảnh này, A có hơn B không".
-* p hai phía = 2·min(P(hiệu ≤ 0), P(hiệu ≥ 0)), chặn dưới 2/B — bootstrap
-  không bao giờ cho p đúng bằng 0.
+* CIDEr: IDF is computed ONCE over all references (exactly as the published
+  number), then the per-image score vector is resampled. pycocoevalcap's corpus
+  score is the mean of per-image scores, so this reproduces the original figure.
+* CHAIR_i: resample the per-image pair (invented-object count, mentioned-object
+  count) and take the ratio over the sample — NOT the mean of per-image ratios
+  (images with few objects would be blown up).
+* Paired: both systems use the SAME resampled indices — the right test for the
+  question "on these same images, is A better than B".
+* Two-sided p = 2·min(P(diff ≤ 0), P(diff ≥ 0)), floored at 2/B — the bootstrap
+  never yields a p of exactly 0.
 
-Chạy một hệ thống (chỉ --a) thì ra CI của riêng nó, không có kiểm định.
+Running one system (only --a) gives its own CI, with no test.
 """
 
 from __future__ import annotations
@@ -36,19 +36,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 B_DEFAULT = 5000
 SEED = 42
-SCALE = 100.0  # thang công bố, như evaluate.py
+SCALE = 100.0  # the published scale, as in evaluate.py
 
 
 def load_preds(path: str) -> dict[str, list[str]]:
     raw = json.loads(Path(path).expanduser().read_text(encoding="utf-8"))
-    if isinstance(raw, dict) and "predictions" in raw:  # file kết quả đầy đủ
+    if isinstance(raw, dict) and "predictions" in raw:  # a full results file
         raw = raw["predictions"]
     return {str(k): (v if isinstance(v, list) else [v]) for k, v in raw.items()}
 
 
 def per_image_cider(gt: dict, preds: dict, ids: list[str], segmenter: str):
-    """Vector điểm CIDEr từng ảnh, IDF trên toàn tập — cùng đường tiền xử lý
-    với evaluate.py (align + tách từ) để con số khớp bảng chính."""
+    """Per-image CIDEr score vector, IDF over the full set — same preprocessing
+    path as evaluate.py (align + word segmentation) so the figure matches the main table."""
     from pycocoevalcap.cider.cider import Cider
 
     from rescap.metrics import CaptionMetrics
@@ -56,13 +56,15 @@ def per_image_cider(gt: dict, preds: dict, ids: list[str], segmenter: str):
     scorer = CaptionMetrics(language="vi", tokenize=True, segmenter=segmenter)
     gts, res = scorer._align(gt, {i: preds[i] for i in ids})
     gts, res = scorer._tokenize(gts, res)
-    # Bộ tách rơi cấp là chết, không phải cảnh báo: số âm tiết lệch số mức từ
-    # ~7 điểm CIDEr mà không báo lỗi nào — đúng lớp bug đã cắn ta cả tuần.
+    # A segmenter falling back is fatal, not a warning: syllable-level numbers
+    # drift ~7 CIDEr points from word-level without any error — exactly the class
+    # of bug that bit us for a week.
     fallback = [w for w in scorer.warnings if "falling back" in w or "unavailable" in w]
     if fallback:
         raise SystemExit(
-            "⛔ bộ tách từ rơi về chế độ khác — số CIDEr sẽ KHÔNG so được với "
-            "bảng chính. Sửa môi trường trước, không có cờ để bỏ qua.\n  "
+            "⛔ the word segmenter fell back to another mode — CIDEr numbers will "
+            "NOT be comparable to the main table. Fix the environment first; there "
+            "is no flag to skip this.\n  "
             + "\n  ".join(fallback)
         )
     for w in scorer.warnings:
@@ -70,12 +72,12 @@ def per_image_cider(gt: dict, preds: dict, ids: list[str], segmenter: str):
     order = list(gts.keys())
     corpus, per_image = Cider().compute_score(gts, res)
     if len(order) != len(per_image):
-        raise RuntimeError("số điểm từng ảnh không khớp số ảnh — không tin được")
+        raise RuntimeError("per-image score count does not match image count — untrustworthy")
     return float(corpus), dict(zip(order, [float(s) for s in per_image]))
 
 
 def per_image_chair(gt: dict, preds: dict, ids: list[str]):
-    """{image_id: (số bịa, số nhắc)} từ cùng bộ đếm với bảng chính."""
+    """{image_id: (invented count, mention count)} from the same counter as the main table."""
     from rescap.chair import chair
 
     result = chair({i: preds[i][0] for i in ids}, gt, strict_ids=False)
@@ -86,8 +88,8 @@ def per_image_chair(gt: dict, preds: dict, ids: list[str]):
 
 
 def bootstrap(ids, samplers, b, rng):
-    """samplers: {tên: hàm(ids đã tái lấy mẫu) -> giá trị}. Trả về
-    {tên: [giá trị mỗi vòng]} — mọi hệ thống dùng CHUNG một mẫu (cặp)."""
+    """samplers: {name: fn(resampled ids) -> value}. Returns
+    {name: [value per round]} — every system uses the SAME sample (paired)."""
     import numpy as np
 
     ids = list(ids)
@@ -116,8 +118,8 @@ def p_two_sided(diffs) -> float:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--a", required=True, help="file dự đoán hệ A")
-    parser.add_argument("--b", default=None, help="file dự đoán hệ B (so cặp)")
+    parser.add_argument("--a", required=True, help="predictions file for system A")
+    parser.add_argument("--b", default=None, help="predictions file for system B (paired comparison)")
     parser.add_argument("--name-a", default="A")
     parser.add_argument("--name-b", default="B")
     parser.add_argument("--split", default="test")
@@ -126,39 +128,39 @@ def main() -> int:
     parser.add_argument("--out", default=None)
     parser.add_argument(
         "--allow-subset", action="store_true",
-        help="chấm phần giao thay vì từ chối — CHỈ để thử hạ tầng; so cặp "
-             "trên tập con vẫn đúng phép kiểm cho chính các ảnh đó, nhưng "
-             "con số KHÔNG so được với bảng 558 ảnh",
+        help="score the intersection instead of refusing — infrastructure testing "
+             "ONLY; a paired comparison on a subset is still a valid test for those "
+             "very images, but the number is NOT comparable to the 558-image table",
     )
     args = parser.parse_args()
 
     import numpy as np
 
-    from evaluate import references  # cùng nguồn tham chiếu với bảng chính
+    from evaluate import references  # same reference source as the main table
 
     refs = references(args.split)
     systems = {args.name_a: load_preds(args.a)}
     if args.b:
         systems[args.name_b] = load_preds(args.b)
 
-    # Giao tập ảnh: chỉ chấm ảnh mọi hệ đều có — và phải là TOÀN BỘ split,
-    # cùng quy tắc từ chối tập con của evaluate.py.
+    # Image-set intersection: only score images every system has — and it must be
+    # the WHOLE split, same subset-refusal rule as evaluate.py.
     ids = sorted(set(refs))
     for name, preds in systems.items():
         missing = [i for i in ids if i not in preds]
         if missing and not args.allow_subset:
             raise SystemExit(
-                f"hệ '{name}' thiếu {len(missing)}/{len(ids)} ảnh của split "
-                f"(vd {missing[:3]}) — không chấm tập con, số sẽ không so được"
+                f"system '{name}' is missing {len(missing)}/{len(ids)} images of the split "
+                f"(e.g. {missing[:3]}) — no subset scoring, the number would not be comparable"
             )
         if missing:
             ids = [i for i in ids if i in preds]
     if args.allow_subset and len(ids) < len(refs):
-        print(f"  ⚠⚠ TẬP CON {len(ids)}/{len(refs)} ảnh (--allow-subset) — "
-              f"số dưới đây KHÔNG so được với bảng {len(refs)} ảnh ⚠⚠")
+        print(f"  ⚠⚠ SUBSET {len(ids)}/{len(refs)} images (--allow-subset) — "
+              f"the numbers below are NOT comparable to the {len(refs)}-image table ⚠⚠")
     gt = {i: list(refs[i]) for i in ids}
 
-    print(f"  {len(ids)} ảnh · {args.rounds} vòng bootstrap · seed {SEED}\n")
+    print(f"  {len(ids)} images · {args.rounds} bootstrap rounds · seed {SEED}\n")
     cider_pi, chair_pi, point = {}, {}, {}
     for name, preds in systems.items():
         corpus, pi = per_image_cider(gt, preds, ids, args.segmenter)
@@ -183,7 +185,7 @@ def main() -> int:
     report = {"n_images": len(ids), "rounds": args.rounds, "seed": SEED,
               "split": args.split, "metrics": {}}
     for metric in ("CIDEr", "CHAIR_i"):
-        print(f"  === {metric} (thang ×100) ===")
+        print(f"  === {metric} (×100 scale) ===")
         for name in systems:
             lo, hi = ci95(draws[f"{metric}/{name}"])
             print(f"    {name:<22} {point[name][metric]:>7.1f}  "
@@ -196,20 +198,20 @@ def main() -> int:
             lo, hi = ci95(d)
             p = p_two_sided(d)
             delta = point[args.name_b][metric] - point[args.name_a][metric]
-            verdict = "CÓ Ý NGHĨA" if (lo > 0 or hi < 0) else "KHÔNG kết luận được"
-            print(f"    hiệu (B−A){'':<12} {delta:>+7.1f}  "
+            verdict = "SIGNIFICANT" if (lo > 0 or hi < 0) else "INCONCLUSIVE"
+            print(f"    diff (B−A){'':<12} {delta:>+7.1f}  "
                   f"[95% CI {lo:+.1f} – {hi:+.1f}]  p≈{p:.4f}  → {verdict}")
             report["metrics"][metric]["diff_b_minus_a"] = {
                 "point": delta, "ci95": [lo, hi], "p_two_sided": p}
         print()
 
     if args.b:
-        print("  Đọc kết quả: 'CÓ Ý NGHĨA' nghĩa là CI 95% của hiệu không chứa 0")
-        print("  trên chính tập ảnh này — không phải khẳng định cho mọi tập ảnh.")
+        print("  Reading the result: 'SIGNIFICANT' means the 95% CI of the difference excludes 0")
+        print("  on this very image set — not a claim about every image set.")
     out = Path(args.out or Path(args.a).expanduser().parent / "score_ci.json")
     out.write_text(json.dumps(report, ensure_ascii=False, indent=2),
                    encoding="utf-8")
-    print(f"\n  đã ghi {out}")
+    print(f"\n  wrote {out}")
     return 0
 
 

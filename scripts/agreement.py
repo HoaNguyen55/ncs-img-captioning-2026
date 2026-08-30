@@ -72,7 +72,7 @@ def cohens_kappa(pairs: list[tuple[str, str]]) -> tuple[float | None, float]:
 def load(split: str, wanted: list[str] | None) -> dict[str, dict]:
     directory = OUT_ROOT / split
     if not directory.exists():
-        raise SystemExit(f"không thấy thư mục gán nhãn {directory}")
+        raise SystemExit(f"annotation directory {directory} not found")
     out = {}
     for path in sorted(directory.glob("*.json")):
         name = path.stem
@@ -81,8 +81,8 @@ def load(split: str, wanted: list[str] | None) -> dict[str, dict]:
         out[name] = json.loads(path.read_text(encoding="utf-8"))
     if len(out) < 2:
         raise SystemExit(
-            f"cần ít nhất 2 người gán nhãn, mới thấy {sorted(out)}. "
-            f"κ không tính được từ một người."
+            f"need at least 2 annotators, only found {sorted(out)}. "
+            f"κ cannot be computed from one person."
         )
     return out
 
@@ -90,12 +90,12 @@ def load(split: str, wanted: list[str] | None) -> dict[str, dict]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--split", default="pilot")
-    parser.add_argument("--annotators", default="", help="tên, phân tách bằng dấu phẩy")
+    parser.add_argument("--annotators", default="", help="names, comma-separated")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
     people = load(args.split, [a.strip() for a in args.annotators.split(",") if a.strip()])
-    print(f"  {len(people)} người gán nhãn: {', '.join(sorted(people))}\n")
+    print(f"  {len(people)} annotators: {', '.join(sorted(people))}\n")
 
     report = {"split": args.split, "annotators": sorted(people), "pairs": []}
     for a, b in combinations(sorted(people), 2):
@@ -120,23 +120,23 @@ def main() -> int:
                 per_type[by_text_a[key].get("type", "?")].append((va, vb))
 
         kappa, observed = cohens_kappa(pairs)
-        shown = "n/a (một nhãn duy nhất)" if kappa is None else f"{kappa:.3f}"
+        shown = "n/a (a single label only)" if kappa is None else f"{kappa:.3f}"
         print(f"  {a} ↔ {b}")
-        print(f"    ảnh chung        : {len(shared_images)}")
-        print(f"    mệnh đề khớp     : {len(pairs)}")
-        print(f"    chỉ {a:<12}: {only_a}")
-        print(f"    chỉ {b:<12}: {only_b}")
-        print(f"    trùng khớp thô   : {observed*100:.1f}%")
+        print(f"    shared images    : {len(shared_images)}")
+        print(f"    matched props    : {len(pairs)}")
+        print(f"    only {a:<12}: {only_a}")
+        print(f"    only {b:<12}: {only_b}")
+        print(f"    raw agreement    : {observed*100:.1f}%")
         print(f"    **Cohen κ**      : {shown}")
         if kappa is not None:
-            band = ("kém (<0,40)" if kappa < 0.40 else
-                    "vừa (0,40–0,60)" if kappa < 0.60 else
-                    "tốt (0,60–0,80)" if kappa < 0.80 else "rất tốt (≥0,80)")
-            print(f"    mức              : {band}")
+            band = ("poor (<0.40)" if kappa < 0.40 else
+                    "moderate (0.40–0.60)" if kappa < 0.60 else
+                    "good (0.60–0.80)" if kappa < 0.80 else "very good (≥0.80)")
+            print(f"    band             : {band}")
         if only_a + only_b > len(pairs):
-            print(f"    ⚠ số mệnh đề CHỈ một người thấy ({only_a + only_b}) nhiều hơn "
-                  f"số khớp ({len(pairs)}) — κ chỉ nói về phần chung, "
-                  f"hai người đang nhìn ảnh rất khác nhau")
+            print(f"    ⚠ propositions seen by only ONE annotator ({only_a + only_b}) outnumber "
+                  f"the matched ones ({len(pairs)}) — κ speaks only to the shared part; "
+                  f"the two are looking at the image very differently")
 
         if confusion:
             print(f"\n    {'':<12}" + "".join(f"{v[:9]:>11}" for v in VERDICTS))
@@ -158,7 +158,7 @@ def main() -> int:
     out = Path(args.out or DATA / "results" / f"agreement_{args.split}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  đã ghi {out}")
+    print(f"  wrote {out}")
     return 0
 
 

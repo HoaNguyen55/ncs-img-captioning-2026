@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Tải ảnh val2014 cho probe (nhật ký NC) (song song, resumable).
+"""Download val2014 images for the probe (NC log) (parallel, resumable).
 
     python scripts/download_coco_images.py --out /root/coco_images
 """
@@ -23,7 +23,7 @@ def fetch(name: str, out: Path) -> str | None:
         with urllib.request.urlopen(URL.format(name=name), timeout=60) as r:
             dst.write_bytes(r.read())
         return None
-    except Exception as e:  # ghi lại, thử lại ở lần chạy sau
+    except Exception as e:  # record it, retry on the next run
         return f"{name}: {e}"
 
 
@@ -46,7 +46,7 @@ def main() -> int:
             if (i + 1) % 500 == 0:
                 print(f"  {i+1}/{len(names)}", flush=True)
     have = sum(1 for n in names if (out / n).exists())
-    print(f"đủ {have}/{len(names)} ảnh; lỗi: {len(errs)}")
+    print(f"have {have}/{len(names)} images; errors: {len(errs)}")
     for e in errs[:5]:
         print("  ", e)
     return 0 if have == len(names) else 1

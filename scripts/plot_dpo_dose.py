@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-"""Vẽ Hình 3 của bài báo — Phân tích đáp ứng liều lượng DPO (Dose-Response Analysis).
+"""Draw Figure 3 of the paper — DPO dose-response analysis.
 
     python scripts/plot_dpo_dose.py \
         --data_dir data/results \
         --out research/paper/figures/hinh3_lieu_dpo.png
 
-Trục x: Số bước tối ưu hóa DPO (0, 150, 500, 1626 bước).
-Trục y trái: Điểm số CIDEr mức từ (ngắn).
-Trục y phải: Tỷ lệ (%) caption bị lẫn ký tự CJK.
+x axis: number of DPO optimisation steps (0, 150, 500, 1626 steps).
+Left y axis: word-level CIDEr score (concise).
+Right y axis: percentage of captions with CJK character leakage.
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ def main() -> int:
 
     data_dir = Path(args.data_dir)
 
-    # 4 điểm đo liều lượng DPO
+    # the 4 DPO dose measurement points
     doses = [
         {"steps": 0, "name": "0\n(pure SFT)" if EN else "0\n(SFT-thuần)", "file": "offsft-diag-short.json", "preds": "offsft-diag-short.preds.json"},
         {"steps": 150, "name": "150\n(Round B)" if EN else "150\n(Vòng B)", "file": "roundB-short.json", "preds": "roundB-short.preds.json"},
@@ -94,7 +94,7 @@ def main() -> int:
             cjk_pcts.append(m["cjk_pct"])
             hedges.append(m["hedge_density"])
         elif d["steps"] == 150:
-            # Ước lượng tạm cho Vòng B trong lúc chờ GPU chạy
+            # Temporary estimate for Round B while the GPU run is pending
             x_steps.append(150)
             x_labels.append("150 (Vòng B)\n[chờ số]")
             ciders.append(16.0)
@@ -103,7 +103,7 @@ def main() -> int:
 
     fig, ax1 = plt.subplots(figsize=(6.2, 3.6))
 
-    # Trục trái: CIDEr ngắn
+    # Left axis: concise CIDEr
     color_cider = "#1f6f8b"
     ax1.set_xlabel("DPO training steps" if EN else "Số bước huấn luyện DPO", fontsize=11, fontweight="bold")
     ax1.set_ylabel("Word-level CIDEr (concise, ×100)" if EN else "CIDEr mức từ (chế độ ngắn, ×100)", color=color_cider, fontsize=11, fontweight="bold")
@@ -119,7 +119,7 @@ def main() -> int:
     ax1.set_ylim(0, 22)
     ax1.grid(True, linestyle=":", alpha=0.5)
 
-    # Trục phải: CJK %
+    # Right axis: CJK %
     ax2 = ax1.twinx()
     color_cjk = "#c0392b"
     ax2.set_ylabel("CJK character leakage (%)" if EN else "Tỷ lệ lẫn ký tự CJK (%)", color=color_cjk, fontsize=11, fontweight="bold")
@@ -129,7 +129,7 @@ def main() -> int:
 
     ax2.set_ylim(-2, 35)
 
-    # Gộp legend
+    # Merge the legends
     lines = line1 + line2
     labels = [l.get_label() for l in lines]
     ax1.legend(lines, labels, loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2, fontsize=10)
@@ -141,7 +141,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300, bbox_inches="tight")
     fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight")
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

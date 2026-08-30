@@ -70,8 +70,8 @@ def human_verdicts(split: str) -> dict[str, dict[str, dict[str, str]]]:
     directory = DATA / "annotations" / split
     if not directory.exists():
         raise SystemExit(
-            f"chưa có gán nhãn nào trong {directory} — "
-            f"chạy annotate.py --split {split} trước"
+            f"no annotations yet in {directory} — "
+            f"run annotate.py --split {split} first"
         )
     out: dict[str, dict[str, dict[str, str]]] = {}
     for path in sorted(directory.glob("*.json")):
@@ -86,14 +86,14 @@ def human_verdicts(split: str) -> dict[str, dict[str, dict[str, str]]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--machine", required=True, help="thư mục bản ghi giai đoạn 1")
+    parser.add_argument("--machine", required=True, help="directory of Stage 1 records")
     parser.add_argument("--split", default="pilot_calibration")
     parser.add_argument("--out", default=None)
     args = parser.parse_args()
 
     machine = machine_verdicts(Path(args.machine))
     humans = human_verdicts(args.split)
-    print(f"  máy: {len(machine)} ảnh · người: {', '.join(sorted(humans))}\n")
+    print(f"  machine: {len(machine)} images · humans: {', '.join(sorted(humans))}\n")
 
     report = {"split": args.split, "annotators": {}}
     for name, person in sorted(humans.items()):
@@ -120,22 +120,22 @@ def main() -> int:
             n for (m, _), n in confusion.items() if m == "SUPPORTED"
         )
 
-        print(f"  === máy ↔ {name} ===")
-        print(f"    mệnh đề khớp văn bản : {matched}"
-              f"   (chỉ máy: {machine_only} · chỉ người: {human_only})")
-        print(f"    trùng phán quyết     : {agree}/{total} = {agree/total*100:.1f}%")
-        print(f"\n    {'máy \\\\ người':<14}" + "".join(f"{v[:9]:>11}" for v in VERDICTS))
+        print(f"  === machine ↔ {name} ===")
+        print(f"    text-matched props   : {matched}"
+              f"   (machine only: {machine_only} · human only: {human_only})")
+        print(f"    verdict agreement    : {agree}/{total} = {agree/total*100:.1f}%")
+        print(f"\n    {'machine \\\\ human':<14}" + "".join(f"{v[:9]:>11}" for v in VERDICTS))
         for mv in VERDICTS:
             row = "".join(f"{confusion.get((mv, hv), 0):>11}" for hv in VERDICTS)
             print(f"    {mv:<14}{row}")
         if n_machine_supported:
             rate = false_support / n_machine_supported
-            print(f"\n    ⚠ Ô NGUY HIỂM — máy SUPPORTED, người REJECTED: "
+            print(f"\n    ⚠ DANGEROUS CELL — machine SUPPORTED, human REJECTED: "
                   f"{false_support}/{n_machine_supported} "
-                  f"= {rate*100:.1f}% của mọi SUPPORTED máy đưa ra")
-            print(f"      (mỗi ca này là một điều SAI sẽ được dạy cho bộ sinh)")
+                  f"= {rate*100:.1f}% of everything the machine marked SUPPORTED")
+            print(f"      (each of these is a FALSE thing that will be taught to the generator)")
         for d in dangerous[:5]:
-            print(f"      · ảnh {d['image_id']}: {d['text'][:70]}")
+            print(f"      · image {d['image_id']}: {d['text'][:70]}")
         print()
 
         report["annotators"][name] = {
@@ -152,7 +152,7 @@ def main() -> int:
     out = Path(args.out or DATA / "results" / f"machine_vs_human_{args.split}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  đã ghi {out}")
+    print(f"  wrote {out}")
     return 0
 
 

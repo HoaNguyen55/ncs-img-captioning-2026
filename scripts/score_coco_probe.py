@@ -1,23 +1,26 @@
 #!/usr/bin/env python
-""" (nhật ký NC) — chấm CHAIR chuẩn trên COCO-2014 cho probe xuyên ngôn ngữ.
+""" (research log) — standard CHAIR scoring on COCO-2014 for the cross-lingual probe.
 
     python scripts/score_coco_probe.py \\
         --preds-dir ~/ncs-data/coco_probe_out \\
         --out data/results/coco_probe_scores.json
 
-GIAO THỨC ĐÓNG BĂNG TRƯỚC KHI THẤY KẾT QUẢ (commit trước khi probe xong — đó
-là toàn bộ giá trị của file này):
-1. Vũ trụ vật thể = ĐÚNG 80 lớp COCO (Rohrbach 2018). Vật thể ngoài 80 lớp
-   không được đếm — cả phía nhắc lẫn phía vàng.
-2. Vàng(ảnh) = lớp trong instances_val2014 ∪ lớp nhắc trong 5 caption tham
-   chiếu Karpathy (khớp EN qua synonyms.txt gốc của Rohrbach, + số nhiều s/es).
-3. Phát hiện vật thể trong caption TIẾNG VIỆT: từ điển coco80_vi.json (đã
-   commit trước), khớp cụm dài nhất trước, biên là ký tự không phải chữ; các
-   ghi chú `_rui_ro` trong từ điển bị bỏ qua khi khớp.
-4. Chỉ số cho từng (hệ × chế độ): số lớp nhắc/caption · CHAIR_i (lớp ảo /
-   lớp nhắc, gộp toàn tập) · CHAIR_s (% caption có ≥1 lớp ảo) · vật thể ảo
-   tuyệt đối/caption (trung bình số lớp ảo phân biệt).
-5. Gộp đủ 2 shard; thiếu ảnh nào báo ảnh đó; không loại mẫu hậu nghiệm.
+PROTOCOL FROZEN BEFORE SEEING RESULTS (committed before the probe finished — that
+is the entire value of this file):
+1. Object universe = EXACTLY the 80 COCO classes (Rohrbach 2018). Objects outside
+   the 80 classes are not counted — on the mention side or the gold side.
+2. Gold(image) = classes in instances_val2014 ∪ classes mentioned in the 5
+   Karpathy reference captions (EN matching via Rohrbach's original synonyms.txt,
+   + simple s/es plurals).
+3. Object detection in the VIETNAMESE caption: the coco80_vi.json lexicon
+   (committed beforehand), longest-phrase-first matching, boundaries are
+   non-letter characters; `_rui_ro` notes in the lexicon are skipped when matching.
+4. Metrics per (system × mode): classes mentioned/caption · CHAIR_i (invented
+   classes / mentioned classes, pooled over the set) · CHAIR_s (% captions with
+   ≥1 invented class) · absolute invented objects/caption (mean distinct
+   invented classes).
+5. Merge both shards in full; report every missing image by name; no post-hoc
+   sample exclusion.
 """
 
 from __future__ import annotations
@@ -38,7 +41,7 @@ _LETTER = r"a-zA-ZÀ-ỹ"
 
 
 def load_synonyms() -> dict[str, str]:
-    """EN synonym → tên lớp COCO, kèm số nhiều đơn giản."""
+    """EN synonym → COCO class name, with simple plurals."""
     mapping: dict[str, str] = {}
     for line in (PROBE_DATA / "chair_synonyms.txt").read_text().splitlines():
         parts = [p.strip().lower() for p in line.split(",") if p.strip()]
@@ -53,7 +56,7 @@ def load_synonyms() -> dict[str, str]:
 
 
 def load_vi_terms() -> list[tuple[str, str]]:
-    """[(cụm VI, lớp COCO)] — cụm dài xếp trước; bỏ ghi chú _rui_ro."""
+    """[(VI phrase, COCO class)] — longest phrases first; skip _rui_ro notes."""
     d = json.loads((PROBE_DATA / "coco80_vi.json").read_text(encoding="utf-8"))
     pairs = []
     for cls, terms in d.items():
@@ -82,7 +85,7 @@ def vi_classes(caption: str, vi_terms) -> set[str]:
 def en_classes(caption: str, syn: dict[str, str]) -> set[str]:
     text = " " + re.sub(f"[^{_LETTER}]", " ", caption.lower()) + " "
     found: set[str] = set()
-    # cụm nhiều từ trước
+    # multi-word phrases first
     for phrase, cls in syn.items():
         if " " in phrase and f" {phrase} " in text:
             found.add(cls)
@@ -104,14 +107,14 @@ def main() -> int:
     man = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
     want = {i["cocoid"] for i in man["images"]}
 
-    # vàng 1 — instance thật
+    # gold 1 — real instances
     inst = json.loads((ANN / "instances_val2014.json").read_text())
     cat_name = {c["id"]: c["name"] for c in inst["categories"]}
     gold_inst: dict[int, set[str]] = defaultdict(set)
     for a in inst["annotations"]:
         if a["image_id"] in want:
             gold_inst[a["image_id"]].add(cat_name[a["category_id"]])
-    # vàng 2 — caption tham chiếu Karpathy
+    # gold 2 — Karpathy reference captions
     kar = json.loads(KARPATHY.read_text())
     gold_ref: dict[int, set[str]] = defaultdict(set)
     for img in kar["images"]:
@@ -151,19 +154,19 @@ def main() -> int:
                 "abs_halluc_per_caption": round(sum(hal_per_cap) / n, 3),
             }
             r = results[f"{system}-{mode}"]
-            print(f"{system:9s} {mode:9s}: nhắc {r['mentions_per_caption']:.2f}/cap · "
+            print(f"{system:9s} {mode:9s}: mentions {r['mentions_per_caption']:.2f}/cap · "
                   f"CHAIR_i {100*r['chair_i']:.1f}% · CHAIR_s {100*r['chair_s']:.1f}% · "
-                  f"ảo tuyệt đối {r['abs_halluc_per_caption']:.2f}/cap"
-                  + (f"  (THIẾU {r['n_missing']} ảnh)" if r["n_missing"] else ""))
+                  f"absolute invented {r['abs_halluc_per_caption']:.2f}/cap"
+                  + (f"  (MISSING {r['n_missing']} images)" if r["n_missing"] else ""))
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
-        "protocol": " (nhật ký NC) đóng băng trước khi thấy kết quả; commit trước khi probe xong",
+        "protocol": " (research log) frozen before seeing results; committed before the probe finished",
         "gold": "instances_val2014 ∪ ref-caption (synonyms.txt Rohrbach)",
         "results": results,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"đã ghi {out}")
+    print(f"wrote {out}")
     return 0
 
 

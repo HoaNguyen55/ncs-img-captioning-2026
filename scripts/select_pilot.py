@@ -184,7 +184,7 @@ def main() -> None:
     args = parser.parse_args()
 
     entries = load_ktvic(args.source)
-    print(f"KTVIC {args.source}: {len(entries)} ảnh")
+    print(f"KTVIC {args.source}: {len(entries)} images")
 
     if args.within:
         allowed = {
@@ -192,12 +192,12 @@ def main() -> None:
             for img in json.loads((KTVIC / args.within).read_text(encoding="utf-8"))["images"]
         }
         entries = [e for e in entries if e["image_id"] in allowed]
-        print(f"  giới hạn trong {args.within}: {len(entries)} ảnh")
+        print(f"  restricted to {args.within}: {len(entries)} images")
 
     images_dir = KTVIC / "images"
     have_images = images_dir.exists() and any(images_dir.iterdir())
     if not have_images:
-        print("  ⚠ chưa có ảnh — chỉ phân tầng bằng caption, không dùng độ nét/độ sáng")
+        print("  ⚠ no images yet — stratifying by captions only, without sharpness/brightness")
 
     scored = []
     for entry in entries:
@@ -208,7 +208,7 @@ def main() -> None:
     groups: dict[str, list[dict]] = {"dễ": [], "trung bình": [], "khó": []}
     for item in scored:
         groups[item["difficulty"]].append(item)
-    print("  phân bố:", {k: len(v) for k, v in groups.items()})
+    print("  distribution:", {k: len(v) for k, v in groups.items()})
 
     if args.quota:
         quota = {
@@ -221,7 +221,7 @@ def main() -> None:
             "trung bình": round(args.n * 0.4),
             "khó": args.n - round(args.n * 0.4) * 2,
         }
-    print("  hạn mức:", quota)
+    print("  quota:", quota)
 
     rng = random.Random(args.seed)
     picked: list[dict] = []
@@ -237,7 +237,7 @@ def main() -> None:
     # Backfill honestly: say what was substituted rather than silently returning
     # a set that does not match the requested stratification.
     if shortfall:
-        print(f"  ⚠ thiếu ở {shortfall} — bù bằng ảnh gần nhất về độ khó")
+        print(f"  ⚠ shortfall at {shortfall} — backfilling with the closest images by difficulty")
         chosen = {i["image_id"] for i in picked}
         rest = sorted(
             (i for i in scored if i["image_id"] not in chosen),
@@ -280,13 +280,13 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print(f"\nĐã ghi {out}  ({len(picked)} ảnh)")
+    print(f"\nWrote {out}  ({len(picked)} images)")
     for item in picked[:8]:
         why = ", ".join(item["why"]) or "—"
         print(f"  [{item['difficulty']:<10}] {item['file_name']:<28} {why}")
     if len(picked) > 8:
-        print(f"  … và {len(picked) - 8} ảnh nữa")
-    print(f"\nTiếp: python scripts/annotate.py --annotator <tên> --split {args.split}")
+        print(f"  … and {len(picked) - 8} more images")
+    print(f"\nNext: python scripts/annotate.py --annotator <name> --split {args.split}")
 
 
 if __name__ == "__main__":

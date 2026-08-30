@@ -76,7 +76,7 @@ class ReplayVLM(VLM):
         # by a different model than the one being replayed, and inventing text
         # here would put words in a record's mouth.
         raise NotImplementedError(
-            "ReplayVLM chỉ phát lại probe có/không; không sinh văn bản tự do"
+            "ReplayVLM only replays yes/no probes; it does not generate free text"
         )
 
     def probe_yes_no(self, image, question: str, *, k: int = 1, temperature: float = 0.0):

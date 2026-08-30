@@ -41,6 +41,6 @@ m["double_seed"] = 20260818
     json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
 
 from collections import Counter
-print(f"  đánh dấu {len(ids)} ảnh chấm đôi / {len(images)}")
-print(f"  phân tầng: {dict(Counter(i['difficulty'] for i in picked))}")
-print(f"  toàn tập : {dict(Counter(i['difficulty'] for i in images))}")
+print(f"  marked {len(ids)} double-annotated images / {len(images)}")
+print(f"  strata   : {dict(Counter(i['difficulty'] for i in picked))}")
+print(f"  full set : {dict(Counter(i['difficulty'] for i in images))}")

@@ -1,19 +1,20 @@
 #!/usr/bin/env python
-"""Vẽ Hình 2 của bài báo — đường cong huấn luyện SFT và DPO, nhãn tiếng Việt.
+"""Draw Figure 2 of the paper — SFT and DPO training curves, Vietnamese labels.
 
     python scripts/plot_training.py \\
         --sft ~/ncs-data/runs/sft/metrics.jsonl \\
         --dpo ~/ncs-data/runs/dpo/metrics.jsonl \\
         --out research/paper/figures/hinh2_huan_luyen.png
 
-Hình 2 là yêu cầu bắt buộc của trưởng nhóm (18/08): bài báo phải hiển thị quá
-trình huấn luyện — loss, epoch, và kết quả sau huấn luyện. Bài viết hoàn toàn
-bằng tiếng Việt, nên **mọi nhãn trên hình cũng tiếng Việt** — một cái trục ghi
-"ordering accuracy" giữa một bài tiếng Việt là thứ người phản biện khoanh ngay.
+Figure 2 is a hard requirement from the team lead (18/08): the paper must show
+the training process — loss, epochs, and post-training results. The paper is
+written entirely in Vietnamese, so **every label on the figure is Vietnamese
+too** — an axis reading "ordering accuracy" in the middle of a Vietnamese paper
+is exactly the kind of thing a reviewer circles immediately.
 
-Đọc `metrics.jsonl` mà `train_stage2.py` ghi ra, nên hình tái tạo được từ đĩa
-mà không cần chạy lại bất cứ thứ gì. Xuất PNG 300 dpi (đủ cho bản in IEEE) và
-kèm PDF cùng tên cho LaTeX.
+Reads the `metrics.jsonl` that `train_stage2.py` writes, so the figure can be
+rebuilt from disk without re-running anything. Outputs a 300 dpi PNG (enough
+for the IEEE print version) plus a same-named PDF for LaTeX.
 """
 
 from __future__ import annotations
@@ -29,7 +30,7 @@ def load(path: str | None) -> list[dict]:
         return []
     p = Path(path).expanduser()
     if not p.exists():
-        print(f"  ⚠ không thấy {p} — bỏ qua phần này")
+        print(f"  ⚠ {p} not found — skipping this part")
         return []
     return [json.loads(line) for line in p.read_text(encoding="utf-8").splitlines()
             if line.strip()]
@@ -49,14 +50,14 @@ def main() -> int:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    # DejaVu (mặc định của matplotlib) có đủ dấu tiếng Việt — không cần cài font.
+    # DejaVu (matplotlib's default) covers Vietnamese diacritics — no font install needed.
     sft = [e for e in load(args.sft) if e.get("stage") == "sft" and "loss" in e]
-    # metrics.jsonl kết thúc bằng dòng tổng kết (summary_per_pair_type) không có
-    # "step" — chỉ vẽ các dòng theo bước, dòng tổng kết thuộc về bảng phụ lục.
+    # metrics.jsonl ends with a summary line (summary_per_pair_type) that has no
+    # "step" — only plot the per-step lines; the summary belongs to the appendix table.
     dpo = [e for e in load(args.dpo)
            if e.get("stage") == "dpo" and "step" in e and "loss" in e]
     if not sft and not dpo:
-        raise SystemExit("không có số liệu nào để vẽ — chạy train_stage2.py trước")
+        raise SystemExit("no metrics to plot — run train_stage2.py first")
 
     n_panels = (1 if sft else 0) + (2 if dpo else 0)
     fig, axes = plt.subplots(1, n_panels, figsize=(4.2 * n_panels, 3.4))
@@ -118,7 +119,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300)
     fig.savefig(out.with_suffix(".pdf"))
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

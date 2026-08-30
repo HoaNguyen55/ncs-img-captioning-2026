@@ -1,16 +1,18 @@
 #!/usr/bin/env python
-"""Tính "vật thể ảo tuyệt đối/caption" + CHAIR_s + tỷ lệ CJK cho mọi hệ — hàng
-mới của Bảng 1/2 .
+"""Compute "absolute hallucinated objects/caption" + CHAIR_s + CJK rate for
+every system — the new row of Tables 1/2.
 
     python scripts/abs_halluc.py \\
         --results data/results \\
         --out data/results/abs_halluc_summary.json
 
-CHAIR_i là tỷ lệ (ảo/tổng nhắc) nên hệ nói ít bị phạt nặng hơn hệ nói nhiều dù
-bịa ít hơn về tuyệt đối; hàng "vật thể ảo tuyệt đối/caption" =
-n_hallucinated_mentions / n_captions của CÙNG bộ chấm `rescap.chair.chair` —
-không có bộ đếm thứ hai, chỉ đổi mẫu số. Chạy lại từ *.preds.json trên đĩa nên
-mọi số trong hai bảng tái tạo được bằng một lệnh.
+CHAIR_i is a ratio (hallucinated/total mentions), so a terse system gets
+punished harder than a talkative one even when it fabricates less in absolute
+terms; the "absolute hallucinated objects/caption" row =
+n_hallucinated_mentions / n_captions from the SAME scorer
+`rescap.chair.chair` — no second counter, only the denominator changes.
+Recomputed from the *.preds.json on disk, so every number in both tables can
+be rebuilt with one command.
 """
 
 from __future__ import annotations
@@ -59,14 +61,14 @@ def main() -> int:
             "cjk_pct": round(100 * n_cjk / n, 1),
         }
         s = summary[name]
-        print(f"{name:32s} ảo/cap={s['halluc_per_caption']:.3f}  "
+        print(f"{name:32s} halluc/cap={s['halluc_per_caption']:.3f}  "
               f"CHAIR_i={s['chair_i']:.1%}  CHAIR_s={s['chair_s']:.1%}  "
               f"CJK={s['cjk_captions']}/{n}")
 
     out = Path(args.out) if args.out else results_dir / "abs_halluc_summary.json"
     out.write_text(json.dumps(summary, ensure_ascii=False, indent=2,
                               sort_keys=True), encoding="utf-8")
-    print(f"\nđã ghi {out}")
+    print(f"\nwrote {out}")
     return 0
 
 

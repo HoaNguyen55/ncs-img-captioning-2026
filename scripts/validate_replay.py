@@ -32,13 +32,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 
 class _SizeOnly:
-    """Ảnh giả chỉ mang kích thước thật cho kênh hình học khi phát lại.
+    """Fake image carrying just the real size for the geometric channel on replay.
 
-    Phát hiện 19/08: chạy thật truyền ảnh nên `geometric_check` chuẩn hoá
-    dx/dy theo khung ảnh; phát lại truyền None nên nó rơi về chuẩn hoá theo
-    hộp — 2,1% phán quyết lệch, dồn đúng vào spatial_relation/relation.
-    Kênh hình học chỉ cần `.size`; các đường cần PIL thật (crop vùng) vẫn
-    thấy đây không phải PIL và bỏ qua như cũ.
+    Found 19/08: the real run passes the image, so `geometric_check` normalises
+    dx/dy by the image frame; replay passed None, so it fell back to
+    box-based normalisation — 2.1% of verdicts shifted, concentrated exactly in
+    spatial_relation/relation. The geometric channel only needs `.size`; the
+    paths that need a real PIL image (region crops) still see this is not PIL
+    and skip it as before.
     """
 
     def __init__(self, size):
@@ -67,7 +68,7 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=50)
     parser.add_argument(
         "--min-fidelity", type=float, default=0.99,
-        help="dưới mức này thì coi là hỏng, không phải 'gần đúng'",
+        help="below this it counts as broken, not as 'close enough'",
     )
     args = parser.parse_args()
 
@@ -76,12 +77,12 @@ def main() -> int:
 
     sizes = _load_sizes()
     if not sizes:
-        print("  ⚠ không có image_sizes.json — kênh hình học phát lại sẽ thiếu khung ảnh")
+        print("  ⚠ no image_sizes.json — the replayed geometric channel will lack the image frame")
 
     files = [f for f in sorted(Path(args.src).glob("*.json"))
              if not f.name.startswith("_")][: args.limit]
     if not files:
-        raise SystemExit(f"không thấy bản ghi nào trong {args.src}")
+        raise SystemExit(f"no records found in {args.src}")
 
     same = diff = hits = misses = 0
     shifts: Counter[tuple[str, str]] = Counter()
@@ -130,23 +131,23 @@ def main() -> int:
 
     total = same + diff
     fidelity = same / total if total else 0.0
-    print(f"  {len(files)} ảnh · {total} mệnh đề")
-    print(f"  probe khớp   : {hits}/{hits + misses}"
+    print(f"  {len(files)} images · {total} propositions")
+    print(f"  probe hits   : {hits}/{hits + misses}"
           f" = {hits/(hits+misses)*100:.1f}%" if hits + misses else "")
-    print(f"  PHÁN QUYẾT TÁI TẠO: {same}/{total} = {fidelity*100:.2f}%")
+    print(f"  VERDICTS REPRODUCED: {same}/{total} = {fidelity*100:.2f}%")
     if shifts:
-        print("  còn lệch:")
+        print("  remaining shifts:")
         for (was, now), n in shifts.most_common():
             print(f"    {was:>10} -> {now:<10} {n:>5}")
         for e in examples[:4]:
             print(f"    · {e['id']} [{e['type']}] {e['was']}->{e['now']}  {e['text']}")
 
     if fidelity < args.min_fidelity:
-        print(f"\n  ⛔ DƯỚI NGƯỠNG {args.min_fidelity:.0%} — đừng dùng bộ phát lại "
-              f"để báo cáo bất kỳ con số nào cho tới khi truy xong chỗ lệch.")
+        print(f"\n  ⛔ BELOW THE {args.min_fidelity:.0%} THRESHOLD — do not use the replay "
+              f"harness to report any number until the drift is tracked down.")
         return 1
-    print(f"\n  ✅ Đạt ngưỡng {args.min_fidelity:.0%}. Phần lệch còn lại phải được "
-          f"nêu kèm mọi kết quả lấy từ phát lại — nó KHÔNG tái tạo chính xác.")
+    print(f"\n  ✅ Meets the {args.min_fidelity:.0%} threshold. The remaining drift must be "
+          f"stated alongside every replay-derived result — it does NOT reproduce exactly.")
     return 0
 
 

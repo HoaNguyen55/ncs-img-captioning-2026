@@ -86,9 +86,9 @@ DISCOURSE_CONNECTIVES: tuple[str, ...] = (
     "trong ảnh", "bức ảnh cho thấy", "cùng với đó",
 )
 
-# §5.4b mở rộng ( (nhật ký NC)): các biến thể khuôn CÙNG KHO ĐÓNG — không cái nào
-# khẳng định thêm điều gì về NỘI DUNG ảnh ("trong ảnh"/"bức ảnh cho thấy" chỉ
-# khẳng định đây là một bức ảnh). Xoay TẤT ĐỊNH theo cfg.seed để tái lập.
+# §5.4b extended ( (research log)): the template variants form ONE CLOSED STORE — none
+# asserts anything extra about the image CONTENT ("trong ảnh"/"bức ảnh cho thấy" only
+# assert that this is a picture). Rotated DETERMINISTICALLY by cfg.seed to reproduce.
 STYLE_OPENERS: tuple[str, ...] = ("có", "trong ảnh có", "bức ảnh cho thấy")
 STYLE_SHIFT_CONNECTIVES: tuple[str, ...] = ("còn", "bên cạnh đó", "ngoài ra", "cùng với đó")
 
@@ -150,9 +150,9 @@ _EXEMPT_WORDS: frozenset[str] = frozenset(
     | {
         "là", "và", "còn", "với", "của", "có", "cùng", "thì", "cũng", "rất",
         "một", "này", "đó", "ấy", "kia", "các", "được", "bị", "mà", "nhưng",
-        # (nhật ký NC): keo NGỮ PHÁP thuần túy — không khẳng định nội dung nào.
-        # CHỦ ĐÍCH loại trừ từ chỉ vị trí (trên/dưới/trong/ngoài/giữa/phía/
-        # bên/ở): chúng là khẳng định không gian, phải có mệnh đề đỡ.
+        # (research log): purely GRAMMATICAL glue — asserts no content at all.
+        # Locative words (trên/dưới/trong/ngoài/giữa/phía/bên/ở) are excluded
+        # ON PURPOSE: they are spatial claims and need a supporting proposition.
         "để", "từ", "đến", "khi", "lúc", "vì", "nên", "cho", "về", "theo",
         "như", "bằng", "đều", "cả", "nhau", "khác", "khá", "hơi", "lên",
         "xuống", "ra", "vào", "đi", "lại", "nữa", "rồi", "vừa", "hay",
@@ -208,11 +208,11 @@ class RealizeConfig:
     max_topic_shifts: int = 2                 # §5.5 constraint 2
     pronoun_distance_clauses: int = 2         # §5.3
     max_chars: int | None = 320
-    no_strip: bool = False        # (nhật ký NC): cấm cắt-giữa-cụm — sạch hoặc về khuôn
+    no_strip: bool = False        # (research log): no mid-phrase cuts — clean or back to template
     temperature: float = 0.3
     seed: int = 42
     soft_threshold: float = 0.75              # §7.1 tier 3, baselines only
-    style_variation: bool = False             # (nhật ký NC): xoay khuôn kho-đóng theo seed
+    style_variation: bool = False             # (research log): rotate closed-store templates by seed
 
 
 # ---------------------------------------------------------------------------
@@ -1035,7 +1035,7 @@ def plan_caption(
         is_shift = index > 0
         if is_shift and topic_shifts >= cfg.max_topic_shifts:
             plan.warnings.append(
-                f"bỏ qua {bucket.entity_id}: quá {cfg.max_topic_shifts} lần chuyển chủ đề "
+                f"skipping {bucket.entity_id}: more than {cfg.max_topic_shifts} topic shifts "
                 "(§5.5 constraint 2)"
             )
             plan.unplanned_ids.extend(
@@ -1516,7 +1516,7 @@ def _guard_opening(plan: DiscoursePlan, log: list[str]) -> None:
             lowered = piece.text.strip().lower()
             if lowered in set(PRONOUNS.values()) | {PRONOUN_PLURAL} | set(_GENDERED_PRONOUNS):
                 log.append(f"opening_pronoun_blocked: {piece.text!r}")
-                plan.warnings.append("chú thích không được mở đầu bằng đại từ (§5.5)")
+                plan.warnings.append("a caption must not open with a pronoun (§5.5)")
             return
 
 
@@ -2224,8 +2224,8 @@ def enforce_grounding(
 
     # ▸ Exhausted retries: repair rather than ship a violation (§7 line 11).
     if getattr(cfg, "no_strip", False):
-        # (nhật ký NC): cắt giữa cụm tạo xa-lát từ ("cửa trắng, hàng có…") — biến
-        # thể B-LM cấm cắt: còn vi phạm là về khuôn an toàn, không khâu vá.
+        # (research log): mid-phrase cuts make word salad ("cửa trắng, hàng có…") — the
+        # B-LM variant forbids cutting: leftover violations go to the safe template, not patched.
         template_text, template_spans, _te = realise_template(plan)
         stats.fell_back_to_template = True
         log.append("template_fallback: no_strip — ungrounded remained after retries")
@@ -2263,12 +2263,12 @@ def assert_spans_exact(caption: dict[str, Any]) -> None:
     for span in caption.get("spans") or []:
         start, end = span.get("char_start"), span.get("char_end")
         if not isinstance(start, int) or not isinstance(end, int):
-            guilty.append(f"{span.get('text')!r}: thiếu vị trí ký tự")
+            guilty.append(f"{span.get('text')!r}: missing character offsets")
             continue
         if text[start:end] != span.get("text"):
             guilty.append(f"{span.get('text')!r} != text_vi[{start}:{end}]={text[start:end]!r}")
         if not span.get("proposition_ids"):
-            guilty.append(f"{span.get('text')!r}: không có proposition_ids")
+            guilty.append(f"{span.get('text')!r}: no proposition_ids")
     if guilty:
         raise RuntimeError("span provenance is not exact: " + "; ".join(guilty))
 

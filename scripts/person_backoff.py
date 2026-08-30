@@ -1,20 +1,22 @@
 #!/usr/bin/env python
-"""B-NGƯỜI: backoff kiểm chứng thực thể người bằng đầu trung tính.
+"""B-PERSON: re-verify person entities with a neutral head noun (backoff).
 
     python scripts/person_backoff.py \
         --in /root/stage1_records --out /root/stage1_person --shard 0 --of 2
 
-Số nền (24/08): 74% ảnh có người mất NGUYÊN CỤM chủ thể — thực thể "một người
-phụ nữ" bị KHÔNG CHẮC (nghi do vế giới tính trong danh từ) kéo mọi thuộc tính
-treo chết theo, dù bộ sinh tạo đủ nguyên liệu (vd 7240 P1→P3/P4).
+Baseline figures (24/08): 74% of images with people lose the WHOLE subject
+cluster — the entity "một người phụ nữ" going UNCERTAIN (suspected: the gender
+half of the noun) drags every attached attribute down with it, even though the
+generator produced plenty of material (e.g. 7240 P1→P3/P4).
 
-Nguyên tắc (đặc-hiệu-theo-bằng-chứng, áp xuống tầng kiểm chứng): mệnh đề
-người KHÔNG CHẮC được hỏi lại MỘT lần với danh từ đầu trung tính hóa
-("một người phụ nữ" → "một người") bằng ĐÚNG bộ máy verify của stage-1
-(phủ định kép + kiểm màu chéo, cùng cấu hình). Đậu thì mệnh đề sống với văn
-bản trung tính (giữ vết `backoff` kèm văn bản gốc); không đậu giữ nguyên.
-Bản ghi gốc BẤT BIẾN — kết quả ghi ra thư mục MỚI, ảnh không có gì đổi được
-chép nguyên. Kháng lặp: stem đã có trong --out thì bỏ qua.
+Principle (evidence-proportional specificity, pushed down into the verification
+layer): an UNCERTAIN person proposition is re-asked ONCE with the head noun
+neutralized ("một người phụ nữ" → "một người") using EXACTLY stage-1's verify
+machinery (double negation + colour cross-check, same config). If it passes, the
+proposition survives with the neutral text (a `backoff` trace keeps the original
+text); if not, it is left as-is. The source records are IMMUTABLE — results go to
+a NEW directory, and images with nothing changed are copied verbatim.
+Restart-safe: a stem already present in --out is skipped.
 """
 
 from __future__ import annotations
@@ -26,7 +28,7 @@ import re
 import time
 from pathlib import Path
 
-# Đầu người mang GIỚI TÍNH (trung tính hóa); "đứa trẻ/em bé" chỉ tuổi — giữ.
+# GENDERED person head nouns (to neutralize); "đứa trẻ/em bé" mark age only — keep.
 GENDERED = (
     "người phụ nữ", "người đàn ông", "cô gái", "chàng trai", "cậu bé",
     "cô bé", "cậu con trai", "cô con gái", "phụ nữ", "đàn ông",
@@ -39,8 +41,8 @@ PERSON_HINT = GENDERED + ("người", "đứa trẻ", "em bé", "trẻ em")
 
 
 def neutralise(text: str) -> str:
-    # rơi đại từ lặp chủ ngữ ("một người phụ nữ CÔ ẤY đội mũ" — M1 hay sinh
-    # kiểu này) trước khi trung tính hóa, kẻo thành "một người ấy đội mũ".
+    # drop the repeated subject pronoun ("một người phụ nữ CÔ ẤY đội mũ" — M1
+    # often generates this) before neutralizing, lest it become "một người ấy đội mũ".
     out = re.sub(r"\b(cô|anh|chị|ông|bà|em|họ)\s+ấy\b", " ", text)
     out = _GENDER_RE.sub("người", out)
     out = re.sub(r"\bngười(\s+người)+\b", "người", out)
@@ -70,7 +72,7 @@ def neutralise_prop(p: dict) -> dict:
     for key in ("text_vi", "head_noun_vi"):
         if subj.get(key):
             subj[key] = neutralise(str(subj[key]))
-    # xoá verdict cũ để verify chấm lại từ trắng
+    # clear the old verdict so verify scores again from scratch
     q.pop("verification", None)
     q.pop("contradicts", None)
     q.pop("evidence", None)
@@ -82,12 +84,12 @@ def main() -> int:
     ap.add_argument("--in", dest="src", required=True)
     ap.add_argument("--out", dest="dst", required=True)
     ap.add_argument("--images", default=None,
-                    help="thư mục ảnh KTVIC (mặc định $NCS_DATA/datasets/ktvic/images)")
+                    help="KTVIC image directory (default $NCS_DATA/datasets/ktvic/images)")
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--of", type=int, default=1)
     ap.add_argument("--verifier", default="vintern-1b")
     ap.add_argument("--generator", default="qwen2.5-vl-7b",
-                    help="bộ kiểm màu chéo, như stage-1; 'none' để tắt")
+                    help="the colour cross-checker, as in stage-1; 'none' to disable")
     ap.add_argument("--verifier-tiles", type=int, default=4)
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
@@ -109,7 +111,7 @@ def main() -> int:
         files = files[: args.limit]
     done = {p.stem for p in dst.glob("*.json")}
     todo = [f for f in files if f.stem not in done]
-    print(f"mảnh {args.shard}/{args.of}: {len(files)} bản ghi, còn {len(todo)}", flush=True)
+    print(f"shard {args.shard}/{args.of}: {len(files)} records, {len(todo)} to go", flush=True)
 
     ver_model = gen_model = None
     stats = {"images": 0, "with_cluster": 0, "probed_props": 0,
@@ -125,7 +127,7 @@ def main() -> int:
 
         person_unc = [p for p in props
                       if is_person_entity_prop(p) and verdict_name(p) == "UNCERTAIN"]
-        # cụm = thực thể người KHÔNG CHẮC + mệnh đề treo cùng entity_id KHÔNG CHẮC
+        # cluster = UNCERTAIN person entity + UNCERTAIN propositions attached to the same entity_id
         cluster_ids = {subject_entity_id(p) for p in person_unc} - {None}
         attached = [p for p in props
                     if subject_entity_id(p) in cluster_ids
@@ -133,7 +135,7 @@ def main() -> int:
                     and str(p.get("id")) not in {str(q.get("id")) for q in person_unc}]
 
         targets = person_unc + attached
-        # chỉ hỏi lại mệnh đề mà trung tính hóa THẬT SỰ đổi văn bản
+        # only re-ask propositions whose text neutralization ACTUALLY changes
         targets = [p for p in targets
                    if neutralise(str(p.get("text_vi", ""))) != str(p.get("text_vi", ""))]
         if not targets:
@@ -142,12 +144,12 @@ def main() -> int:
             continue
 
         if ver_model is None:
-            print(f"nạp {args.verifier} …", flush=True)
+            print(f"loading {args.verifier} …", flush=True)
             ver_model = get_vlm(args.verifier).load()
             if hasattr(ver_model, "max_tiles"):
                 ver_model.max_tiles = args.verifier_tiles
             if args.generator != "none":
-                print(f"nạp {args.generator} (kiểm màu chéo) …", flush=True)
+                print(f"loading {args.generator} (colour cross-check) …", flush=True)
                 gen_model = get_vlm(args.generator).load()
 
         img_path = img_dir / str(rec.get("file_name"))
@@ -160,11 +162,11 @@ def main() -> int:
         stats["with_cluster"] += 1
         copies = [neutralise_prop(p) for p in targets]
         entities = rec.get("entities") or []
-        # TRẦN GIỚI TÍNH (verify.py ~2614) đọc entity.gender.value từ REGISTRY,
-        # không phải văn bản mệnh đề — chẩn đoán 24/08: "Supported by visual
-        # evidence. Capped at UNCERTAIN". Mệnh đề trung tính KHÔNG khẳng định
-        # giới tính nên registry đưa vào verify cũng phải trung tính: đầu
-        # "người" + gender khong_xac_dinh → trần không còn lý do đè.
+        # The GENDER CEILING (verify.py ~2614) reads entity.gender.value from the
+        # REGISTRY, not from the proposition text — diagnosis 24/08: "Supported by
+        # visual evidence. Capped at UNCERTAIN". A neutral proposition asserts NO
+        # gender, so the registry handed to verify must be neutral too: head
+        # "người" + gender khong_xac_dinh → the ceiling has no reason left to press.
         entities_probe = []
         for e in entities:
             e2 = copy.deepcopy(e)
@@ -182,7 +184,7 @@ def main() -> int:
             verify(ver_model, image, entities_probe, copies, colour_verifier=gen_model)
         except Exception as e:
             stats["errors"] += 1
-            print(f"  ! verify lỗi {f.stem}: {type(e).__name__}", flush=True)
+            print(f"  ! verify error {f.stem}: {type(e).__name__}", flush=True)
             (dst / f.name).write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
             continue
         stats["probed_props"] += len(copies)
@@ -209,7 +211,7 @@ def main() -> int:
                     stats["flipped_attached"] += 1
             else:
                 stats["still_uncertain"] += 1
-        # thực thể có mệnh đề tồn tại lật → đầu trung tính trong registry
+        # entity whose existence proposition flipped → neutral head in the registry
         for e in rec.get("entities") or []:
             if str(e.get("id")) in flipped_entity_ids:
                 for key in ("text_vi", "head_noun_vi"):
@@ -219,8 +221,8 @@ def main() -> int:
         (dst / f.name).write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
         if n % 25 == 0:
             rate = (time.time() - t0) / n
-            print(f"  {n}/{len(todo)} · {rate:.1f}s/ảnh · còn ~{int((len(todo)-n)*rate/60)} phút "
-                  f"· lật {stats['flipped_entity']}+{stats['flipped_attached']}", flush=True)
+            print(f"  {n}/{len(todo)} · {rate:.1f}s/image · ~{int((len(todo)-n)*rate/60)} min left "
+                  f"· flipped {stats['flipped_entity']}+{stats['flipped_attached']}", flush=True)
 
     print(json.dumps(stats, ensure_ascii=False))
     print("=== BACKOFF NGUOI DONE ===")

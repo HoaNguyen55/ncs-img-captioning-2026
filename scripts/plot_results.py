@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Vẽ Hình 3 — cột so sánh kết quả sau huấn luyện, hai cụm chế độ.
+"""Draw Figure 3 — bar comparison of post-training results, two mode clusters.
 
     python scripts/plot_results.py \\
         --short  "zero-shot=~/ncs-data/results/zs-short.json" \\
@@ -8,18 +8,21 @@
                    "chưng cất=~/ncs-data/results/official-detailed.json" \\
         --out research/paper/figures/hinh3_ketqua.png
 
-Hình 3 là yêu cầu bắt buộc của trưởng nhóm (18/08). Đọc thẳng file kết quả
-của `evaluate.py` nên tái tạo được từ đĩa; KHÔNG nhận số gõ tay — số gõ tay
-là chỗ số-ước lẻn vào bài.
+Figure 3 is a hard requirement from the team lead (18/08). Reads the result
+files of `evaluate.py` directly, so it can be rebuilt from disk; it does NOT
+accept hand-typed numbers — hand-typed numbers are how estimates sneak into
+a paper.
 
-* Cụm trái (chế độ ngắn): CIDEr mức từ, kèm vạch tham chiếu GRIT 136,0
-  (hệ có giám sát, số công bố) — thước đo tham vọng, không phải của ta.
-* Cụm phải (chế độ chi tiết): CHAIR_i (thấp = tốt, ghi rõ là CẬN TRÊN) và
-  số vật thể nhắc/caption (độ chi tiết — cao = tốt). Hai cột cạnh nhau vì
-  bài học vòng 1: CHAIR_i giảm bằng cách CÂM ĐI là thất bại, phải nhìn cả
-  hai cùng lúc.
+* Left cluster (short mode): word-level CIDEr, with a GRIT 136.0 reference
+  line (supervised system, published number) — an aspirational yardstick,
+  not ours.
+* Right cluster (detailed mode): CHAIR_i (low = good, explicitly an UPPER
+  BOUND) and objects mentioned/caption (detail — high = good). The two bars
+  sit side by side because of the round-1 lesson: lowering CHAIR_i by GOING
+  SILENT is a failure; both must be read at once.
 
-Mã hoá kép (màu + hoa văn gạch) — in trắng đen vẫn phân biệt được.
+Double encoding (colour + hatch pattern) — still distinguishable in
+black-and-white print.
 """
 
 from __future__ import annotations
@@ -29,7 +32,7 @@ import json
 import sys
 from pathlib import Path
 
-GRIT_CIDER = 136.0  # số công bố của GRIT trên KTVIC, thang x100
+GRIT_CIDER = 136.0  # GRIT's published number on KTVIC, x100 scale
 
 PALETTE = [("#9aa5b1", ""), ("#1f6f8b", "//"), ("#2e933c", "xx"), ("#d1495b", "..")]
 
@@ -40,7 +43,7 @@ def load(spec: str):
     word = next((r for r in data.get("results", [])
                  if r.get("segmenter") == "rdrsegmenter"), None)
     if word is None:
-        raise SystemExit(f"{path}: không có hàng rdrsegmenter — số không so được")
+        raise SystemExit(f"{path}: no rdrsegmenter row — numbers are not comparable")
     chair = data.get("chair") or {}
     return name.strip(), {
         "CIDEr": word["scores_scaled_x100"].get("CIDEr"),
@@ -52,7 +55,7 @@ def load(spec: str):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--short", nargs="+", required=True,
-                        help="tên=đường-dẫn kết quả chế độ ngắn, theo thứ tự vẽ")
+                        help="name=path of short-mode results, in plotting order")
     parser.add_argument("--detailed", nargs="+", required=True)
     parser.add_argument("--out", default="research/paper/figures/hinh3_ketqua.png")
     args = parser.parse_args()
@@ -68,7 +71,7 @@ def main() -> int:
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8.4, 3.6),
                                    gridspec_kw={"width_ratios": [1, 1.4]})
 
-    # --- cụm ngắn: CIDEr ---
+    # --- short cluster: CIDEr ---
     xs = range(len(short))
     for i, (name, m) in enumerate(short):
         colour, hatch = PALETTE[i % len(PALETTE)]
@@ -85,7 +88,7 @@ def main() -> int:
     ax1.set_title("(a) Chế độ ngắn — 558 ảnh", fontsize=9)
     ax1.grid(axis="y", alpha=0.3)
 
-    # --- cụm chi tiết: CHAIR_i + vật thể/caption, hai trục ---
+    # --- detailed cluster: CHAIR_i + objects/caption, two axes ---
     width = 0.38
     ax2b = ax2.twinx()
     for i, (name, m) in enumerate(detailed):
@@ -110,7 +113,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300)
     fig.savefig(out.with_suffix(".pdf"))
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

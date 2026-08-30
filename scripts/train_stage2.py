@@ -67,13 +67,13 @@ def load_jsonl(path: Path) -> list[dict]:
     """
     if not path.exists():
         raise SystemExit(
-            f"không thấy {path}\n"
-            "Chạy trước: python scripts/build_dpo_data.py "
+            f"{path} not found\n"
+            "Run first: python scripts/build_dpo_data.py "
             "--in $NCS_DATA/stage1 --out $NCS_DATA/stage2"
         )
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()
             if line.strip()]
-    print(f"  đọc {len(rows)} dòng từ {path}")
+    print(f"  read {len(rows)} rows from {path}")
     return rows
 
 
@@ -95,17 +95,17 @@ def build_model(args, *, for_training: bool = True):
         use_4bit = True
     use_8bit = getattr(args, "use_8bit", False)
     if use_8bit:
-        # (nhật ký NC): điểm giữa trục lượng tử hóa — LLM.int8 (bitsandbytes), cùng
-        # mọi cấu hình còn lại; so 4-bit NF4 (chính) và bf16 ( (nhật ký NC)).
+        # (research log): the midpoint of the quantization axis — LLM.int8 (bitsandbytes),
+        # everything else identical; compare 4-bit NF4 (main) and bf16 ( (research log)).
         use_4bit = False
     if getattr(args, "no_4bit", False):
-        # (nhật ký NC): đối chứng KHÔNG lượng tử trên 24GB — bf16 LoRA SFT-only
-        # (không ref-pass DPO) ước dưới đỉnh 23,82GB đã đo; chạy kiểu fail-fast,
-        # OOM thì đó là kết luận phần cứng, không phải lỗi.
+        # (research log): the UNQUANTIZED control on 24GB — bf16 LoRA SFT-only
+        # (no DPO ref-pass) estimated under the measured 23.82GB peak; run fail-fast,
+        # an OOM is the hardware conclusion, not a bug.
         use_4bit = False
     max_pixels = tokens * P
     print(f"  card: {torch.cuda.get_device_properties(0).total_memory/1e9:.1f} GB "
-          f"-> {tokens} token thị giác, "
+          f"-> {tokens} vision tokens, "
           f"{'4-bit' if use_4bit else ('8-bit' if use_8bit else 'bf16')}")
 
     load_kw = dict(device_map={"": 0}, attn_implementation="sdpa",
@@ -134,7 +134,7 @@ def build_model(args, *, for_training: bool = True):
         from peft import PeftModel
 
         model = PeftModel.from_pretrained(model, args.adapter, is_trainable=True)
-        print(f"  tiếp tục từ adapter: {args.adapter}")
+        print(f"  continuing from adapter: {args.adapter}")
         if getattr(args, "stage", "") == "dpo":
             # THE reference policy, done properly (peer review , point 1).
             # `disable_adapter()` strips every adapter and yields the BASE
@@ -147,11 +147,11 @@ def build_model(args, *, for_training: bool = True):
                 model.load_adapter(args.adapter, adapter_name="ref_sft")
                 model.set_adapter("default")
                 args._has_ref_adapter = True
-                print("  tham chiếu DPO = π_SFT (adapter đóng băng thứ hai)")
+                print("  DPO reference = π_SFT (a second, frozen adapter)")
             except Exception as e:
                 args._has_ref_adapter = False
-                print(f"  ⚠ không nạp được adapter tham chiếu ({type(e).__name__}) — "
-                      f"lùi về neo mô hình gốc (Base-anchored), PHẢI ghi rõ trong bài")
+                print(f"  ⚠ could not load the reference adapter ({type(e).__name__}) — "
+                      f"falling back to base-anchored, MUST be stated in the paper")
     else:
         # Language model only, and deliberately so. Naming the seven projections
         # by bare name also matched them inside the vision tower, where 192 LoRA
@@ -267,7 +267,7 @@ def run_sft(args) -> int:
     rows = load_jsonl(Path(args.data) / "sft.jsonl")
     if args.limit:
         rows = rows[: args.limit]
-    print(f"SFT: {len(rows)} ví dụ")
+    print(f"SFT: {len(rows)} examples")
 
     model, processor = build_model(args)
 
@@ -280,7 +280,7 @@ def run_sft(args) -> int:
     # in the collator instead of held in the dataset, so memory does not grow
     # with the training set either.
     dataset = Dataset.from_list([dict(row, _key="response") for row in rows])
-    print(f"  tập huấn luyện: {len(dataset)} ví dụ")
+    print(f"  training set: {len(dataset)} examples")
     trainer = SFTTrainer(
         model=model,
         train_dataset=dataset,
@@ -313,8 +313,8 @@ def run_sft(args) -> int:
     with metrics_path.open("w", encoding="utf-8") as fh:
         for entry in trainer.state.log_history:
             fh.write(json.dumps({"stage": "sft", **entry}, ensure_ascii=False) + "\n")
-    print(f"\nđã lưu adapter SFT -> {args.out}")
-    print(f"số liệu huấn luyện -> {metrics_path}")
+    print(f"\nsaved SFT adapter -> {args.out}")
+    print(f"training metrics -> {metrics_path}")
     return 0
 
 
@@ -355,9 +355,9 @@ def run_dpo(args) -> int:
 
     if not args.adapter:
         raise SystemExit(
-            "DPO phải bắt đầu từ adapter SFT: --adapter <đường dẫn>\n"
-            "Chính sách tham chiếu nên là mô hình ta đang cải thiện, "
-            "không phải mô hình gốc chưa học gì."
+            "DPO must start from the SFT adapter: --adapter <path>\n"
+            "The reference policy should be the model we are improving, "
+            "not an untrained base model."
         )
 
     rows = load_jsonl(Path(args.data) / "dpo.jsonl")
@@ -365,13 +365,13 @@ def run_dpo(args) -> int:
         keep = set(args.pair_types.split(","))
         before = len(rows)
         rows = [r for r in rows if any(r["pair_type"].startswith(k) for k in keep)]
-        print(f"  lọc loại cặp {sorted(keep)}: {before} -> {len(rows)}")
+        print(f"  filtering pair types {sorted(keep)}: {before} -> {len(rows)}")
     if args.limit:
         rows = rows[: args.limit]
 
     from collections import Counter
     mix = Counter(r["pair_type"] for r in rows)
-    print(f"DPO: {len(rows)} cặp")
+    print(f"DPO: {len(rows)} pairs")
     for kind, n in mix.most_common():
         print(f"     {kind:<52} {n:>6}  ({n/len(rows)*100:.1f}%)")
 
@@ -432,12 +432,12 @@ def run_dpo(args) -> int:
             if steps == 0 and running["n"] == 0:
                 with_grad = [q for q in params if q.grad is not None]
                 total_norm = sum(float(q.grad.norm()) for q in with_grad)
-                print(f"  kiểm tra gradient: {len(with_grad)}/{len(params)} "
-                      f"tham số có gradient, tổng chuẩn {total_norm:.4f}", flush=True)
+                print(f"  gradient check: {len(with_grad)}/{len(params)} "
+                      f"parameters have gradients, total norm {total_norm:.4f}", flush=True)
                 if not with_grad or total_norm == 0.0:
                     raise SystemExit(
-                        "GRADIENT KHÔNG CHẢY — vòng huấn luyện này không học gì. "
-                        "Dừng thay vì lưu ra một adapter trông như đã huấn luyện."
+                        "GRADIENTS NOT FLOWING — this training loop learns nothing. "
+                        "Stopping rather than saving an adapter that looks trained."
                     )
 
             # Ordering accuracy PER PAIR TYPE (peer review , point 2):
@@ -469,16 +469,16 @@ def run_dpo(args) -> int:
                 # nothing about whether it worked.
                 if steps % 10 == 0 or len(loader) < 50:
                     n = running["n"]
-                    print(f"  epoch {epoch+1} bước {steps:>5}  "
+                    print(f"  epoch {epoch+1} step {steps:>5}  "
                           f"loss {running['loss']/n:.4f}  "
-                          f"đúng thứ tự {running['acc']/n:.3f}  "
-                          f"biên {running['margin']/n:+.3f}", flush=True)
+                          f"ordering acc {running['acc']/n:.3f}  "
+                          f"margin {running['margin']/n:+.3f}", flush=True)
                     running = {"loss": 0.0, "acc": 0.0, "margin": 0.0, "n": 0}
 
-    print("\n  đúng-thứ-tự THEO LOẠI CẶP (soi thiên kiến độ dài ở A>B):")
+    print("\n  ordering-accuracy PER PAIR TYPE (watching for length bias at A>B):")
     for kind, st in sorted(per_type.items()):
         rate = st["correct"] / st["n"] if st["n"] else 0.0
-        flag = "  ⚠ A>B thấp — kiểm tra caption có bị co ngắn không" \
+        flag = "  ⚠ A>B low — check whether captions are being shortened" \
             if kind.startswith("A>B") and rate < 0.5 and st["n"] >= 10 else ""
         print(f"    {kind:<44} {st['correct']:>4}/{st['n']:<4} = {rate:.3f}{flag}")
 
@@ -496,8 +496,8 @@ def run_dpo(args) -> int:
             "reference_policy": ("pi_sft" if getattr(args, "_has_ref_adapter", False)
                                   else "base_anchored"),
         }, ensure_ascii=False) + "\n")
-    print(f"\nđã lưu adapter DPO -> {args.out}")
-    print(f"số liệu huấn luyện -> {metrics_path}")
+    print(f"\nsaved DPO adapter -> {args.out}")
+    print(f"training metrics -> {metrics_path}")
     return 0
 
 
@@ -505,22 +505,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", choices=["sft", "dpo"], required=True)
     parser.add_argument("--out", default=None)
-    parser.add_argument("--adapter", default=None, help="adapter để tiếp tục (DPO bắt buộc)")
+    parser.add_argument("--adapter", default=None, help="adapter to continue from (required for DPO)")
     parser.add_argument("--epochs", type=float, default=1.0)
     parser.add_argument("--lr", type=float, default=None)
-    parser.add_argument("--beta", type=float, default=0.1, help="chỉ dùng cho DPO")
+    parser.add_argument("--beta", type=float, default=0.1, help="DPO only")
     parser.add_argument("--grad-accum", type=int, default=8)   # 
     parser.add_argument("--lora-r", type=int, default=16)      # 
     parser.add_argument("--lora-alpha", type=int, default=32)  # 
     parser.add_argument(
         "--data", default=str(DATA / "stage2"),
-        help=("thư mục chứa sft.jsonl / dpo.jsonl. Trước đây cứng đường dẫn, "
-              "nên khi build_dpo_data ghi ra chỗ khác thì bộ huấn luyện lặng lẽ "
-              "đọc file CŨ ở mặc định và báo thành công"),
+        help=("directory holding sft.jsonl / dpo.jsonl. This used to be hard-coded, "
+              "so when build_dpo_data wrote elsewhere the trainer silently read the "
+              "STALE file at the default and reported success"),
     )
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--vision-tokens", type=int, default=0,
-                        help="0 = chọn theo dung lượng card ")
+                        help="0 = choose by the card's memory ")
     parser.add_argument("--force-4bit", action="store_true")
     parser.add_argument("--no-4bit", dest="no_4bit", action="store_true")
     parser.add_argument("--use-8bit", dest="use_8bit", action="store_true")
@@ -528,8 +528,8 @@ def main() -> int:
     parser.add_argument(
         "--pair-types", default="",
         help=(
-            "chỉ dùng những loại cặp này, phân tách bằng dấu phẩy "
-            "(vd 'B>C' để chạy ablation hai bậc so với ba bậc)"
+            "use only these pair types, comma-separated "
+            "(e.g. 'B>C' to run the two-rung vs three-rung ablation)"
         ),
     )
     args = parser.parse_args()
@@ -540,7 +540,7 @@ def main() -> int:
         args.lr = 1e-4 if args.stage == "sft" else 5e-6
 
     Path(args.out).mkdir(parents=True, exist_ok=True)
-    print(f"giai đoạn {args.stage} · batch=1 × tích luỹ {args.grad_accum} "
+    print(f"stage {args.stage} · batch=1 × accumulation {args.grad_accum} "
           f"· lr={args.lr}")
 
     return run_sft(args) if args.stage == "sft" else run_dpo(args)

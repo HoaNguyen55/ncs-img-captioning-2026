@@ -1,30 +1,33 @@
 #!/usr/bin/env python
-"""Dựng dữ liệu SFT từ CHÚ THÍCH VÀNG của KTVIC — đối chứng P1 .
+"""Build SFT data from KTVIC's GOLD CAPTIONS — the P1 baseline.
 
     python scripts/build_gold_sft.py \\
         --annotations ~/ncs-data/datasets/ktvic/train_data.json \\
         --out ~/ncs-data/stage2_gold
 
-Vì sao tồn tại: câu hỏi tự nhiên nhất của phản biện là *"có 3.769 ảnh kèm chú
-thích người viết — sao không SFT thẳng trên đó?"*. Bài phải có con số trả lời.
-Dự đoán trung thực được ghi trước ở SFT-vàng có thể THẮNG chưng cất ở
-CIDEr chế độ ngắn (nó học đúng văn phong tham chiếu); cái nó không học được
-là chi tiết + phòng hộ, và Bảng 2 đo đúng chỗ đó.
+Why this exists: the most natural reviewer question is *"there are 3,769
+images with human-written captions — why not SFT directly on those?"*. The
+paper must have a number to answer with. The honest, pre-registered prediction
+is that gold-SFT may BEAT distillation on concise-mode CIDEr (it learns the
+exact reference style); what it cannot learn is detail + guardedness, and
+Table 2 measures exactly that.
 
-Để so sánh công bằng với nhánh chưng cất (cùng số ảnh, cùng epoch, cùng
-prompt):
+For a fair comparison with the distillation branch (same images, same epochs,
+same prompt):
 
-* MỘT chú thích mỗi ảnh (chú thích đầu tiên theo thứ tự file — KTVIC không
-  đánh dấu chú thích "chính"), không phải cả ~5 — nhánh chưng cất cũng chỉ có
-  một câu trả lời mỗi ảnh cho mỗi phong cách.
-* Prompt là ĐÚNG prompt ngắn của đánh giá (`PROMPT_SHORT` của
-  build_dpo_data.py) — mô hình được hỏi lúc chấm y như lúc học.
-* KHÔNG có biến thể chi tiết: chú thích vàng là một câu; bịa thêm phong cách
-  chi tiết từ nó là sáng tác dữ liệu. Ở chế độ chi tiết, mô hình này trả lời
-  bằng những gì nó còn giữ từ pretraining — và đó chính là phép đo.
+* ONE caption per image (the first caption in file order — KTVIC does not
+  mark a "primary" caption), not all ~5 — the distillation branch likewise
+  has only one answer per image per style.
+* The prompt is the EXACT short evaluation prompt (`PROMPT_SHORT` from
+  build_dpo_data.py) — the model is asked at scoring time just as at
+  training time.
+* NO detailed variant: a gold caption is a single sentence; inventing a
+  detailed style from it would be fabricating data. In detailed mode this
+  model answers with whatever it retains from pretraining — and that is
+  precisely the measurement.
 
-`dpo.jsonl` không được tạo: chú thích vàng không có phán quyết nên không tồn
-tại cặp ưu tiên — chạy `train_stage2.py --stage sft` là đủ.
+`dpo.jsonl` is not produced: gold captions carry no verdicts, so no
+preference pairs exist — running `train_stage2.py --stage sft` is enough.
 """
 
 from __future__ import annotations
@@ -37,17 +40,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from build_dpo_data import PROMPT_SHORT  # cùng một prompt, không chép tay lại
+from build_dpo_data import PROMPT_SHORT  # the same prompt, not re-typed by hand
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--annotations", required=True,
-                        help="train_data.json của KTVIC")
+                        help="KTVIC's train_data.json")
     parser.add_argument("--out", required=True)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--limit", type=int, default=0,
-                        help="giới hạn số ảnh (0 = tất cả) — chỉ để thử")
+                        help="limit the number of images (0 = all) — for quick trials only")
     args = parser.parse_args()
 
     data = json.loads(Path(args.annotations).expanduser().read_text(encoding="utf-8"))
@@ -97,12 +100,12 @@ def main() -> int:
     (dst / "_build_report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print(f"  {len(rows)} ví dụ SFT-vàng (từ {n_captions} chú thích / "
-          f"{len(first_caption)} ảnh, lấy 1 câu đầu mỗi ảnh)")
+    print(f"  {len(rows)} gold-SFT examples (from {n_captions} captions / "
+          f"{len(first_caption)} images, first caption per image)")
     if dropped:
-        print(f"  ⚠ {dropped} ảnh bị bỏ vì không tra được file_name")
+        print(f"  ⚠ {dropped} images dropped because file_name could not be resolved")
     print(f"  -> {dst/'sft.jsonl'}\n"
-          f"  chạy: train_stage2.py --stage sft --data {dst} --epochs 2")
+          f"  run: train_stage2.py --stage sft --data {dst} --epochs 2")
     return 0
 
 

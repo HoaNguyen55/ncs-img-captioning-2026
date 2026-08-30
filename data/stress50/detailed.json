@@ -1,27 +1,27 @@
 {
   "manifest": "/home/hoanguyen/ncs-data/datasets/ktvic/stress50_manifest.json",
   "groups": {
-    "tất cả 50": 50,
-    "đếm": 36,
-    "màu": 47,
+    "all 50": 50,
+    "counting": 36,
+    "colour": 47,
     "xanh (grue)": 21,
-    "giới tính": 49
+    "gender": 49
   },
   "systems": {
     "zero-shot": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.506,
         "mentions_per_caption": 10.32,
         "gender_fab_pct": 46.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.476,
         "mentions_per_caption": 11.08,
         "gender_fab_pct": 38.9
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.492,
         "mentions_per_caption": 10.51,
@@ -33,7 +33,7 @@
         "mentions_per_caption": 11.05,
         "gender_fab_pct": 33.3
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.505,
         "mentions_per_caption": 10.18,
@@ -41,19 +41,19 @@
       }
     },
     "P1-gold": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.246,
         "mentions_per_caption": 2.28,
         "gender_fab_pct": 22.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.209,
         "mentions_per_caption": 2.39,
         "gender_fab_pct": 19.4
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.248,
         "mentions_per_caption": 2.32,
@@ -65,7 +65,7 @@
         "mentions_per_caption": 2.48,
         "gender_fab_pct": 19.0
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.25,
         "mentions_per_caption": 2.29,
@@ -73,19 +73,19 @@
       }
     },
     "P2": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.482,
         "mentions_per_caption": 7.1,
         "gender_fab_pct": 10.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.441,
         "mentions_per_caption": 6.81,
         "gender_fab_pct": 8.3
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.482,
         "mentions_per_caption": 7.19,
@@ -97,7 +97,7 @@
         "mentions_per_caption": 6.43,
         "gender_fab_pct": 4.8
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.476,
         "mentions_per_caption": 7.08,
@@ -105,19 +105,19 @@
       }
     },
     "VSPS": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.456,
         "mentions_per_caption": 4.56,
         "gender_fab_pct": 14.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.405,
         "mentions_per_caption": 4.25,
         "gender_fab_pct": 13.9
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.449,
         "mentions_per_caption": 4.6,
@@ -129,7 +129,7 @@
         "mentions_per_caption": 4.0,
         "gender_fab_pct": 14.3
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.448,
         "mentions_per_caption": 4.55,
@@ -137,19 +137,19 @@
       }
     },
     "SFT chưng cất": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.527,
         "mentions_per_caption": 3.38,
         "gender_fab_pct": 10.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.45,
         "mentions_per_caption": 2.78,
         "gender_fab_pct": 2.8
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.516,
         "mentions_per_caption": 3.43,
@@ -161,7 +161,7 @@
         "mentions_per_caption": 3.05,
         "gender_fab_pct": 9.5
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.524,
         "mentions_per_caption": 3.39,

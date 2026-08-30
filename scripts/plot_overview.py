@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-"""Hình 1a — TỔNG QUÁT pipeline chia theo PHA (yêu cầu nhóm 24/08 tối).
+"""Figure 1a — pipeline OVERVIEW split by PHASE (team request, evening of 24/08).
 
     python scripts/plot_overview.py --out research/paper/figures/hinh1a_tongquat.png
 
-Tập dữ liệu → PHA 1 (tiền xử lý & huấn luyện) ⇒ kết quả pha → PHA 2 (suy luận).
-Chi tiết module nằm ở Hình 1b (hinh1_quytrinh).
+Dataset → PHASE 1 (preprocessing & training) ⇒ phase outputs → PHASE 2 (inference).
+Module details live in Figure 1b (hinh1_quytrinh).
 """
 from __future__ import annotations
 
@@ -26,10 +26,10 @@ def main() -> int:
     fig, ax = plt.subplots(figsize=(11.5, 4.6))
     ax.set_xlim(0, 100); ax.set_ylim(0, 42); ax.axis("off")
 
-    C_DL = "#f2f2f2"; C_DLE = "#666666"          # dữ liệu
-    C_P1 = "#eaf2f6"; C_P1E = "#1f6f8b"          # pha 1
-    C_KQ = "#eef7ee"; C_KQE = "#2e933c"          # kết quả pha 1
-    C_P2 = "#fdf1e7"; C_P2E = "#c96f2f"          # pha 2
+    C_DL = "#f2f2f2"; C_DLE = "#666666"          # data
+    C_P1 = "#eaf2f6"; C_P1E = "#1f6f8b"          # phase 1
+    C_KQ = "#eef7ee"; C_KQE = "#2e933c"          # phase-1 outputs
+    C_P2 = "#fdf1e7"; C_P2E = "#c96f2f"          # phase 2
 
     def box(x, y, w, h, text, fc, ec, fs=8.6, bold=False, lw=1.6):
         ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.35",
@@ -47,12 +47,12 @@ def main() -> int:
                                          arrowstyle="-|>", mutation_scale=14,
                                          color=color, lw=lw))
 
-    # ---- TẬP DỮ LIỆU (trái) ----
+    # ---- DATASET (left) ----
     box(1, 22, 15, 14,
         "ĐẦU VÀO PHA 1:\nTẬP DỮ LIỆU\nKTVIC train 3.700 ảnh\n(không dùng\nchú thích vàng)",
         C_DL, C_DLE, fs=7.8, bold=True)
 
-    # ---- PHA 1 ----
+    # ---- PHASE 1 ----
     ax.text(19, 39.5, "PHA 1 — TIỀN XỬ LÝ & HUẤN LUYỆN (chạy MỘT lần)",
             fontsize=10, fontweight="bold", color=C_P1E)
     box(19, 22, 17, 14,
@@ -65,14 +65,14 @@ def main() -> int:
         C_P1, C_P1E, fs=8)
     arrow(16, 29, 19, 29); arrow(36, 29, 38, 29); arrow(55, 29, 57, 29)
 
-    # ---- KẾT QUẢ PHA 1 ----
+    # ---- PHASE 1 OUTPUTS ----
     box(74, 22, 25, 14,
         "KẾT QUẢ PHA 1\n• Kho giám sát đã kiểm chứng\n  (7.177 ví dụ, có truy vết)\n• MÔ HÌNH CHƯNG CẤT 7B\n  (adapter 170MB)",
         C_KQ, C_KQE, fs=8, bold=True, lw=2.2)
     arrow(71, 29, 74, 29, color=C_KQE)
 
-    # ---- PHA 2 ----
-    # vách ngăn tách cứng hai pha
+    # ---- PHASE 2 ----
+    # hard divider separating the two phases
     ax.plot([0, 100], [18.2, 18.2], color="#999999", lw=1.2, ls=(0, (6, 3)))
     ax.text(99, 19.0, "ranh giới hai pha — chỉ MÔ HÌNH đi qua", fontsize=7.5,
             ha="right", style="italic", color="#777777")
@@ -85,7 +85,7 @@ def main() -> int:
         "ĐẦU RA: mô tả NGẮN (~0,8s) hoặc CHI TIẾT (~1,9s)\nđánh giá: KTVIC test 558 ảnh · COCO-2014 2.500 ảnh\n(xuyên ngôn ngữ, giao thức CHAIR 80 lớp)",
         C_P2, C_P2E, fs=8)
     arrow(31, 7.5, 35, 7.5); arrow(57, 7.5, 61, 7.5)
-    # mũi tên mô hình từ kết quả pha 1 xuống pha 2
+    # model arrow from phase-1 outputs down into phase 2
     ax.plot([86.5, 86.5, 46, 46], [22, 18.5, 18.5, 13], color=C_KQE,
             ls="--", lw=1.6)
     ax.add_patch(FancyArrowPatch((46, 14.5), (46, 13), arrowstyle="-|>",
@@ -95,7 +95,7 @@ def main() -> int:
     fig.tight_layout()
     out = Path(args.out); out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300); fig.savefig(out.with_suffix(".pdf"))
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

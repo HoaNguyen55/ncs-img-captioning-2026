@@ -1,27 +1,27 @@
 {
   "manifest": "/home/hoanguyen/ncs-data/datasets/ktvic/stress50_manifest.json",
   "groups": {
-    "tất cả 50": 50,
-    "đếm": 36,
-    "màu": 47,
+    "all 50": 50,
+    "counting": 36,
+    "colour": 47,
     "xanh (grue)": 21,
-    "giới tính": 49
+    "gender": 49
   },
   "systems": {
     "main_": {
-      "tất cả 50": {
+      "all 50": {
         "n": 50,
         "chair_i": 0.502,
         "mentions_per_caption": 4.66,
         "gender_fab_pct": 4.0
       },
-      "đếm": {
+      "counting": {
         "n": 36,
         "chair_i": 0.462,
         "mentions_per_caption": 4.69,
         "gender_fab_pct": 2.8
       },
-      "màu": {
+      "colour": {
         "n": 47,
         "chair_i": 0.493,
         "mentions_per_caption": 4.7,
@@ -33,7 +33,7 @@
         "mentions_per_caption": 4.52,
         "gender_fab_pct": 4.8
       },
-      "giới tính": {
+      "gender": {
         "n": 49,
         "chair_i": 0.498,
         "mentions_per_caption": 4.67,

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Vẽ Hình 4b — ví dụ định tính zero-shot vs hệ đề xuất .
+"""Draw Figure 4b — qualitative examples, zero-shot vs the proposed system.
 
     python scripts/plot_qualitative.py \\
         --ids 2595,7240 \\
@@ -7,12 +7,13 @@
         --ours ~/ncs-data/results/off4090sft-detailed.preds.json \\
         --out research/paper/figures/hinh4b_dinhtinh.png
 
-Trưởng nhóm duyệt phương án A : caption NGUYÊN VĂN của cả hai hệ, không
-tuyển chọn hay sửa văn phong — hệ đề xuất đánh đổi trôi chảy lấy trung thực và
-hình nói thẳng điều đó. Dòng phán quyết dưới mỗi caption (vật thể không căn
-cứ, danh xưng bịa, rào đón) tính bằng ĐÚNG bộ `rescap.chair.objects_in` và
-regex giới tính của stress-50 — không có bộ đếm thứ hai. Tiêu chí chọn ảnh in
-ngay trong chú thích để phản biện không thể tố cherry-pick.
+The team lead approved option A: VERBATIM captions from both systems, no
+curation or style edits — the proposed system trades fluency for faithfulness
+and the figure says so plainly. The verdict line under each caption
+(unsupported objects, fabricated gendered terms, hedging) is computed with the
+EXACT `rescap.chair.objects_in` and the stress-50 gender regex — there is no
+second counter. The image-selection criteria are printed right in the caption
+so a reviewer cannot allege cherry-picking.
 """
 
 from __future__ import annotations
@@ -32,8 +33,8 @@ from stress50_analysis import GENDERED
 
 HEDGES = ("có vẻ", "dường như")
 CJK = __import__("re").compile(r"[一-鿿]+")
-# DejaVu không có glyph CJK; matplotlib ≥3.6 fallback theo danh sách họ font —
-# caption zero-shot rò "引擎" phải hiện đúng mặt chữ, không phải ô vuông.
+# DejaVu has no CJK glyphs; matplotlib ≥3.6 falls back along the font-family list —
+# a zero-shot caption leaking "引擎" must render as real glyphs, not tofu boxes.
 FONTS = ["DejaVu Sans", "Noto Sans CJK JP"]
 
 
@@ -44,7 +45,7 @@ def load_preds(path: str) -> dict[str, str]:
 
 
 def verdict(cap: str, gold_obj: set, gold_gen: set) -> tuple[str, bool]:
-    """(dòng phán quyết, sạch?) — cùng luật đếm với Bảng 1/2."""
+    """(verdict line, clean?) — same counting rules as Tables 1/2."""
     low = cap.lower()
     halluc = sorted(set(objects_in(low)) - gold_obj)
     fabricated = sorted(set(GENDERED.findall(low)) - gold_gen)
@@ -132,7 +133,7 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=300, bbox_inches="tight")
     fig.savefig(out.with_suffix(".pdf"), bbox_inches="tight")
-    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    print(f"  wrote {out} and {out.with_suffix('.pdf')}")
     return 0
 
 

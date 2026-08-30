@@ -56,7 +56,7 @@ def _handle_signal(signum, frame):  # pragma: no cover
     than a missing one, because the merge step cannot tell them apart."""
     global _stop
     _stop = True
-    print("\n  (nhận tín hiệu dừng — xong ảnh hiện tại rồi thoát)", flush=True)
+    print("\n  (stop signal received — finishing the current image, then exiting)", flush=True)
 
 
 def load_manifest(source: str) -> list[dict]:
@@ -95,7 +95,7 @@ def main() -> int:
     parser.add_argument("--out", default=str(DATA / "stage1"))
     parser.add_argument("--shard", type=int, default=0)
     parser.add_argument("--of", type=int, default=1)
-    parser.add_argument("--limit", type=int, default=0, help="0 = tất cả")
+    parser.add_argument("--limit", type=int, default=0, help="0 = all")
     parser.add_argument("--generator", default="qwen2.5-vl-7b")
     parser.add_argument("--verifier", default="vintern-1b")
     parser.add_argument("--max-entities", type=int, default=8)
@@ -113,12 +113,12 @@ def main() -> int:
     )
     parser.add_argument(
         "--no-colour-cross-check", action="store_true",
-        help="tắt bộ kiểm chứng màu thứ hai (rẻ hơn, nhưng nhãn màu kém tin cậy)",
+        help="disable the second colour verifier (cheaper, but colour labels are less reliable)",
     )
     args = parser.parse_args()
 
     if not 0 <= args.shard < args.of:
-        raise SystemExit(f"--shard phải trong [0, {args.of})")
+        raise SystemExit(f"--shard must be in [0, {args.of})")
 
     signal.signal(signal.SIGINT, _handle_signal)
     signal.signal(signal.SIGTERM, _handle_signal)
@@ -139,21 +139,21 @@ def main() -> int:
 
     done = {p.stem for p in out_dir.glob("*.json")}
     todo = [i for i in items if Path(i["file_name"]).stem not in done]
-    print(f"mảnh {args.shard}/{args.of}: {len(items)} ảnh, "
-          f"{len(items) - len(todo)} đã xong, còn {len(todo)}")
+    print(f"shard {args.shard}/{args.of}: {len(items)} images, "
+          f"{len(items) - len(todo)} already done, {len(todo)} left")
     if not todo:
-        print("không còn gì để làm")
+        print("nothing left to do")
         return 0
 
     from PIL import Image
 
-    print(f"nạp {args.generator} …", flush=True)
+    print(f"loading {args.generator} …", flush=True)
     gen_model = get_vlm(args.generator).load()
-    print(f"nạp {args.verifier} …", flush=True)
+    print(f"loading {args.verifier} …", flush=True)
     ver_model = get_vlm(args.verifier).load()
     if hasattr(ver_model, "max_tiles"):
         ver_model.max_tiles = args.verifier_tiles
-        print(f"  ngân sách ô ảnh của bộ kiểm chứng: {args.verifier_tiles}")
+        print(f"  verifier tile budget: {args.verifier_tiles}")
     colour_verifier = None if args.no_colour_cross_check else gen_model
 
     totals: Counter[str] = Counter()
@@ -167,7 +167,7 @@ def main() -> int:
         stem = Path(name).stem
         path = KTVIC / "images" / name
         if not path.exists():
-            failures.append({"file": name, "stage": "input", "error": "không thấy file"})
+            failures.append({"file": name, "stage": "input", "error": "file not found"})
             continue
 
         t0 = time.time()
@@ -235,7 +235,7 @@ def main() -> int:
         left = (len(todo) - n) * rate
         print(
             f"  [{n}/{len(todo)}] {name}  {time.time()-t0:5.1f}s  {counts}"
-            f"   còn ~{left/3600:.1f}h",
+            f"   ~{left/3600:.1f}h left",
             flush=True,
         )
 
@@ -257,13 +257,13 @@ def main() -> int:
 
     total = sum(totals.values()) or 1
     print(f"\n{'='*62}")
-    print(f"  xử lý xong : {report['processed']} ảnh")
-    print(f"  mệnh đề    : {total}")
+    print(f"  processed   : {report['processed']} images")
+    print(f"  propositions: {total}")
     for status, n in totals.most_common():
         print(f"     {status:<12} {n:>7}  {n/total*100:>5.1f}%")
     if failures:
-        print(f"  ✗ hỏng     : {len(failures)} ảnh — xem _report_shard*.json")
-    print(f"  thời gian  : {report['seconds']/3600:.2f} h")
+        print(f"  ✗ failed    : {len(failures)} images — see _report_shard*.json")
+    print(f"  time        : {report['seconds']/3600:.2f} h")
     print(f"{'='*62}")
     return 1 if failures else 0
 

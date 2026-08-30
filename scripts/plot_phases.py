@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-"""Vẽ ba hình chi tiết theo pha (yêu cầu nhóm 24/08 đêm):
+"""Draw the three per-phase detail figures (team request, night of 24/08):
 
-    hinh2_pha1a  — Pha 1a: sinh giám sát đã kiểm chứng (M1–M8)
-    hinh3_pha1b  — Pha 1b: chưng cất SFT
-    hinh4_pha2   — Pha 2: suy luận một ảnh
+    hinh2_pha1a  — Phase 1a: verified supervision generation (M1–M8)
+    hinh3_pha1b  — Phase 1b: SFT distillation
+    hinh4_pha2   — Phase 2: single-image inference
 
     python scripts/plot_phases.py --outdir research/paper/figures
 """
@@ -66,7 +66,7 @@ def ve_pha1a(out: Path):
     ax.text(99, 1.2, "★ = chặng đóng góp của bài (đều thuộc hệ chính)", fontsize=8,
             ha="right", color=C_EEDG)
     fig.tight_layout(); fig.savefig(out, dpi=300); fig.savefig(out.with_suffix(".pdf"))
-    plt.close(fig); print(f"  đã ghi {out}")
+    plt.close(fig); print(f"  wrote {out}")
 
 
 def ve_pha1b(out: Path):
@@ -83,7 +83,7 @@ def ve_pha1b(out: Path):
     ax.text(1, 23.5, "PHA 1b — HUẤN LUYỆN: chưng cất kho giám sát vào trọng số (1×RTX 4090; DPO bị loại qua khảo sát liều lượng, Mục 5)",
             fontsize=10, fontweight="bold", color=C_DEDG)
     fig.tight_layout(); fig.savefig(out, dpi=300); fig.savefig(out.with_suffix(".pdf"))
-    plt.close(fig); print(f"  đã ghi {out}")
+    plt.close(fig); print(f"  wrote {out}")
 
 
 def ve_pha2(out: Path):
@@ -100,7 +100,7 @@ def ve_pha2(out: Path):
     ax.text(1, 23.5, "PHA 2 — SUY LUẬN: mỗi lần chạy nhận đúng MỘT ảnh; chi phí trung thực đã trả trước ở Pha 1",
             fontsize=10, fontweight="bold", color=C_EEDG)
     fig.tight_layout(); fig.savefig(out, dpi=300); fig.savefig(out.with_suffix(".pdf"))
-    plt.close(fig); print(f"  đã ghi {out}")
+    plt.close(fig); print(f"  wrote {out}")
 
 
 def main() -> int:

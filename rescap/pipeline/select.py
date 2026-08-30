@@ -131,9 +131,9 @@ class SelectionConfig:
 
     def __post_init__(self) -> None:
         if self.budget < 0 or self.hedge_quota < 0:
-            raise ValueError("budget và hedge_quota không được âm")
+            raise ValueError("budget and hedge_quota must not be negative")
         if self.delta < 0:
-            raise ValueError("delta không được âm — R là hình phạt, không phải phần thưởng")
+            raise ValueError("delta must not be negative — R is a penalty, not a reward")
 
     @classmethod
     def from_mapping(cls, cfg: dict[str, Any] | None) -> "SelectionConfig":
@@ -151,7 +151,7 @@ class SelectionConfig:
         if unknown:
             # Silently ignoring a misspelt key would report a weight that was
             # never applied — the exact failure §3.0 warns about.
-            raise ValueError(f"khoá cấu hình selection không hợp lệ: {unknown}")
+            raise ValueError(f"invalid selection config keys: {unknown}")
         return cls(**{k: v for k, v in merged.items() if k in known})
 
     def reported_weights(self) -> dict[str, float]:
@@ -490,7 +490,7 @@ class _Selector:
             self.result.flags.append("salience_unavailable")
             self.result.log(
                 "salience_unavailable",
-                "không có trường salience — dùng trọng số đều cho mọi đối tượng",
+                "no salience field — using uniform weights for all objects",
                 n_entities=len(entities),
             )
             return {str(e["id"]): 1.0 for e in entities if e.get("id") is not None}
@@ -499,7 +499,7 @@ class _Selector:
         if missing:
             self.result.log(
                 "salience_missing",
-                f"{len(missing)} đối tượng không có salience — tính là 0 trong độ phủ",
+                f"{len(missing)} objects have no salience — counted as 0 in coverage",
                 entity_ids=missing,
             )
         return {k: float(v) for k, v in values.items()}
@@ -566,27 +566,27 @@ class _Selector:
             self.result.flags.append("unverified_propositions")
             self.result.log(
                 "unverified_propositions",
-                f"{len(unverified)} mệnh đề chưa được kiểm chứng — loại khỏi lựa chọn",
+                f"{len(unverified)} propositions were never verified — excluded from selection",
                 proposition_ids=unverified,
             )
         if unscored:
             self.result.flags.append("factuality_unavailable")
             self.result.log(
                 "factuality_unavailable",
-                f"{len(unscored)} mệnh đề thiếu điểm kiểm chứng — số hạng α bằng 0, "
-                "KHÔNG suy đoán giá trị",
+                f"{len(unscored)} propositions lack a verification score — the α term is 0, "
+                "the value is NOT guessed",
                 proposition_ids=unscored,
             )
         if surprisal_fn is None:
             self.result.flags.append("surprisal_unavailable")
             self.result.log(
                 "surprisal_unavailable",
-                "không có thống kê ngữ liệu — u(p) thiếu số hạng bất ngờ, là cận dưới",
+                "no corpus statistics — u(p) lacks the surprisal term, so it is a lower bound",
             )
         elif no_surprisal:
             self.result.log(
                 "surprisal_missing",
-                f"{no_surprisal} mệnh đề không có trong thống kê ngữ liệu",
+                f"{no_surprisal} propositions are absent from the corpus statistics",
             )
 
         candidates.sort(key=lambda c: c.order)
@@ -624,7 +624,7 @@ class _Selector:
             )
             self.result.log(
                 "contradiction_cycle",
-                "mệnh đề tự mâu thuẫn — loại bỏ, f thấp nhất được ghi lại",
+                "self-contradicting propositions — dropped, the lowest f is recorded",
                 proposition_ids=sorted(drop, key=_id_order),
                 lowest_factuality_id=lowest.pid,
             )
@@ -657,7 +657,7 @@ class _Selector:
             )
 
         if self.config.delta == 0.0:
-            self.result.log("redundancy_disabled", "delta = 0 — bỏ hoàn toàn số hạng R (A6)")
+            self.result.log("redundancy_disabled", "delta = 0 — the R term is dropped entirely (A6)")
             return {}
 
         # Per PROPOSITION, not per pair: counting inside the O(n²) loop reported
@@ -683,13 +683,13 @@ class _Selector:
             self.result.flags.append("similarity_unavailable")
             self.result.log(
                 "similarity_unavailable",
-                "không có hàm tương đồng — R chỉ dựa trên kéo theo, chồng lấp ngữ nghĩa bị bỏ",
+                "no similarity function — R rests on entailment only, semantic overlap is dropped",
             )
         elif unsegmented:
             self.result.flags.append("unsegmented_similarity")
             self.result.log(
                 "unsegmented_similarity",
-                "so sánh trên văn bản chưa tách từ — độ tương đồng tiếng Việt kém tin cậy",
+                "comparison over unsegmented text — Vietnamese similarity is unreliable",
                 n_texts=len(unsegmented),
                 proposition_ids=unsegmented,
             )
@@ -796,12 +796,12 @@ class _Selector:
             self.result.flags.append("budget_not_binding")
             self.result.log(
                 "budget_not_binding",
-                f"chọn {len(selected)}/{self.config.budget} — ngân sách không ràng buộc",
+                f"selected {len(selected)}/{self.config.budget} — the budget is not binding",
                 n_eligible=len(self.candidates),
                 reason=(
-                    "đã chọn hết mệnh đề đủ điều kiện"
+                    "every eligible proposition was selected"
                     if len(selected) == len(self.candidates)
-                    else "không còn mệnh đề nào vừa hợp lệ vừa làm tăng mục tiêu"
+                    else "no remaining proposition is both feasible and objective-improving"
                 ),
             )
 
@@ -836,8 +836,8 @@ class _Selector:
                 after.sort(key=_id_order)
                 self.result.log(
                     "coverage_repair",
-                    f"buộc phủ đối tượng {entity} — thêm {replacement.pid}"
-                    + (f", bỏ {victim}" if victim else ""),
+                    f"forced coverage of object {entity} — added {replacement.pid}"
+                    + (f", removed {victim}" if victim else ""),
                     entity_id=entity,
                     added_id=replacement.pid,
                     removed_id=victim,
@@ -871,8 +871,8 @@ class _Selector:
             self.result.flags.append("coverage_below_threshold")
             self.result.log(
                 "coverage_below_threshold",
-                f"độ phủ {final.coverage:.3f} < θ={self.config.coverage_threshold} sau sửa chữa "
-                "— chấp nhận, KHÔNG bịa mệnh đề",
+                f"coverage {final.coverage:.3f} < θ={self.config.coverage_threshold} after repair "
+                "— accepted, propositions are NOT fabricated",
                 coverage=final.coverage,
                 coverage_ceiling=self.result.coverage_ceiling,
             )
@@ -951,7 +951,7 @@ class _Selector:
             self.result.flags.append("coverage_unavailable")
             self.result.log(
                 "coverage_unavailable",
-                "không có khối lượng salience — bỏ số hạng β khỏi mục tiêu",
+                "no salience mass — the β term is dropped from the objective",
             )
         if not any(c.status == Verdict.SUPPORTED for c in self.candidates):
             # §7 row 1. The fallback branch is recorded because the two are
@@ -969,8 +969,8 @@ class _Selector:
             self.result.flags.append("no_supported_content")
             self.result.log(
                 "no_supported_content",
-                "không có mệnh đề nào được xác nhận — "
-                + ("chỉ còn nội dung rào đón" if hedgeable else "chỉ còn chú thích tồn tại"),
+                "no proposition was confirmed — "
+                + ("only hedged content remains" if hedgeable else "only an existence caption remains"),
                 fallback="hedged" if hedgeable else "existence_only",
                 n_uncertain_eligible=n_uncertain,
                 n_hedged_admitted=len(self.result.hedged_ids),
@@ -996,7 +996,7 @@ def _assert_invariants(
     if guilty:
         # Holds under every ablation: A3 turns the optimisation off, not the
         # admission policy (§1).
-        raise RuntimeError(f"P* chứa mệnh đề bị BÁC BỎ: {guilty}")
+        raise RuntimeError(f"P* contains REJECTED propositions: {guilty}")
 
     conflicts = [
         (a, b)
@@ -1005,7 +1005,7 @@ def _assert_invariants(
         if b in contradictions.get(a, ())
     ]
     if conflicts and config.enabled:
-        raise RuntimeError(f"P* chứa cặp mâu thuẫn: {conflicts}")
+        raise RuntimeError(f"P* contains contradictory pairs: {conflicts}")
     if conflicts:
         # A3 keeps everything, so a surviving contradiction is the ablation's
         # own result — Baseline D shipping `áo đỏ` and `áo xanh` together is the
@@ -1014,12 +1014,12 @@ def _assert_invariants(
         result.flags.append("contradictions_present")
         result.log(
             "contradictions_present",
-            f"{len(conflicts)} cặp mâu thuẫn còn trong P* — A3 không áp ràng buộc nhất quán",
+            f"{len(conflicts)} contradictory pairs remain in P* — A3 applies no consistency constraint",
             pairs=[list(pair) for pair in conflicts],
         )
 
     if config.enabled and len(result.selected_ids) > config.budget:
-        raise RuntimeError(f"P* vượt ngân sách B={config.budget}: {len(result.selected_ids)}")
+        raise RuntimeError(f"P* exceeds the budget B={config.budget}: {len(result.selected_ids)}")
 
     # Read back from the PROPOSITION, not from `_Candidate.status`: recomputing
     # the mark with the same accessor that produced it makes the check
@@ -1030,9 +1030,9 @@ def _assert_invariants(
         if _verdict_of(by_id[pid].prop) == Verdict.UNCERTAIN
     ]
     if set(hedged) != set(result.hedged_ids):
-        raise RuntimeError("mệnh đề KHÔNG CHẮC CHẮN không được đánh dấu rào đón")
+        raise RuntimeError("an UNCERTAIN proposition was not marked as hedged")
     if config.enabled and len(hedged) > config.hedge_quota:
-        raise RuntimeError(f"P* vượt hạn ngạch rào đón q={config.hedge_quota}: {len(hedged)}")
+        raise RuntimeError(f"P* exceeds the hedge quota q={config.hedge_quota}: {len(hedged)}")
 
 
 # ---------------------------------------------------------------------------
@@ -1063,8 +1063,8 @@ def select(
 
     if config.enabled and config.algorithm != "greedy_submodular":
         raise ValueError(
-            f"thuật toán {config.algorithm!r} chưa được cài đặt trong module này "
-            "(xem formulation/10 §4 — chỉ greedy_submodular là phương pháp chính)"
+            f"algorithm {config.algorithm!r} is not implemented in this module "
+            "(see formulation/10 §4 — only greedy_submodular is the main method)"
         )
 
     selector = _Selector(propositions, entities, config, similarity_fn, surprisal_fn)
@@ -1088,7 +1088,7 @@ def select(
     selected = sorted((c.pid for c in selector.candidates), key=_id_order)
     selector.result.log(
         "selection_disabled",
-        "A3 — bỏ qua tối ưu hoá, giữ mọi mệnh đề không bị bác bỏ",
+        "A3 — optimisation skipped, every non-rejected proposition is kept",
         n_selected=len(selected),
         # `budget` is still reported so the run record shows which B this row
         # would have been compared against — but B did not constrain anything
@@ -1100,6 +1100,6 @@ def select(
         selector.result.flags.append("hedge_quota_not_enforced")
         selector.result.log(
             "hedge_quota_not_enforced",
-            f"{len(hedged)} mệnh đề rào đón > q={config.hedge_quota} — A3 không áp hạn ngạch",
+            f"{len(hedged)} hedged propositions > q={config.hedge_quota} — A3 applies no quota",
         )
     return selector.finalise(selected)

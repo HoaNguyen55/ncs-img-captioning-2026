@@ -408,7 +408,7 @@ def caption_claims(pair: EvalPair) -> ClaimSet:
 
     caption = pair.predicted.get("caption")
     if not isinstance(caption, dict):
-        return ClaimSet(available=False, reason="tài liệu không có caption")
+        return ClaimSet(available=False, reason="the document has no caption")
     spans = caption.get("spans")
     if not isinstance(spans, list) or not spans:
         return ClaimSet(
@@ -472,7 +472,7 @@ def _claim_source(
     if source is PropositionSet.SELECTED:
         selected = _selected(pair.predicted)
         if selected is None:
-            return [], source.value, "tài liệu không có khối selection"
+            return [], source.value, "the document has no selection block"
         return selected, source.value, ""
     claims = caption_claims(pair)
     if not claims.available:
@@ -1895,7 +1895,7 @@ def pgf(
     for pair in pairs:
         selected = _selected(pair.predicted)
         if selected is None:
-            report.skipped.append((pair.key(), "tài liệu không có khối selection (P* undefined)"))
+            report.skipped.append((pair.key(), "the document has no selection block (P* undefined)"))
             continue
         claim_set = caption_claims(pair)
         if not claim_set.available:
@@ -1968,7 +1968,7 @@ def vcf(
         if unverdicted:
             report.skipped.append((
                 pair.key(),
-                f"{len(unverdicted)}/{len(gold)} mệnh đề vàng không có "
+                f"{len(unverdicted)}/{len(gold)} gold propositions lack "
                 "`verification.status` — G_true would silently exclude them and "
                 "inflate VCF coverage; gold verdicts are mandatory (doc 03 §1.1)",
             ))

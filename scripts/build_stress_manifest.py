@@ -1,27 +1,28 @@
 #!/usr/bin/env python
-"""Chọn 50 ảnh test KHÓ cho bộ thử thách .
+"""Select 50 HARD test images for the challenge set.
 
     python scripts/build_stress_manifest.py \\
         --annotations ~/ncs-data/datasets/ktvic/test_data.json \\
         --out ~/ncs-data/datasets/ktvic/stress50_manifest.json
 
-"Khó" phải ĐO ĐƯỢC từ chính chú thích tham chiếu, không phải cảm giác. Bốn
-tín hiệu, mỗi cái nhắm đúng một chế độ lỗi của bài:
+"Hard" must be MEASURABLE from the reference captions themselves, not a
+feeling. Four signals, each aimed at one failure mode of the paper:
 
-* **đếm** (`hai/ba/bốn/năm/nhiều/vài/mấy/đông`): mệnh đề đếm là loại probe
-  dễ sai nhất.
-* **màu, đặc biệt `xanh`**: trục lam/lục là vùng mù đã đo của cả dữ liệu lẫn
-  bộ kiểm (grue).
-* **người có giới tính trong danh từ** (`phụ nữ/đàn ông/cô gái/chàng
-  trai/em bé/cậu bé/cô bé/bà/ông`): chiều bịa giới tính.
-* **độ giàu thực thể**: nhiều danh từ khác nhau giữa 5 chú thích = cảnh
-  đông đúc, chỗ ảo giác vật thể dễ xảy ra nhất.
+* **counting** (`hai/ba/bốn/năm/nhiều/vài/mấy/đông`): counting propositions
+  are the probe type that fails most often.
+* **colour, especially `xanh`**: the blue/green axis is a measured blind spot
+  of both the data and the checker (grue).
+* **gender-marked person nouns** (`phụ nữ/đàn ông/cô gái/chàng
+  trai/em bé/cậu bé/cô bé/bà/ông`): the gender-fabrication axis.
+* **entity richness**: many distinct nouns across the 5 captions = a crowded
+  scene, where object hallucination is most likely.
 
-Điểm ảnh = tổng bốn tín hiệu đã chuẩn hoá [0..1]. Không có "85%" hứa trước
-nào ở đây — bộ này tồn tại để tìm chỗ mô hình GÃY và báo cáo trung thực.
+Image score = sum of the four signals normalised to [0..1]. There is no
+"85%" promised up front here — this set exists to find where the model BREAKS
+and to report that honestly.
 
-Manifest ghi kèm điểm từng tín hiệu mỗi ảnh, nên bảng kết quả phân rã được
-"gãy vì đếm" khác "gãy vì màu".
+The manifest stores each image's per-signal scores, so the results table can
+separate "broke on counting" from "broke on colour".
 """
 
 from __future__ import annotations
@@ -80,7 +81,7 @@ def main() -> int:
     signals = ("counting", "colour", "gendered", "entity_richness")
     maxima = {s: max((r[s] for r in raw), default=1) or 1 for s in signals}
     for r in raw:
-        # `xanh` cộng thêm nửa tín hiệu màu: đúng vùng mù grue đã đo.
+        # `xanh` adds half an extra colour signal: exactly the measured grue blind spot.
         r["score"] = round(
             sum(r[s] / maxima[s] for s in signals)
             + 0.5 * (r["xanh"] / (maxima["colour"] or 1)), 4)
@@ -91,17 +92,17 @@ def main() -> int:
     out = Path(args.out).expanduser()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
-        "purpose": "bộ 50 ảnh thử thách  — chọn theo tín hiệu đo được",
+        "purpose": "50-image challenge set — selected by measurable difficulty signals",
         "signals": {s: f"max={maxima[s]}" for s in signals},
         "images": chosen,
     }, ensure_ascii=False, indent=2), encoding="utf-8")
 
     n = len(chosen)
-    print(f"  {n} ảnh chọn từ {len(raw)} ảnh test")
+    print(f"  {n} images chosen out of {len(raw)} test images")
     for s in signals + ("xanh",):
         cover = sum(1 for r in chosen if r[s] > 0)
-        print(f"  có tín hiệu {s:<16}: {cover}/{n} ảnh")
-    print(f"  đã ghi {out}")
+        print(f"  has signal {s:<16}: {cover}/{n} images")
+    print(f"  wrote {out}")
     return 0
 
 

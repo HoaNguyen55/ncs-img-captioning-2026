@@ -1,15 +1,16 @@
 #!/usr/bin/env python
-"""Đo độ trễ suy luận batch=1 cho claim "~N giây/ảnh" của §5b .
+"""Measure batch=1 inference latency for the "~N seconds/image" claim of §5b.
 
     python scripts/measure_latency.py \\
         --adapter /root/ncs-data/runs/off4090_sft \\
         --n 60 --out ~/ncs-data/results/latency_off4090sft.json
 
-Cùng đường nạp model và vòng sinh với `evaluate.py` (bf16 + adapter, batch=1,
-greedy) — đo cái hệ THẬT SỰ chạy khi đánh giá, không phải một cấu hình demo.
-60 ảnh đầu của tập test theo thứ tự image_id, 3 ảnh warmup không tính (lần
-sinh đầu chứa chi phí biên dịch/khởi tạo CUDA). Ghi trung vị/p90/trung bình
-từng chế độ vào JSON để con số trong bài tái tạo được từ đĩa.
+Same model-loading path and generation loop as `evaluate.py` (bf16 + adapter,
+batch=1, greedy) — measures what the system ACTUALLY runs during evaluation,
+not a demo configuration. First 60 test images in image_id order, 3 warmup
+images excluded (the first generation carries CUDA compile/init cost). Writes
+per-mode median/p90/mean to JSON so the numbers in the paper can be rebuilt
+from disk.
 """
 
 from __future__ import annotations
@@ -89,14 +90,14 @@ def main() -> int:
             "max_s": round(max(times), 3),
         }
         m = result["modes"][mode]
-        print(f"{mode}: trung vị {m['median_s']}s · trung bình {m['mean_s']}s "
-              f"· p90 {m['p90_s']}s ({len(times)} ảnh, {gpu})", flush=True)
+        print(f"{mode}: median {m['median_s']}s · mean {m['mean_s']}s "
+              f"· p90 {m['p90_s']}s ({len(times)} images, {gpu})", flush=True)
 
     out = Path(args.out).expanduser()
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2),
                    encoding="utf-8")
-    print(f"đã ghi {out}")
+    print(f"wrote {out}")
     return 0
 
 

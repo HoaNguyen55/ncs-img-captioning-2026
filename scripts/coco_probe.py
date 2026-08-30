@@ -1,20 +1,22 @@
 #!/usr/bin/env python
-""" (nhật ký NC) — probe khái quát hóa xuyên ngôn ngữ trên COCO-2014 (Karpathy test, 2.500 ảnh).
+""" (NC log) — cross-lingual generalisation probe on COCO-2014 (Karpathy test, 2,500 images).
 
-    # zero-shot, cả hai chế độ
+    # zero-shot, both modes
     python scripts/coco_probe.py --images-dir /root/coco_images --out-dir /root/probe_out
-    # hệ chưng cất
+    # distilled system
     python scripts/coco_probe.py --adapter /root/off4090_sft_slim ...
-    # chia 2 máy
+    # split across 2 machines
     ... --shard 0 --of 2   |   ... --shard 1 --of 2
 
-Sinh caption TIẾNG VIỆT trên ảnh COCO bằng ĐÚNG cấu hình evaluate.py (bf16,
-sdpa, min/max_pixels, greedy, trần 60/160 token) — đo hệ thật của Bảng 1/2,
-không phải một cấu hình demo. Thiết kế theo generate_stage1.py: resumable
-(mỗi dòng jsonl một ảnh, ảnh có rồi thì bỏ qua) và shard không cần phối hợp.
+Generates VIETNAMESE captions on COCO images with the EXACT evaluate.py
+configuration (bf16, sdpa, min/max_pixels, greedy, 60/160-token caps) —
+measuring the real system of Tables 1/2, not a demo configuration. Designed
+after generate_stage1.py: resumable (one jsonl line per image, images already
+present are skipped) and shards need no coordination.
 
-Chấm điểm KHÔNG làm ở đây — score_coco_probe.py chạy trên máy local với
-instances_val2014 + caption tham chiếu (vàng = hợp, đăng ký (nhật ký NC)).
+Scoring does NOT happen here — score_coco_probe.py runs on the local machine
+with instances_val2014 + reference captions (gold = union, registered in the
+NC log).
 """
 
 from __future__ import annotations
@@ -27,7 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from evaluate import PROMPTS  # noqa: E402  — cùng prompt với Bảng 1/2
+from evaluate import PROMPTS  # noqa: E402  — same prompts as Tables 1/2
 
 P = 28 * 28
 MAX_NEW = {"short": 60, "detailed": 160}
@@ -46,10 +48,10 @@ def load_model(adapter: str | None):
         from peft import PeftModel
 
         model = PeftModel.from_pretrained(model, adapter)
-        # Gộp adapter vào trọng số: cùng phép tính W+BA, bỏ overhead PEFT
-        # mỗi token (đo thật: 11,8s/ảnh chưa gộp vs ~5,8s đã gộp ở chế độ
-        # chi tiết). Khai báo trong artifact: caption distill sinh từ adapter
-        # ĐÃ GỘP — tương đương toán học, greedy như cũ.
+        # Merge the adapter into the weights: same W+BA computation, drops the
+        # per-token PEFT overhead (measured: 11.8s/image unmerged vs ~5.8s merged
+        # in detailed mode). Declared in the artifact: distill captions come from
+        # the MERGED adapter — mathematically equivalent, greedy as before.
         model = model.merge_and_unload()
     model.eval()
     processor = AutoProcessor.from_pretrained(
@@ -61,7 +63,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--manifest", default="data/coco_probe/manifest.json")
     ap.add_argument("--images-dir", required=True)
-    ap.add_argument("--adapter", default=None, help="bỏ trống = zero-shot")
+    ap.add_argument("--adapter", default=None, help="leave empty = zero-shot")
     ap.add_argument("--modes", default="short,detailed")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--shard", type=int, default=0)
@@ -93,7 +95,7 @@ def main() -> int:
                 except Exception:
                     pass
         todo = [i for i in images if i["cocoid"] not in done]
-        print(f"[{system}/{mode}] {len(done)} có sẵn, {len(todo)} cần sinh", flush=True)
+        print(f"[{system}/{mode}] {len(done)} already present, {len(todo)} to generate", flush=True)
         t0 = time.time()
         with out.open("a", encoding="utf-8") as fh:
             for k, img in enumerate(todo):
@@ -116,9 +118,9 @@ def main() -> int:
                 fh.flush()
                 if (k + 1) % 50 == 0:
                     rate = (time.time() - t0) / (k + 1)
-                    print(f"  {k+1}/{len(todo)} · {rate:.2f}s/ảnh · còn "
-                          f"~{rate*(len(todo)-k-1)/60:.0f} phút", flush=True)
-        print(f"[{system}/{mode}] XONG → {out}", flush=True)
+                    print(f"  {k+1}/{len(todo)} · {rate:.2f}s/image · "
+                          f"~{rate*(len(todo)-k-1)/60:.0f} min left", flush=True)
+        print(f"[{system}/{mode}] DONE → {out}", flush=True)
     return 0
 
 

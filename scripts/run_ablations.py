@@ -32,13 +32,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 
 class _SizeOnly:
-    """Ảnh giả chỉ mang kích thước thật cho kênh hình học khi phát lại.
+    """A fake image carrying only the real size, for the geometric channel during replay.
 
-    Phát hiện 19/08: chạy thật truyền ảnh nên `geometric_check` chuẩn hoá
-    dx/dy theo khung ảnh; phát lại truyền None nên nó rơi về chuẩn hoá theo
-    hộp — 2,1% phán quyết lệch, dồn đúng vào spatial_relation/relation.
-    Kênh hình học chỉ cần `.size`; các đường cần PIL thật (crop vùng) vẫn
-    thấy đây không phải PIL và bỏ qua như cũ.
+    Finding 19/08: the real run passes the image, so `geometric_check` normalizes
+    dx/dy by the image frame; replay passed None so it fell back to normalizing by
+    the box — 2.1% of verdicts shifted, concentrated exactly in
+    spatial_relation/relation. The geometric channel needs only `.size`; the paths
+    needing a real PIL image (region crops) still see this is not PIL and skip as before.
     """
 
     def __init__(self, size):
@@ -65,17 +65,17 @@ def build_conditions():
     from rescap.pipeline.verify import Mode, VerificationConfig, Verdict
 
     return [
-        ("A0 đầy đủ", "ba trạng thái, mọi kênh bật",
+        ("A0 full", "three verdicts, every channel on",
          VerificationConfig()),
-        ("A2 nhị phân→REJECTED", "UNCERTAIN gộp vào REJECTED",
+        ("A2 binary→REJECTED", "UNCERTAIN folded into REJECTED",
          VerificationConfig(mode=Mode.BINARY, binary_uncertain_to=Verdict.REJECTED)),
-        ("A2 nhị phân→SUPPORTED", "UNCERTAIN gộp vào SUPPORTED",
+        ("A2 binary→SUPPORTED", "UNCERTAIN folded into SUPPORTED",
          VerificationConfig(mode=Mode.BINARY, binary_uncertain_to=Verdict.SUPPORTED)),
-        ("A4 tắt mâu thuẫn", "kênh 9(a)+9(b) off",
+        ("A4 no contradiction", "channels 9(a)+9(b) off",
          VerificationConfig(contradiction_detection=False)),
-        ("A7 tắt hình học", "kênh 6 off",
+        ("A7 no geometry", "channel 6 off",
          VerificationConfig(spatial_verification=False)),
-        ("A4+A7 tắt cả hai", "chỉ còn kênh probe",
+        ("A4+A7 both off", "probe channel only",
          VerificationConfig(contradiction_detection=False, spatial_verification=False)),
     ]
 
@@ -92,17 +92,17 @@ def main() -> int:
 
     sizes = _load_sizes()
     if not sizes:
-        print("  ⚠ không có image_sizes.json — kênh hình học phát lại sẽ thiếu khung ảnh")
+        print("  ⚠ no image_sizes.json — the replayed geometric channel will lack the image frame")
 
     files = [f for f in sorted(Path(args.src).glob("*.json"))
              if not f.name.startswith("_")]
     if args.limit:
         files = files[: args.limit]
     if not files:
-        raise SystemExit(f"không thấy bản ghi nào trong {args.src}")
+        raise SystemExit(f"no records found in {args.src}")
 
     records = [json.loads(f.read_text(encoding="utf-8")) for f in files]
-    print(f"{len(records)} ảnh, phát lại — không dùng GPU\n")
+    print(f"{len(records)} images, replayed — no GPU used\n")
 
     rows = []
     for name, note, config in build_conditions():
@@ -151,8 +151,8 @@ def main() -> int:
             "probe_misses": misses,
         })
 
-    header = (f"  {'điều kiện':<24} {'SUP':>7} {'UNC':>7} {'REJ':>7} "
-              f"{'%SUP':>7} {'SUP/ảnh':>9}")
+    header = (f"  {'condition':<24} {'SUP':>7} {'UNC':>7} {'REJ':>7} "
+              f"{'%SUP':>7} {'SUP/img':>9}")
     print(header + "\n  " + "-" * (len(header) - 2))
     base = rows[0]
     for row in rows:
@@ -164,19 +164,19 @@ def main() -> int:
               f"{row['REJECTED']:>7} {row['supported_pct']:>6.1f}% "
               f"{row['supported_per_image']:>9.2f}{delta}")
         if row["probe_misses"]:
-            print(f"       ⚠ {row['probe_misses']} probe không có trong bản ghi — "
-                  f"điều kiện này KHÔNG phát lại được trung thực")
+            print(f"       ⚠ {row['probe_misses']} probes absent from the records — "
+                  f"this condition CANNOT be replayed faithfully")
 
-    print("\n  A1 (tắt kiểm chứng) và mọi ablation đổi PROMPT hay tập mệnh đề")
-    print("  KHÔNG có ở đây: chúng hỏi câu khác, mà câu chưa từng hỏi thì không")
-    print("  có câu trả lời để phát lại. Những cái đó phải chạy thật.")
-    print("\n  ⚠ Kèm mọi số ở đây: bộ phát lại tái tạo ~99,7% phán quyết gốc,")
-    print("    không phải 100%. Chạy validate_replay.py trên cùng tập bản ghi.")
+    print("\n  A1 (verification off) and every ablation changing the PROMPT or the")
+    print("  proposition set are NOT here: they ask different questions, and a")
+    print("  question never asked has no answer to replay. Those need real runs.")
+    print("\n  ⚠ Alongside every number here: the replayer reproduces ~99.7% of the")
+    print("    original verdicts, not 100%. Run validate_replay.py on the same records.")
 
     out = Path(args.out or Path(args.src).parent / "ablations_replay.json")
     out.write_text(json.dumps({"n_images": len(records), "rows": rows},
                               ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\n  đã ghi {out}")
+    print(f"\n  wrote {out}")
     return 0
 
 

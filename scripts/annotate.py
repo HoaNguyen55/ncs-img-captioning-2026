@@ -323,9 +323,9 @@ def main() -> None:
         )
 
     app = build_ui(args.annotator, args.split, args.autosave)
-    print(f"\nlưu vào : {OUT_ROOT / args.split / (args.annotator + '.json')}")
-    print(f"backup  : {BACKUP_ROOT / args.split}/  (giữ 20 bản gần nhất)")
-    # gradio ≥4 chặn file ngoài cwd — không có allowed_paths thì ô ảnh trắng trơn
+    print(f"\nsaving to: {OUT_ROOT / args.split / (args.annotator + '.json')}")
+    print(f"backup   : {BACKUP_ROOT / args.split}/  (keeps the 20 most recent)")
+    # gradio ≥4 blocks files outside the cwd — without allowed_paths the image pane is blank
     app.launch(server_name="0.0.0.0", server_port=args.port, share=args.share,
                allowed_paths=[str(KTVIC)])
 

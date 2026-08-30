@@ -121,14 +121,14 @@ def main() -> None:
     files = [f for f in files if f.exists()]
     if not files:
         raise SystemExit(
-            f"không thấy file nào trong {KTVIC}\n"
-            "Chạy: bash scripts/datasets/download_ktvic.sh --yes"
+            f"no files found in {KTVIC}\n"
+            "Run: bash scripts/datasets/download_ktvic.sh --yes"
         )
 
     captions: list[str] = []
     for path in files:
         found = captions_from(path, args.field)
-        print(f"{path.name}: {len(found)} caption")
+        print(f"{path.name}: {len(found)} captions")
         captions.extend(found)
 
     counts: Counter[str] = Counter()
@@ -150,12 +150,12 @@ def main() -> None:
 
     total = sum(counts.values())
     if not total:
-        raise SystemExit("không tìm thấy `xanh` nào — kiểm tra lại đường dẫn dữ liệu")
+        raise SystemExit("no `xanh` found at all — check the data paths")
 
     print(f"\n{'='*66}")
-    print(f"Tổng caption: {len(captions)}   Có chứa `xanh`: {captions_with_xanh} "
+    print(f"Total captions: {len(captions)}   Containing `xanh`: {captions_with_xanh} "
           f"({captions_with_xanh/len(captions)*100:.1f}%)")
-    print(f"Tổng lượt nhắc `xanh`: {total}")
+    print(f"Total `xanh` mentions: {total}")
     print("=" * 66)
 
     for name in BUCKETS:
@@ -168,21 +168,21 @@ def main() -> None:
     # so folding them in either direction would bias the number we publish.
     unresolved = counts["trơ"] + counts["chỉ có mức độ"]
     judged = unresolved + counts["đã rõ"]
-    print(f"\n  >>> CHƯA XÁC ĐỊNH ĐƯỢC MÀU: {unresolved}/{judged} "
+    print(f"\n  >>> HUE UNRESOLVED: {unresolved}/{judged} "
           f"= {unresolved/judged*100:.1f}%  <<<")
-    print("      (mẫu số chỉ gồm cụm từ điển đọc được — con số này đi vào bài báo)")
+    print("      (denominator covers only phrases the lexicon can read — this number goes into the paper)")
     if counts["chưa có trong từ điển"]:
-        print(f"      ⚠ {counts['chưa có trong từ điển']} cụm chưa có trong từ "
-              f"điển, đã loại khỏi mẫu số — cần người rà rồi bổ sung vào "
-              f"rescap/vi/color.py")
+        print(f"      ⚠ {counts['chưa có trong từ điển']} phrases not in the "
+              f"lexicon, excluded from the denominator — a human should review "
+              f"them and add them to rescap/vi/color.py")
 
-    print("\nCác cụm hay gặp nhất:")
+    print("\nMost frequent phrases:")
     for phrase, n in phrases.most_common(12):
         print(f"  {n:>5}×  {phrase}   [{bucket(phrase)}]")
 
     for name in ("trơ", "chỉ có mức độ", "chưa có trong từ điển"):
         if samples[name]:
-            print(f"\nVí dụ — {name}:")
+            print(f"\nExamples — {name}:")
             for caption in samples[name]:
                 print(f"  · {caption}")
 
@@ -209,7 +209,7 @@ def main() -> None:
         ),
         encoding="utf-8",
     )
-    print(f"\nĐã ghi {out}")
+    print(f"\nWrote {out}")
 
 
 if __name__ == "__main__":

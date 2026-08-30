@@ -280,7 +280,7 @@ def build_entities(model: VLM, image: Any, stats: GenerationStats) -> list[dict]
             continue
         classifier, known = classifier_for(head)
         if not known:
-            stats.truncations.append(f"loại từ không rõ cho {head!r}")
+            stats.truncations.append(f"unknown classifier for {head!r}")
         gender = GENDERED_NOUNS.get(head)
         entities.append(
             {
@@ -326,7 +326,7 @@ def generate(
 
     if len(entities) > max_entities:
         stats.truncations.append(
-            f"cắt còn {max_entities}/{len(entities)} đối tượng — độ phủ KHÔNG đầy đủ"
+            f"truncated to {max_entities}/{len(entities)} objects — coverage is NOT complete"
         )
         entities = entities[:max_entities]
 
@@ -439,7 +439,7 @@ def generate(
     ]
     if len(pairs) > max_pairs:
         stats.truncations.append(
-            f"cắt còn {max_pairs}/{len(pairs)} cặp quan hệ — độ phủ KHÔNG đầy đủ"
+            f"truncated to {max_pairs}/{len(pairs)} relation pairs — coverage is NOT complete"
         )
         pairs = pairs[:max_pairs]
 

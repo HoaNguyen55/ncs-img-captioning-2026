@@ -86,18 +86,18 @@ def as_asserted(props: list[dict]) -> list[dict]:
     return out
 
 
-#: (nhật ký NC): ngân sách lựa chọn cho dữ liệu giám sát. 5 = công thức chính thức
-#: (mặc định của SelectionConfig — "nút vặn chi tiết/rủi ro"). Ghi đè bằng
-#: --budget để dựng biến thể nhiều-chi-tiết; mặc định giữ nguyên hành vi cũ.
+#: (research log): selection budget for the supervision data. 5 = official recipe
+#: (SelectionConfig default — the "detail/risk knob"). Override with
+#: --budget to build the high-detail variant; the default keeps the old behaviour.
 SELECT_BUDGET: list[int | None] = [None]
-# (nhật ký NC) (gói câu chữ): bật khuôn kết xuất xoay + lọc mệnh đề rác.
+# (research log) (wording bundle): enable rotating rendering templates + junk proposition filtering.
 STYLE_VARIATION: list[bool] = [False]
 CLEAN_PROPS: list[bool] = [False]
 CURRENT_STYLE_SEED: list[int] = [42]
 
 
 def _malformed(text: str) -> bool:
-    """Mệnh đề rác theo (nhật ký NC): lặp từ liền kề, hoặc predicate nuốt nguyên mệnh đề."""
+    """Junk proposition per (research log): adjacent duplicated word, or a predicate swallowing a whole clause."""
     words = text.split()
     if any(a.lower() == b.lower() for a, b in zip(words, words[1:])):
         return True
@@ -105,7 +105,7 @@ def _malformed(text: str) -> bool:
 
 
 def clean_props(props: list[dict], stats: Counter) -> list[dict]:
-    """Lọc rác trước build ( (nhật ký NC) #2): lặp từ · predicate quá dài · trùng lặp."""
+    """Filter junk before the build ( (research log) #2): duplicated words · overlong predicate · duplicates."""
     seen: set[str] = set()
     kept: list[dict] = []
     for p in props:
@@ -114,15 +114,16 @@ def clean_props(props: list[dict], stats: Counter) -> list[dict]:
         if _malformed(text):
             stats["clean:dup_word"] += 1
             continue
-        # Vết bug M2 (audit (nhật ký NC), vd 4962 P23/P35): predicate nuốt nguyên một
-        # mệnh đề CÓ CHỦ NGỮ RIÊNG ("một người đang nắm chặt..."). Predicate dài
-        # nhưng không mở bằng danh ngữ vô định + đang/đã là hợp lệ, giữ nguyên.
+        # M2 bug trace (audit (research log), e.g. 4962 P23/P35): a predicate swallowing a
+        # whole clause WITH ITS OWN SUBJECT ("một người đang nắm chặt..."). A long predicate
+        # that does not open with an indefinite noun phrase + đang/đã is valid, keep it.
         import re as _re
         _emb = r"(?:^|\s)(một số|một vài|nhiều|vài|các|những|một|hai|ba|bốn|năm)\s+(?:\S+\s+){1,6}?(đang|đã)\s"
         m_pred = _re.search(_emb, " " + pred)
         m_text = _re.search(_emb, text)
-        # match ở ĐẦU text là chủ ngữ hợp lệ của mệnh đề hành động — chỉ bắt
-        # NP-vô-định + đang/đã NHÚNG GIỮA chuỗi (vết bug M2 nuốt mệnh đề).
+        # a match at the START of the text is the valid subject of an action
+        # proposition — only catch an indefinite NP + đang/đã EMBEDDED MID-string
+        # (the M2 clause-swallowing bug trace).
         if m_pred or (m_text and m_text.start() > 0) or len(pred.split()) > 12:
             stats["clean:pred_clause"] += 1
             continue
@@ -159,9 +160,9 @@ def _select(props: list[dict], entities: list[dict], stats: Counter, label: str)
 
 import re as _re_verb
 
-# (nhật ký NC): hợp đúng động từ trang phục theo danh từ — luật kho-đóng, bảo toàn sự
-# thật (đội mũ/nón · đeo kính/túi/đồng hồ/khẩu trang · đi giày/dép). Vết: 10/6403
-# ví dụ giám sát v2 còn "mặc mũ"; output B-rộng 7240 "mặc một chiếc mũ".
+# (research log): agree the clothing verb with its noun — closed-inventory rule, truth-
+# preserving (đội mũ/nón · đeo kính/túi/đồng hồ/khẩu trang · đi giày/dép). Trace: 10/6403
+# v2 supervision examples still had "mặc mũ"; wide-B output 7240 "mặc một chiếc mũ".
 _WEAR_FIXES = (
     (_re_verb.compile(r"\bmặc(\s+(?:một|hai|vài|nhiều)?\s*(?:chiếc|cái)?\s*)(mũ|nón)\b"), r"đội\1\2"),
     (_re_verb.compile(r"\bmặc(\s+(?:một|hai|vài|nhiều)?\s*(?:chiếc|cái)?\s*)(kính|túi|đồng hồ|khẩu trang)\b"), r"đeo\1\2"),
@@ -175,11 +176,12 @@ _PRONOUN_REMNANT = _re_verb.compile(r"\b(cô|anh|chị|ông|bà|em|họ)\s+ấy\
 def fix_wear_verbs(text: str) -> str:
     for pat, rep in _WEAR_FIXES:
         text = pat.sub(rep, text)
-    # Tàn dư đại từ sau trung tính hóa ( (nhật ký NC)b): chủ ngữ đã thành "người"
-    # nhưng text mệnh đề (kể cả mệnh đề neo trên thực thể QUẦN ÁO) còn
-    # "cô ấy" → caption "một người ... cô ấy mặc ...". Rơi toàn bộ đại từ
-    # lặp — tiếng Việt cho phép lược chủ ngữ lặp (đúng luật kết xuất §6),
-    # và văn giám sát vốn kiêng đại từ (luật 7 cấm mở câu bằng đại từ).
+    # Pronoun remnants after neutralization ( (research log)b): the subject has become
+    # "người" but the proposition text (including propositions anchored on a CLOTHING
+    # entity) still has "cô ấy" → caption "một người ... cô ấy mặc ...". Drop every
+    # repeated pronoun — Vietnamese allows dropping a repeated subject (per rendering
+    # rule §6), and the supervision style avoids pronouns anyway (rule 7 forbids
+    # opening a sentence with one).
     text = _PRONOUN_REMNANT.sub(" ", text)
     text = _re_verb.sub(r"\s{2,}", " ", text)
     text = _re_verb.sub(r"\s+([,.;:!?])", r"\1", text).strip()
@@ -194,8 +196,9 @@ def realise(props, entities, hedged_ids, stats: Counter, label: str) -> str | No
 
     try:
         cfg = None
-        # v2 (bài học bvan42-v1): khuôn xoay CHỈ cho chi tiết — chế độ ngắn phải
-        # giữ văn cô đọng chuẩn KTVIC, khuôn "Bức ảnh cho thấy" làm BLEU-4 sập.
+        # v2 (lesson from bvan42-v1): rotating templates for the detailed style ONLY —
+        # short mode must keep the concise KTVIC-style prose; the "Bức ảnh cho thấy"
+        # template tanks BLEU-4.
         if STYLE_VARIATION[0] and label != "short":
             cfg = RealizeConfig(style_variation=True, seed=CURRENT_STYLE_SEED[0])
         result = realize(props, entities, hedged_ids=list(hedged_ids), config=cfg)
@@ -222,9 +225,9 @@ def build_for_image(record: dict, stats: Counter):
     entities = record.get("entities") or []
     if CLEAN_PROPS[0]:
         props = clean_props(list(props), stats)
-        # (nhật ký NC)b: thực thể đã trung tính hóa (backoff) → mọi mệnh đề treo trên
-        # nó phải rơi đại từ lặp giới tính trong text ("... cô ấy mặc quần
-        # trắng ..."), kẻo caption thành "một người ... cô ấy ...".
+        # (research log)b: an entity neutralized by backoff → every proposition hanging
+        # off it must drop the repeated gendered pronoun in its text ("... cô ấy mặc
+        # quần trắng ..."), lest the caption become "một người ... cô ấy ...".
         neutral_ids = {str(e.get("id")) for e in entities
                        if (e.get("gender") or {}).get("backoff_neutralised")}
         if neutral_ids:
@@ -350,50 +353,52 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument(
         "--min-supported", type=int, default=1,
-        help="bỏ ảnh có ít hơn ngần này mệnh đề SUPPORTED (0 = giữ hết)",
+        help="skip images with fewer SUPPORTED propositions than this (0 = keep all)",
     )
     parser.add_argument(
         "--budget", type=int, default=None,
-        help=" (nhật ký NC): ghi đè ngân sách lựa chọn (mặc định 5 của công thức chính "
-             "thức). Nâng lên để caption giám sát giữ nhiều mệnh đề SUPPORTED "
-             "hơn — nút vặn chi tiết/rủi ro của formulation/10 §3.1.",
+        help=" (research log): override the selection budget (the official recipe's "
+             "default of 5). Raise it so supervision captions keep more SUPPORTED "
+             "propositions — the detail/risk knob of formulation/10 §3.1.",
     )
     parser.add_argument(
         "--detailed-variant", choices=("A", "B"), default="A",
-        help=" (nhật ký NC) (quyết định nhóm 22/08): 'B' xuất bậc IM LẶNG (chỉ mệnh đề "
-             "SUPPORTED, không từ phòng hộ) làm giám sát chi tiết thay bậc A. "
-             "Công thức chính thức hiện hành giữ mặc định 'A'.",
+        help=" (research log) (team decision 22/08): 'B' emits the SILENT rung (SUPPORTED "
+             "propositions only, no hedging words) as the detailed supervision instead of "
+             "rung A. The current official recipe keeps the default 'A'.",
     )
     parser.add_argument(
         "--style-variation", action="store_true",
-        help=" (nhật ký NC): xoay khuôn kết xuất kho-đóng (mở câu + từ nối) tất định "
-             "theo image_id — cùng sự thật, văn đa dạng hơn.",
+        help=" (research log): rotate closed-inventory rendering templates (sentence "
+             "openers + connectives) deterministically by image_id — same facts, more "
+             "varied prose.",
     )
     parser.add_argument(
         "--clean-props", action="store_true",
-        help=" (nhật ký NC): lọc mệnh đề rác trước build (lặp từ liền kề · predicate "
-             "nuốt nguyên mệnh đề · trùng văn bản trong ảnh).",
+        help=" (research log): filter junk propositions before the build (adjacent "
+             "duplicated words · predicate swallowing a whole clause · duplicate text "
+             "within an image).",
     )
     parser.add_argument(
         "--no-verification", action="store_true",
-        help="ABLATION P2 : coi MỌI mệnh đề là SUPPORTED — chưng cất "
-             "không qua kiểm chứng. A trùng B nên không tồn tại cặp ưu tiên "
-             "nào: dpo.jsonl sẽ RỖNG, và đó chính là kết quả — không có phán "
-             "quyết thì không có bậc ưu tiên để học.",
+        help="ABLATION P2 : treat EVERY proposition as SUPPORTED — distillation "
+             "without verification. A equals B so no preference pair exists: "
+             "dpo.jsonl will be EMPTY, and that is exactly the result — without "
+             "verdicts there are no preference rungs to learn.",
     )
     args = parser.parse_args()
     if args.budget is not None:
         SELECT_BUDGET[0] = args.budget
-        print(f"⚠ ngân sách lựa chọn ghi đè: {args.budget} (chính thức: 5)")
+        print(f"⚠ selection budget overridden: {args.budget} (official: 5)")
     if args.style_variation:
         STYLE_VARIATION[0] = True
-        print("⚠ (nhật ký NC): khuôn kết xuất xoay (style_variation) BẬT")
+        print("⚠ (research log): rotating rendering templates (style_variation) ON")
     if args.clean_props:
         CLEAN_PROPS[0] = True
-        print("⚠ (nhật ký NC): lọc mệnh đề rác (clean_props) BẬT")
+        print("⚠ (research log): junk proposition filtering (clean_props) ON")
     if args.no_verification:
-        print("⚠⚠ CHẾ ĐỘ KHÔNG KIỂM CHỨNG (ablation P2) — mọi mệnh đề coi là "
-              "SUPPORTED, dữ liệu này KHÔNG được dùng cho mô hình chính ⚠⚠")
+        print("⚠⚠ NO-VERIFICATION MODE (ablation P2) — every proposition treated as "
+              "SUPPORTED, this data must NOT be used for the main model ⚠⚠")
 
     src = Path(args.src)
     dst = Path(args.dst)
@@ -401,8 +406,8 @@ def main() -> int:
 
     files = sorted(f for f in src.glob("*.json") if not f.name.startswith("_"))
     if not files:
-        raise SystemExit(f"không thấy bản ghi giai đoạn 1 nào trong {src}")
-    print(f"{len(files)} bản ghi giai đoạn 1")
+        raise SystemExit(f"no Stage 1 records found in {src}")
+    print(f"{len(files)} Stage 1 records")
 
     stats: Counter[str] = Counter()
     sft_rows: list[dict] = []
@@ -424,9 +429,9 @@ def main() -> int:
             continue
         sft, sft_short, pairs = build_for_image(record, stats)
         if args.detailed_variant == "B" and sft:
-            # Bậc B nằm sẵn trong các cặp ưu tiên: rejected của A>B, hoặc
-            # chosen của B>C. Không có cặp nào và ảnh không có mệnh đề
-            # UNCERTAIN → bậc A vốn đã thuần SUPPORTED, giữ nguyên.
+            # Rung B already lives inside the preference pairs: the rejected of A>B,
+            # or the chosen of B>C. No such pair and the image has no UNCERTAIN
+            # proposition → rung A was already pure SUPPORTED, keep it.
             b_text = next((p["rejected"] for p in pairs
                            if p["pair_type"].startswith("A>B")), None) or \
                      next((p["chosen"] for p in pairs
@@ -469,16 +474,16 @@ def main() -> int:
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    print(f"\n  SFT  : {len(sft_rows):>6} ví dụ  -> {dst/'sft.jsonl'}")
-    print(f"  DPO  : {len(dpo_rows):>6} cặp     -> {dst/'dpo.jsonl'}")
-    print("\n  theo loại cặp:")
+    print(f"\n  SFT  : {len(sft_rows):>6} examples -> {dst/'sft.jsonl'}")
+    print(f"  DPO  : {len(dpo_rows):>6} pairs    -> {dst/'dpo.jsonl'}")
+    print("\n  by pair type:")
     for key, n in sorted(stats.items()):
         if key.startswith("pair:"):
             print(f"     {key[5:]:<48} {n:>6}")
     dropped = {k: v for k, v in stats.items()
                if k.startswith(("skipped", "pair_unavailable", "realise_failed", "unreadable"))}
     if dropped:
-        print("\n  bỏ qua — nói rõ để không đọc nhầm là đã bao phủ hết:")
+        print("\n  skipped — stated openly so this is not misread as full coverage:")
         for key, n in sorted(dropped.items()):
             print(f"     {key:<48} {n:>6}")
     return 0

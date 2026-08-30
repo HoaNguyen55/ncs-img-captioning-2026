@@ -119,9 +119,9 @@ def _rdrsegmenter():
                if not os.path.exists(path)]
     if missing:
         raise RuntimeError(
-            f"VnCoreNLP chưa đủ trong {save_dir}: thiếu {missing}. "
-            f"`download_model` gọi wget — kiểm tra wget đã cài chưa. "
-            f"Không khởi tạo để tránh treo vô hạn chờ một tiến trình java đã chết."
+            f"VnCoreNLP is incomplete in {save_dir}: missing {missing}. "
+            f"`download_model` calls wget — check that wget is installed. "
+            f"Not initialising, to avoid hanging forever on a dead java process."
         )
     # py_vncorenlp resolves paths relative to the CURRENT WORKING DIRECTORY,
     # not to save_dir. Started from anywhere else the JVM comes up, prints
@@ -382,11 +382,11 @@ class CaptionMetrics:
                 "published number. Install with: apt-get install "
                 "default-jdk-headless && uv pip install py_vncorenlp"
             )
-            # Nhãn phải nói thật: điểm fallback không được nằm dưới tên
-            # segmenter được yêu cầu. Chuỗi chấm trên máy thiếu VnCoreNLP đã
-            # ghi điểm whitespace dưới tên `rdrsegmenter` và số lọt vào bảng
-            # chính thức mà mọi phép soát `segmenter == "rdrsegmenter"` đều
-            # không bắt được .
+            # The label must tell the truth: fallback scores must not sit under
+            # the name of the segmenter that was requested. A scoring run on a
+            # machine without VnCoreNLP once recorded whitespace scores under
+            # the name `rdrsegmenter`, and the number slipped into the official
+            # table past every `segmenter == "rdrsegmenter"` check.
             self.segmenter = f"{self.segmenter}!whitespace-fallback"
             simple = lambda d: {  # noqa: E731
                 k: [c["caption"].lower().strip() for c in v] for k, v in d.items()

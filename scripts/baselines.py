@@ -1,22 +1,23 @@
 #!/usr/bin/env python
-"""đối chứng NGOÀI trên cùng backbone/cùng test-558/cùng thước đo.
+"""EXTERNAL baselines on the same backbone/same test-558/same metrics.
 
     python scripts/baselines.py --method selfcorrect --prompt short \
         --out $NCS_DATA/results/sc-short.preds.json
     python scripts/baselines.py --method vcd --prompt detailed \
         --out $NCS_DATA/results/vcd-detailed.preds.json
 
-Hai phương pháp training-free từ văn liệu, chạy trên Qwen2.5-VL-7B zero-shot:
+Two training-free methods from the literature, run on Qwen2.5-VL-7B zero-shot:
 
-* selfcorrect — Self-Correction prompting (họ Self-Refine): sinh nháp, rồi
-  yêu cầu chính mô hình rà và viết lại bỏ nội dung không chắc/không thấy rõ.
-* vcd — Visual Contrastive Decoding (Leng et al., CVPR 2024): giải mã đối
-  chiếu logits ảnh gốc với ảnh nhiễu khuếch tán;
-  l = (1+α)·l_gốc − α·l_nhiễu, kèm ràng buộc hợp lý (plausibility) β trên
-  phân phối gốc. Tham số theo bài gốc: α=1, β=0,1, nhiễu T=500/1000 lịch
-  tuyến tính. Greedy để khớp quy trình chấm của bài (evaluate.py greedy).
+* selfcorrect — Self-Correction prompting (the Self-Refine family): draft, then
+  ask the model itself to review and rewrite, dropping uncertain/unclear content.
+* vcd — Visual Contrastive Decoding (Leng et al., CVPR 2024): contrastive
+  decoding of logits between the original image and a diffusion-noised one;
+  l = (1+α)·l_orig − α·l_noise, with a plausibility constraint β on the
+  original distribution. Parameters per the original paper: α=1, β=0.1, noise
+  T=500/1000 linear schedule. Greedy, to match the paper's scoring procedure
+  (evaluate.py is greedy).
 
-Chấm điểm: dùng evaluate.py --predictions <out> --score-here như mọi hệ khác.
+Scoring: use evaluate.py --predictions <out> --score-here like every other system.
 """
 
 from __future__ import annotations
@@ -77,7 +78,7 @@ def chat_inputs(processor, image, text_prompt, history=None):
 
 
 def diffusion_noise(image, t_step=500, t_total=1000, seed=42):
-    """Nhiễu khuếch tán thuận theo VCD: x_t = sqrt(ᾱ_t)x0 + sqrt(1-ᾱ_t)ε."""
+    """Forward diffusion noise per VCD: x_t = sqrt(ᾱ_t)x0 + sqrt(1-ᾱ_t)ε."""
     import numpy as np
     rng = np.random.default_rng(seed)
     x = np.asarray(image, dtype=np.float32) / 255.0
@@ -120,9 +121,9 @@ def vcd_caption(model, processor, image, mode, alpha=1.0, beta=0.1,
     eos = model.generation_config.eos_token_id
     eos_set = set(eos if isinstance(eos, (list, tuple)) else [eos])
 
-    # Qwen2.5-VL dùng M-RoPE đa phương thức — feed tay từng token làm lệch
-    # position (khói 24/08: output thoái hóa "addCriterion…"). Đường chuẩn:
-    # prepare_inputs_for_generation lo cache_position/rope cho từng stream.
+    # Qwen2.5-VL uses multimodal M-RoPE — hand-feeding tokens one by one skews the
+    # positions (smoke 24/08: output degenerates into "addCriterion…"). The proper
+    # path: prepare_inputs_for_generation handles cache_position/rope per stream.
     def stream_state(inp):
         return {"input_ids": inp["input_ids"], "attention_mask": inp["attention_mask"],
                 "pixel_values": inp.get("pixel_values"),
@@ -173,10 +174,10 @@ def main() -> int:
     ap.add_argument("--prompt", default="detailed", choices=("short", "detailed"))
     ap.add_argument("--split", default="test_data.json")
     ap.add_argument("--dataset", default="ktvic", choices=("ktvic", "coco"),
-                    help="coco: ảnh từ --coco-images, id từ manifest probe "
-                         "(cùng 2.500 ảnh Karpathy của )")
+                    help="coco: images from --coco-images, ids from the probe manifest "
+                         "(the same 2,500 Karpathy images of )")
     ap.add_argument("--coco-images", default="/root/coco_images")
-    ap.add_argument("--coco-manifest", default=None, help="manifest khác (vd manifest_rest2500.json)")
+    ap.add_argument("--coco-manifest", default=None, help="an alternative manifest (e.g. manifest_rest2500.json)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--shard", type=int, default=0)
@@ -202,10 +203,10 @@ def main() -> int:
         ids = ids[: args.limit]
     out_path = Path(args.out)
     done: dict[str, str] = {}
-    if out_path.exists():  # kháng lặp
+    if out_path.exists():  # restart-safe
         done = json.loads(out_path.read_text(encoding="utf-8"))
         ids = [i for i in ids if i not in done]
-    print(f"{args.method}/{args.prompt}: {len(done)} có sẵn, còn {len(ids)}", flush=True)
+    print(f"{args.method}/{args.prompt}: {len(done)} already done, {len(ids)} to go", flush=True)
     if not ids:
         return 0
 
@@ -223,7 +224,7 @@ def main() -> int:
         if n % 10 == 0 or n == len(ids):
             out_path.write_text(json.dumps(done, ensure_ascii=False), encoding="utf-8")
             rate = (time.time() - t0) / n
-            print(f"  [{n}/{len(ids)}] {rate:.2f}s/ảnh  còn ~{(len(ids)-n)*rate/60:.0f} phút",
+            print(f"  [{n}/{len(ids)}] {rate:.2f}s/image  ~{(len(ids)-n)*rate/60:.0f} min left",
                   flush=True)
     out_path.write_text(json.dumps(done, ensure_ascii=False), encoding="utf-8")
     print(f"=== DOICHUNG {args.method} {args.prompt} DONE ===")

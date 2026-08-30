@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Hình 1a — TỔNG QUÁT pipeline chia theo PHA (yêu cầu nhóm 24/08 tối).
 
-    python scripts/plot_tongquat.py --out research/paper/figures/hinh1a_tongquat.png
+    python scripts/plot_overview.py --out research/paper/figures/hinh1a_tongquat.png
 
 Tập dữ liệu → PHA 1 (tiền xử lý & huấn luyện) ⇒ kết quả pha → PHA 2 (suy luận).
 Chi tiết module nằm ở Hình 1b (hinh1_quytrinh).

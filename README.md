@@ -132,7 +132,7 @@ not part of the main system.
 
 ```bash
 python scripts/plot_results.py && python scripts/plot_training.py && \
-python scripts/plot_qualitative.py && python scripts/plot_pha.py
+python scripts/plot_qualitative.py && python scripts/plot_phases.py
 ```
 
 ## 4. Number-to-file traceability

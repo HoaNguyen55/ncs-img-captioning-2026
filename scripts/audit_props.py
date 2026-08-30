@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """ (nhật ký NC) audit mode — NGƯỜI phán quyết trực tiếp mệnh đề máy-SUPPORTED.
 
-    ~/ncs-data/venv/bin/python research/scripts/audit_props.py --annotator hoa
+    ~/ncs-data/venv/bin/python scripts/audit_props.py --annotator hoa
     # người thứ hai, cùng lúc:  --annotator <tên> --port 7861
 
 Khác annotate.py (người viết mệnh đề tự do), tool này ĐƯA SẴN mệnh đề mà máy

@@ -2,9 +2,9 @@
 """ (nhật ký NC) — probe khái quát hóa xuyên ngôn ngữ trên COCO-2014 (Karpathy test, 2.500 ảnh).
 
     # zero-shot, cả hai chế độ
-    python research/scripts/coco_probe.py --images-dir /root/coco_images --out-dir /root/probe_out
+    python scripts/coco_probe.py --images-dir /root/coco_images --out-dir /root/probe_out
     # hệ chưng cất
-    python research/scripts/coco_probe.py --adapter /root/off4090_sft_slim ...
+    python scripts/coco_probe.py --adapter /root/off4090_sft_slim ...
     # chia 2 máy
     ... --shard 0 --of 2   |   ... --shard 1 --of 2
 
@@ -59,7 +59,7 @@ def load_model(adapter: str | None):
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--manifest", default="research/paper/data/coco_probe/manifest.json")
+    ap.add_argument("--manifest", default="data/coco_probe/manifest.json")
     ap.add_argument("--images-dir", required=True)
     ap.add_argument("--adapter", default=None, help="bỏ trống = zero-shot")
     ap.add_argument("--modes", default="short,detailed")

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Compare the verifier's verdicts with human verdicts on the same images.
 
-    python research/scripts/machine_vs_human.py \\
+    python scripts/machine_vs_human.py \\
         --machine ~/ncs-data/stage1_calibration --split pilot_calibration
 
 **Why this exists** : supported-per-image rose 2.4x after a

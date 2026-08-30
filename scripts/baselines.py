@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """đối chứng NGOÀI trên cùng backbone/cùng test-558/cùng thước đo.
 
-    python research/scripts/doichung.py --method selfcorrect --prompt short \
+    python scripts/baselines.py --method selfcorrect --prompt short \
         --out $NCS_DATA/results/sc-short.preds.json
-    python research/scripts/doichung.py --method vcd --prompt detailed \
+    python scripts/baselines.py --method vcd --prompt detailed \
         --out $NCS_DATA/results/vcd-detailed.preds.json
 
 Hai phương pháp training-free từ văn liệu, chạy trên Qwen2.5-VL-7B zero-shot:

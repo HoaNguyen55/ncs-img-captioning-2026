@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Turn Stage 1 verdict records into tri-level preference data for Stage 2.
 
-    python research/scripts/build_dpo_data.py --in ~/ncs-data/stage1 --out ~/ncs-data/stage2
+    python scripts/build_dpo_data.py --in ~/ncs-data/stage1 --out ~/ncs-data/stage2
 
 Writes `sft.jsonl` and `dpo.jsonl`. Nothing here calls a model: Stage 1 already
 paid for the verdicts, and this is the symbolic step that turns them into

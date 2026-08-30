@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Vẽ Hình 3 của bài báo — Phân tích đáp ứng liều lượng DPO (Dose-Response Analysis).
 
-    python research/scripts/plot_dpo_dose.py \
-        --data_dir research/paper/data/results \
+    python scripts/plot_dpo_dose.py \
+        --data_dir data/results \
         --out research/paper/figures/hinh3_lieu_dpo.png
 
 Trục x: Số bước tối ưu hóa DPO (0, 150, 500, 1626 bước).
@@ -57,7 +57,7 @@ def compute_metrics(json_path: Path, preds_path: Path | None = None) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data_dir", default="research/paper/data/results")
+    parser.add_argument("--data_dir", default="data/results")
     parser.add_argument("--out", default="research/paper/figures/hinh3_lieu_dpo.png")
     parser.add_argument("--lang", choices=["vi", "en"], default="vi")
     args = parser.parse_args()
@@ -72,8 +72,8 @@ def main() -> int:
     # 4 điểm đo liều lượng DPO
     doses = [
         {"steps": 0, "name": "0\n(pure SFT)" if EN else "0\n(SFT-thuần)", "file": "offsft-diag-short.json", "preds": "offsft-diag-short.preds.json"},
-        {"steps": 150, "name": "150\n(Round B)" if EN else "150\n(Vòng B)", "file": "vongB-short.json", "preds": "vongB-short.preds.json"},
-        {"steps": 500, "name": "500\n(Round A)" if EN else "500\n(Vòng A)", "file": "vongA-short.json", "preds": "vongA-short.preds.json"},
+        {"steps": 150, "name": "150\n(Round B)" if EN else "150\n(Vòng B)", "file": "roundB-short.json", "preds": "roundB-short.preds.json"},
+        {"steps": 500, "name": "500\n(Round A)" if EN else "500\n(Vòng A)", "file": "roundA-short.json", "preds": "roundA-short.preds.json"},
         {"steps": 1626, "name": "1,626\n(high dose)" if EN else "1.626\n(số bước cao)", "file": "official-short.json", "preds": "official-short.preds.json"},
     ]
 

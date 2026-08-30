@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Annotation tool — image beside the input fields, output in SVP schema.
 
-    python research/scripts/annotate.py --annotator A --split pilot
-    python research/scripts/annotate.py --annotator B --share      # public link
+    python scripts/annotate.py --annotator A --split pilot
+    python scripts/annotate.py --annotator B --share      # public link
 
   type `SUPORTED` and only fail hours later during conversion. Here the verdict
   is a radio button and the type is a dropdown, so the invalid state is not
@@ -84,7 +84,7 @@ def load_manifest(split: str) -> list[dict[str, Any]]:
     if not path.exists():
         raise SystemExit(
             f"No manifest at {path}\n"
-            f"Create it first:  python research/scripts/select_pilot.py --split {split}"
+            f"Create it first:  python scripts/select_pilot.py --split {split}"
         )
     return json.loads(path.read_text(encoding="utf-8"))["images"]
 

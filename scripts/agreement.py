@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Inter-annotator agreement on the three-way verdict.
 
-    python research/scripts/agreement.py --split pilot
-    python research/scripts/agreement.py --split main --annotators an,binh,cuong
+    python scripts/agreement.py --split pilot
+    python scripts/agreement.py --split main --annotators an,binh,cuong
 
 **A human evaluation without an agreement figure can be discounted entirely**,
 and reasonably so: without it nobody can tell whether the verdicts measure the

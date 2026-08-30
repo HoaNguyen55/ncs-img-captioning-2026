@@ -1,5 +1,5 @@
 {
- "name": "vongA-short",
+ "name": "roundA-short",
  "split": "test_data.json",
  "n_images": 558,
  "prompt_style": "detailed",

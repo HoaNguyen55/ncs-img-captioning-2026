@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Vẽ Hình 2 của bài báo — đường cong huấn luyện SFT và DPO, nhãn tiếng Việt.
 
-    python research/scripts/plot_training.py \\
+    python scripts/plot_training.py \\
         --sft ~/ncs-data/runs/sft/metrics.jsonl \\
         --dpo ~/ncs-data/runs/dpo/metrics.jsonl \\
         --out research/paper/figures/hinh2_huan_luyen.png

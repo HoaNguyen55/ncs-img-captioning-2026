@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 """Phân tích bộ 50 ảnh thử thách  trên preds đã có — CPU thuần.
 
-    python research/scripts/stress50_analysis.py \\
+    python scripts/stress50_analysis.py \\
         --manifest ~/ncs-data/datasets/ktvic/stress50_manifest.json \\
         --preds "zero-shot=~/ncs-data/results/zeroshot-short.preds.json" \\
                 "VSPS=~/ncs-data/results/vsps-short.preds.json" \\
-        --out research/paper/data/stress50/ngan.json
+        --out data/stress50/short.json
 
 Không cần GPU: mọi hệ đã sinh caption đủ 558 ảnh test, 50 ảnh khó là tập
 con — chỉ đọc preds từ đĩa và chấm lại. Ba con số mỗi hệ, phân rã theo

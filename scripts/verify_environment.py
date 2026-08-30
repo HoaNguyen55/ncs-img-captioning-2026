@@ -6,9 +6,9 @@ summary.  Exit code is 0 even when optional components are missing -- the point
 is to *report* the environment truthfully, not to gate on it.
 
 Usage:
-    python research/scripts/verify_environment.py
-    python research/scripts/verify_environment.py --json results/env_check.json
-    python research/scripts/verify_environment.py --heavy   # also runs a timm forward pass
+    python scripts/verify_environment.py
+    python scripts/verify_environment.py --json results/env_check.json
+    python scripts/verify_environment.py --heavy   # also runs a timm forward pass
 """
 
 from __future__ import annotations

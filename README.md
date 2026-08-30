@@ -66,12 +66,12 @@ data/
 tar -xzf data/stage1_records/stage1_records.tar.gz -C $NCS_DATA   # use shipped records
 # OR regenerate from scratch:
 python scripts/generate_stage1.py --split train --out $NCS_DATA/stage1
-python scripts/backoff_nguoi.py --in $NCS_DATA/stage1 --out $NCS_DATA/stage1_nguoi
-python scripts/uncap_nguoi.py  --in $NCS_DATA/stage1_nguoi --out $NCS_DATA/stage1_final
+python scripts/person_backoff.py --in $NCS_DATA/stage1 --out $NCS_DATA/stage1_person
+python scripts/person_uncap.py  --in $NCS_DATA/stage1_person --out $NCS_DATA/stage1_final
 ```
 
-`backoff_nguoi.py` re-verifies person entities with the neutral noun (neutralization);
-`uncap_nguoi.py` performs the offline un-capping from stored evidence (τ = 0.9,
+`person_backoff.py` re-verifies person entities with the neutral noun (neutralization);
+`person_uncap.py` performs the offline un-capping from stored evidence (τ = 0.9,
 recovers 11,769 propositions on 2,351 images — printed at the end of the run).
 
 ### Phase 1b — build supervision + fine-tune (QLoRA, ~2 h per run on an RTX 4090)
@@ -109,8 +109,8 @@ Template-only variant (VSPS-Base): 1.15 hallucinated objects · CHAIR_s 70.4%.
 ```bash
 python scripts/coco_probe.py --manifest data/coco_probe/manifest_full5000.json  # out-of-domain COCO
 python scripts/score_coco_probe.py     # expected: 0.45 → 0.17 halluc./caption (−63%), CHAIR_s 34.4% → 15.4%
-python scripts/doichung.py --method vcd            # VCD baseline (CVPR'24), same backbone
-python scripts/doichung.py --method selfcorrect    # Self-Correction baseline
+python scripts/baselines.py --method vcd            # VCD baseline (CVPR'24), same backbone
+python scripts/baselines.py --method selfcorrect    # Self-Correction baseline
 python scripts/run_ablations.py                    # budget × policy grid
 python scripts/measure_latency.py                  # median 0.81 s (short) / 1.88 s (detailed) on RTX 4090
 python scripts/stress50_analysis.py \

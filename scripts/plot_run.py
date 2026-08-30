@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Regenerate every figure for a training run (PHASE 15).
 
-    python research/scripts/plot_run.py <run_dir>
-    python research/scripts/plot_run.py <run_dir> --outdir research/figures
+    python scripts/plot_run.py <run_dir>
+    python scripts/plot_run.py <run_dir> --outdir research/figures
 
 Reads `metrics.jsonl` written by `rescap.ExperimentRun.log_metrics` and emits
 loss curves and caption-metric curves as PDF + PNG. Every figure in the paper

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """ (nhật ký NC) — chấm CHAIR chuẩn trên COCO-2014 cho probe xuyên ngôn ngữ.
 
-    python research/scripts/score_coco_probe.py \\
+    python scripts/score_coco_probe.py \\
         --preds-dir ~/ncs-data/coco_probe_out \\
-        --out research/paper/data/results/coco_probe_scores.json
+        --out data/results/coco_probe_scores.json
 
 GIAO THỨC ĐÓNG BĂNG TRƯỚC KHI THẤY KẾT QUẢ (commit trước khi probe xong — đó
 là toàn bộ giá trị của file này):
@@ -96,7 +96,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--preds-dir", required=True)
     ap.add_argument("--manifest", default=str(PROBE_DATA / "manifest.json"))
-    ap.add_argument("--out", default="research/paper/data/results/coco_probe_scores.json")
+    ap.add_argument("--out", default="data/results/coco_probe_scores.json")
     args = ap.parse_args()
 
     syn = load_synonyms()

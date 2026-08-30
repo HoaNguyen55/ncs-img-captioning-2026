@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Tải ảnh val2014 cho probe (nhật ký NC) (song song, resumable).
 
-    python research/scripts/download_coco_images.py --out /root/coco_images
+    python scripts/download_coco_images.py --out /root/coco_images
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ def fetch(name: str, out: Path) -> str | None:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--manifest", default="research/paper/data/coco_probe/manifest.json")
+    ap.add_argument("--manifest", default="data/coco_probe/manifest.json")
     ap.add_argument("--out", required=True)
     ap.add_argument("--workers", type=int, default=16)
     args = ap.parse_args()

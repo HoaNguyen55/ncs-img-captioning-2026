@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Vẽ Hình 4b — ví dụ định tính zero-shot vs hệ đề xuất .
 
-    python research/scripts/plot_qualitative.py \\
+    python scripts/plot_qualitative.py \\
         --ids 2595,7240 \\
         --zs ~/ncs-data/results/zeroshot-detailed.preds.json \\
         --ours ~/ncs-data/results/off4090sft-detailed.preds.json \\

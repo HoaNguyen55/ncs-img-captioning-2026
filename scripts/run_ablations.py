@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Score the verification ablations by replaying a Stage 1 run.
 
-    python research/scripts/run_ablations.py --in ~/ncs-data/stage1
+    python scripts/run_ablations.py --in ~/ncs-data/stage1
 
 Every ablation here changes only how recorded probe answers are SCORED, never
 which probes get asked. So the whole table comes from one Stage 1 run replayed

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """So sánh ngữ liệu VI–EN cho hai hiện tượng bài tuyên bố (Q-corpus, 22/08).
 
-    python research/scripts/compare_langs.py \\
+    python scripts/compare_langs.py \\
         --coco ~/ncs-data/datasets/karpathy/dataset_coco.json \\
-        --out research/paper/data/results/lang_compare.json
+        --out data/results/lang_compare.json
 
 Hai tuyên bố của bài cần chỗ dựa so sánh thay vì khẳng định đơn phương:
 (1) `xanh` tiếng Việt mơ hồ lam/lục — tiếng Anh tách blue/green từ gốc từ vựng;
@@ -29,7 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from rescap.vi.color import Xanh, parse_color  # noqa: E402
 from rescap.vi.lexicon import GENDERED_NOUNS  # noqa: E402
-from count_xanh import XANH_PHRASE, bucket  # noqa: E402  (cùng thư mục scripts/)
+from count_colour_ambiguity import XANH_PHRASE, bucket  # noqa: E402  (cùng thư mục scripts/)
 
 DATA = Path(os.environ.get("NCS_DATA", Path.home() / "ncs-data"))
 KTVIC = DATA / "datasets" / "ktvic"
@@ -65,7 +65,7 @@ def vi_stats(caps: list[str]) -> dict:
         if has_gender or "người" in c or "em bé" in c or "trẻ em" in c or "đứa bé" in c:
             person += 1
             gendered += bool(has_gender)
-        # đúng phương pháp count_xanh.py (số 55,4% của bài): cụm `xanh` đọc
+        # đúng phương pháp count_colour_ambiguity.py (số 55,4% của bài): cụm `xanh` đọc
         # trọn, nhóm "chưa có trong từ điển" bị LOẠI khỏi mẫu số
         for m in XANH_PHRASE.finditer(c):
             b = bucket(m.group(0))
@@ -113,7 +113,7 @@ def en_stats(coco_path: Path) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--coco", default="~/ncs-data/datasets/karpathy/dataset_coco.json")
-    ap.add_argument("--out", default="research/paper/data/results/lang_compare.json")
+    ap.add_argument("--out", default="data/results/lang_compare.json")
     args = ap.parse_args()
 
     vi = vi_stats(ktvic_captions())

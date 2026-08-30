@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Count how often `xanh` is left ambiguous in real Vietnamese captions.
 
-    python research/scripts/count_xanh.py
-    python research/scripts/count_xanh.py --source train_data.json --examples 20
+    python scripts/count_colour_ambiguity.py
+    python scripts/count_colour_ambiguity.py --source train_data.json --examples 20
 
 research log  branch C. The paper claims Vietnamese `xanh` spans both blue and
 green and so does not map onto `blue`/`green`. Right now that claim rests on
@@ -122,7 +122,7 @@ def main() -> None:
     if not files:
         raise SystemExit(
             f"không thấy file nào trong {KTVIC}\n"
-            "Chạy: bash research/scripts/datasets/download_ktvic.sh --yes"
+            "Chạy: bash scripts/datasets/download_ktvic.sh --yes"
         )
 
     captions: list[str] = []

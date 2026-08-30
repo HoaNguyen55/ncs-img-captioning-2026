@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Vẽ hình ví dụ định tính (P3, ): ảnh → mệnh đề → phán quyết → A/B/C.
 
-    python research/scripts/plot_teaser.py \\
+    python scripts/plot_teaser.py \\
         --record research/backups/stage1/00000000833.json \\
         --image ~/ncs-data/datasets/ktvic/images/00000000833.jpg \\
         --ids P3,P4,P6,P15,P25 \\

@@ -2,11 +2,11 @@
 """Score captions against KTVIC test and print a table comparable to the paper's.
 
     # score a file of predictions
-    python research/scripts/evaluate.py --predictions preds.json --name "VSPS-D"
+    python scripts/evaluate.py --predictions preds.json --name "VSPS-D"
 
     # generate with a model, then score
-    python research/scripts/evaluate.py --model qwen2.5-vl-7b --name "Qwen zero-shot"
-    python research/scripts/evaluate.py --model qwen2.5-vl-7b --adapter ~/ncs-data/runs/dpo
+    python scripts/evaluate.py --model qwen2.5-vl-7b --name "Qwen zero-shot"
+    python scripts/evaluate.py --model qwen2.5-vl-7b --adapter ~/ncs-data/runs/dpo
 
 `--predictions` takes `{image_id: "caption"}` or `{image_id: ["caption"]}`.
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """ (nhật ký NC)b — B-NGƯỜI đường OFFLINE: gỡ trần giới tính bằng bằng chứng ĐÃ LƯU.
 
-    python research/scripts/uncap_nguoi.py \
-        --in research/backups/stage1 --out ~/ncs-data/stage1_bnguoi
+    python scripts/person_uncap.py \
+        --in research/backups/stage1 --out ~/ncs-data/stage1_person
 
 Phát hiện (chẩn đoán 24/08): bản ghi stage-1 lưu TRỌN bằng chứng probe
 (khẳng định/phủ định + samples + grounding_score) và verdict KHÔNG CHẮC của

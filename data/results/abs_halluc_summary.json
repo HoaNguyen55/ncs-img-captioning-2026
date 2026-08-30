@@ -119,7 +119,7 @@
     "n_captions": 558,
     "n_hallucinated_mentions": 628
   },
-  "vongA-detailed": {
+  "roundA-detailed": {
     "chair_i": 0.502,
     "chair_s": 0.78,
     "cjk_captions": 231,
@@ -129,7 +129,7 @@
     "n_captions": 558,
     "n_hallucinated_mentions": 836
   },
-  "vongA-short": {
+  "roundA-short": {
     "chair_i": 0.519,
     "chair_s": 0.541,
     "cjk_captions": 118,
@@ -139,7 +139,7 @@
     "n_captions": 558,
     "n_hallucinated_mentions": 395
   },
-  "vongB-detailed": {
+  "roundB-detailed": {
     "chair_i": 0.577,
     "chair_s": 0.792,
     "cjk_captions": 54,
@@ -149,7 +149,7 @@
     "n_captions": 558,
     "n_hallucinated_mentions": 733
   },
-  "vongB-short": {
+  "roundB-short": {
     "chair_i": 0.541,
     "chair_s": 0.513,
     "cjk_captions": 35,

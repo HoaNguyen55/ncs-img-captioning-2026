@@ -2,11 +2,11 @@
 """Đo VRAM suy luận dưới trần cấp phát ép — số cho bảng 5b .
 
     # bf16 không trần (số "card 24GB")
-    python research/scripts/measure_vram.py --adapter ~/ncs-data/runs/off_dpo
+    python scripts/measure_vram.py --adapter ~/ncs-data/runs/off_dpo
 
     # 4-bit dưới trần 12GB rồi 8GB (số "card phổ thông")
-    python research/scripts/measure_vram.py --four-bit --cap-gb 12 --adapter ...
-    python research/scripts/measure_vram.py --four-bit --cap-gb 8  --adapter ...
+    python scripts/measure_vram.py --four-bit --cap-gb 12 --adapter ...
+    python scripts/measure_vram.py --four-bit --cap-gb 8  --adapter ...
 
 Phương pháp đã duyệt ở `torch.cuda.set_per_process_memory_fraction`
 giả lập card nhỏ trên card cụm, đo `torch.cuda.max_memory_allocated` (cấp
@@ -59,7 +59,7 @@ def main() -> int:
         torch.cuda.set_per_process_memory_fraction(args.cap_gb / total_gb, 0)
     label = (f"{'4-bit' if args.four_bit else 'bf16'}"
              f"/{args.max_vision_tokens}vt"
-             + (f" trần {args.cap_gb:g}GB" if args.cap_gb else " không trần"))
+             + (f" cap {args.cap_gb:g}GB" if args.cap_gb else " no cap"))
     print(f"  card {total_gb:.1f}GB · cấu hình: {label}")
 
     result = {"config": label, "four_bit": args.four_bit, "cap_gb": args.cap_gb,

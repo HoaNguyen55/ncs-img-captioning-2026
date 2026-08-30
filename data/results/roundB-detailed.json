@@ -1,5 +1,5 @@
 {
- "name": "vongB-detailed",
+ "name": "roundB-detailed",
  "split": "test_data.json",
  "n_images": 558,
  "prompt_style": "detailed",

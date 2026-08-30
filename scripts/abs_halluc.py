@@ -2,9 +2,9 @@
 """Tính "vật thể ảo tuyệt đối/caption" + CHAIR_s + tỷ lệ CJK cho mọi hệ — hàng
 mới của Bảng 1/2 .
 
-    python research/scripts/abs_halluc.py \\
-        --results research/paper/data/results \\
-        --out research/paper/data/results/abs_halluc_summary.json
+    python scripts/abs_halluc.py \\
+        --results data/results \\
+        --out data/results/abs_halluc_summary.json
 
 CHAIR_i là tỷ lệ (ảo/tổng nhắc) nên hệ nói ít bị phạt nặng hơn hệ nói nhiều dù
 bịa ít hơn về tuyệt đối; hàng "vật thể ảo tuyệt đối/caption" =

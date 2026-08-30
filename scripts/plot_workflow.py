@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Vẽ Hình 1 của bài báo — sơ đồ quy trình VSPS + nhánh chưng cất, nhãn tiếng Việt.
 
-    python research/scripts/plot_workflow.py --out research/paper/figures/hinh1_quytrinh.png
+    python scripts/plot_workflow.py --out research/paper/figures/hinh1_quytrinh.png
 
 Yêu cầu trưởng nhóm (18/08): hình quy trình rõ ràng, hoàn toàn tiếng Việt.
 Sinh bằng script thay vì vẽ tay để: (1) sửa một nhãn là chạy lại 5 giây,

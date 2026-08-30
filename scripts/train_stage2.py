@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Stage 2 — distil the verified propositions into the generator.
 
-    python research/scripts/train_stage2.py --stage sft
-    python research/scripts/train_stage2.py --stage dpo --adapter ~/ncs-data/runs/sft
+    python scripts/train_stage2.py --stage sft
+    python scripts/train_stage2.py --stage dpo --adapter ~/ncs-data/runs/sft
 
 Two phases, run in order. SFT teaches the shape of a grounded Vietnamese caption
 from rung A of the preference data; DPO then teaches the **ordering** between the
@@ -68,7 +68,7 @@ def load_jsonl(path: Path) -> list[dict]:
     if not path.exists():
         raise SystemExit(
             f"không thấy {path}\n"
-            "Chạy trước: python research/scripts/build_dpo_data.py "
+            "Chạy trước: python scripts/build_dpo_data.py "
             "--in $NCS_DATA/stage1 --out $NCS_DATA/stage2"
         )
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()

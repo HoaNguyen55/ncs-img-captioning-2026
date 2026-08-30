@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Đo độ trễ suy luận batch=1 cho claim "~N giây/ảnh" của §5b .
 
-    python research/scripts/measure_latency.py \\
+    python scripts/measure_latency.py \\
         --adapter /root/ncs-data/runs/off4090_sft \\
         --n 60 --out ~/ncs-data/results/latency_off4090sft.json
 

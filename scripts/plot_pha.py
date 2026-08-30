@@ -5,7 +5,7 @@
     hinh3_pha1b  — Pha 1b: chưng cất SFT
     hinh4_pha2   — Pha 2: suy luận một ảnh
 
-    python research/scripts/plot_pha.py --outdir research/paper/figures
+    python scripts/plot_pha.py --outdir research/paper/figures
 """
 from __future__ import annotations
 

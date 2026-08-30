@@ -2,11 +2,11 @@
 """Stage 1 — run the VSPS pipeline over KTVIC and write the supervision it yields.
 
     # split across two machines
-    python research/scripts/generate_stage1.py --shard 0 --of 2
-    python research/scripts/generate_stage1.py --shard 1 --of 2
+    python scripts/generate_stage1.py --shard 0 --of 2
+    python scripts/generate_stage1.py --shard 1 --of 2
 
     # one machine, first 200 images, to check the rate before committing
-    python research/scripts/generate_stage1.py --limit 200
+    python scripts/generate_stage1.py --limit 200
 
 This is the module research log  specifies. Its output is not captions --
 those are a by-product. What Stage 2 needs is the **verdict record**: for every

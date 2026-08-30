@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Automatic error triage for generated captions (PHASE 17).
 
-    python research/scripts/error_analysis.py \
+    python scripts/error_analysis.py \
         --predictions <run>/results/test_predictions.json \
         --experiment A0_cnn_lstm_baseline \
         --out research/results/error_analysis

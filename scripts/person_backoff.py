@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """B-NGƯỜI: backoff kiểm chứng thực thể người bằng đầu trung tính.
 
-    python research/scripts/backoff_nguoi.py \
-        --in /root/stage1_records --out /root/stage1_bnguoi --shard 0 --of 2
+    python scripts/person_backoff.py \
+        --in /root/stage1_records --out /root/stage1_person --shard 0 --of 2
 
 Số nền (24/08): 74% ảnh có người mất NGUYÊN CỤM chủ thể — thực thể "một người
 phụ nữ" bị KHÔNG CHẮC (nghi do vế giới tính trong danh từ) kéo mọi thuộc tính

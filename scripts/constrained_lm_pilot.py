@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """PILOT B-LM: kết xuất giám sát bằng LM-có-ràng-buộc trên 100 ảnh.
 
-    python research/scripts/pilot_blm.py --in /root/stage1_bnguoi \
-        --out /root/blm_pilot.json --n 100
+    python scripts/constrained_lm_pilot.py --in /root/stage1_person \
+        --out /root/clm_pilot.json --n 100
 
 Nền: build_dpo_data gọi realize() KHÔNG truyền model → toàn bộ giám sát rơi
 về khuôn luật (mở "Có một…") — trần văn phong của mọi hệ hiện tại. Đường

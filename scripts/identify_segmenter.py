@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Identify which word segmenter produced KTVIC's `segment_caption` field.
 
-    python research/scripts/identify_segmenter.py
+    python scripts/identify_segmenter.py
 
 **Why this blocks everything.** KTVIC's Table 3 (GRIT: CIDEr 136.0) is computed
 on the *segmented* captions. Vietnamese writes whitespace between syllables, so
@@ -120,7 +120,7 @@ def main() -> None:
     if path is None:
         raise SystemExit(
             f"No KTVIC annotations under {root}.\n"
-            "Run: bash research/scripts/datasets/download_ktvic.sh --yes"
+            "Run: bash scripts/datasets/download_ktvic.sh --yes"
         )
 
     pairs = load_pairs(path, args.limit)

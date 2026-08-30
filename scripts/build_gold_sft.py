@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Dựng dữ liệu SFT từ CHÚ THÍCH VÀNG của KTVIC — đối chứng P1 .
 
-    python research/scripts/build_gold_sft.py \\
+    python scripts/build_gold_sft.py \\
         --annotations ~/ncs-data/datasets/ktvic/train_data.json \\
         --out ~/ncs-data/stage2_gold
 

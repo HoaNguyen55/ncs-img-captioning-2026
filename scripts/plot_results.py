@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Vẽ Hình 3 — cột so sánh kết quả sau huấn luyện, hai cụm chế độ.
 
-    python research/scripts/plot_results.py \\
+    python scripts/plot_results.py \\
         --short  "zero-shot=~/ncs-data/results/zs-short.json" \\
                  "chưng cất=~/ncs-data/results/official-short.json" \\
         --detailed "zero-shot=~/ncs-data/results/zs-detailed.json" \\

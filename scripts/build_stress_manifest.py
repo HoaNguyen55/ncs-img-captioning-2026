@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Chọn 50 ảnh test KHÓ cho bộ thử thách .
 
-    python research/scripts/build_stress_manifest.py \\
+    python scripts/build_stress_manifest.py \\
         --annotations ~/ncs-data/datasets/ktvic/test_data.json \\
         --out ~/ncs-data/datasets/ktvic/stress50_manifest.json
 

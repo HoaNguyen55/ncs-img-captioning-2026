@@ -2,12 +2,12 @@
 """Dựng caption VSPS (không huấn luyện) từ bản ghi stage1_test — hàng
 "VSPS" của Bảng 1/2.
 
-    python research/scripts/render_vsps_preds.py \\
+    python scripts/render_vsps_preds.py \\
         --records ~/ncs-data/stage1_test \\
         --out-dir ~/ncs-data/results
 
     # rồi chấm bằng đúng bộ chấm của mọi hàng khác:
-    python research/scripts/evaluate.py --predictions \\
+    python scripts/evaluate.py --predictions \\
         ~/ncs-data/results/vsps-detailed.preds.json \\
         --name vsps-detailed --prompt detailed --also-syllable
 

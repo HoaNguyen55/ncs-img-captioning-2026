@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Check that replaying a Stage 1 run reproduces the verdicts it recorded.
 
-    python research/scripts/validate_replay.py --in ~/ncs-data/stage1
+    python scripts/validate_replay.py --in ~/ncs-data/stage1
 
 **Run this before trusting any number that came from a replay.** The harness
 exists so a rule change can be scored on a CPU instead of six fleet-hours, and a

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Khoảng tin cậy bootstrap + kiểm định cặp cho CIDEr và CHAIR_i.
 
-    python research/scripts/score_ci.py \\
+    python scripts/score_ci.py \\
         --a ~/ncs-data/results/zeroshot-short.preds.json --name-a "zero-shot" \\
         --b ~/ncs-data/results/chungcat-short.preds.json --name-b "chưng cất"
 

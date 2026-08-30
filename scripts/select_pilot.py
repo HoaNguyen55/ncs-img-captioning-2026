@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """Pick the annotation image set, stratified by estimated difficulty.
 
-    python research/scripts/select_pilot.py --split pilot --n 20
-    python research/scripts/select_pilot.py --split test  --n 500
+    python scripts/select_pilot.py --split pilot --n 20
+    python scripts/select_pilot.py --split test  --n 500
 
 Writes `<split>_manifest.json` next to the KTVIC data; `annotate.py` reads it.
 
@@ -57,7 +57,7 @@ def load_ktvic(split_file: str) -> list[dict[str, Any]]:
     path = KTVIC / split_file
     if not path.exists():
         raise SystemExit(
-            f"missing {path}\nRun: bash research/scripts/datasets/download_ktvic.sh --yes"
+            f"missing {path}\nRun: bash scripts/datasets/download_ktvic.sh --yes"
         )
     data = json.loads(path.read_text(encoding="utf-8"))
 
@@ -286,7 +286,7 @@ def main() -> None:
         print(f"  [{item['difficulty']:<10}] {item['file_name']:<28} {why}")
     if len(picked) > 8:
         print(f"  … và {len(picked) - 8} ảnh nữa")
-    print(f"\nTiếp: python research/scripts/annotate.py --annotator <tên> --split {args.split}")
+    print(f"\nTiếp: python scripts/annotate.py --annotator <tên> --split {args.split}")
 
 
 if __name__ == "__main__":

@@ -83,7 +83,11 @@ python scripts/train_stage2.py --data data/supervision --out $NCS_DATA/runs/sft 
 ```
 
 The main system of the paper is **SFT-only** (7,177 examples: 3,617 short + 3,560
-detailed, two modes sharing one adapter; seeds 42/43/44).
+detailed, two modes sharing one adapter; seeds 42/43/44). The shipped store has been
+verified record by record: no empty responses, the 3,560 detailed examples split into
+2,910 template-rendered + 650 constrained-LM-rendered (the `renderer` field), and all
+3,617 images belong to the KTVIC train split — the 558-image test split never
+contributes supervision.
 
 ### Phase 2 — single-pass inference + scoring (558-image KTVIC test split)
 

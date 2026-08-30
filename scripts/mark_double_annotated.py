@@ -8,11 +8,15 @@ Stratified across the difficulty bands, because agreement on easy images says
 nothing about the guideline. A κ computed only on the easy third would be the
 most flattering number available and the least informative.
 """
-import json, random, sys
+import json, os, random, sys
 from collections import defaultdict
 from pathlib import Path
 
-KT = Path("/root/ncs-data/datasets/ktvic")
+KT = Path(os.environ.get("NCS_DATA", os.path.expanduser("~/ncs-data"))) / "datasets/ktvic"
+if len(sys.argv) > 1 and sys.argv[1] in ("-h", "--help"):
+    print(__doc__ or "Mark a stratified 100-image subset for double annotation.")
+    print(f"Reads {KT}/human_eval_manifest.json (root taken from $NCS_DATA).")
+    sys.exit(0)
 m = json.loads((KT / "human_eval_manifest.json").read_text(encoding="utf-8"))
 images = m["images"]
 rng = random.Random(20260818)

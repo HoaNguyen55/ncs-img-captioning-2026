@@ -1,0 +1,18 @@
+# GHIM BẮT BUỘC — xem README §Môi trường (bản trôi làm adapter vô hiệu im lặng)
+transformers==4.51.3
+trl==0.19.1
+# torch/torchvision: cài theo index cu121 (setup.sh làm sẵn) — KHÔNG để pip tự chọn
+accelerate
+peft
+bitsandbytes
+datasets
+pillow
+safetensors
+sentencepiece
+timm
+einops
+numpy
+py_vncorenlp
+gdown
+pycocoevalcap
+matplotlib

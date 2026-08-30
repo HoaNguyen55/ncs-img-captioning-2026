@@ -1,0 +1,10 @@
+{
+  "config": "4-bit/512vt trần 6GB",
+  "four_bit": true,
+  "cap_gb": 6.0,
+  "max_vision_tokens": 512,
+  "adapter": null,
+  "device_total_gb": 23.6,
+  "fits": false,
+  "error": "CUDA out of memory. Tried to allocate 7.72 GiB. GPU 0 has a total capacity of 23.64 GiB of which 23.23 GiB is free. Process 723740 has 384.00 MiB memory in use. 6.00 GiB allowed; Of the allocated memo"
+}

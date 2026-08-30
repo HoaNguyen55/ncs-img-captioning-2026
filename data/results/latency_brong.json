@@ -1,0 +1,25 @@
+{
+  "adapter": "/root/runs/brong44_sft",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "n": 60,
+  "warmup_excluded": 3,
+  "batch": 1,
+  "modes": {
+    "short": {
+      "max_new_tokens": 60,
+      "mean_s": 0.878,
+      "median_s": 0.786,
+      "p90_s": 1.544,
+      "min_s": 0.429,
+      "max_s": 2.172
+    },
+    "detailed": {
+      "max_new_tokens": 160,
+      "mean_s": 1.625,
+      "median_s": 1.45,
+      "p90_s": 2.813,
+      "min_s": 0.774,
+      "max_s": 4.185
+    }
+  }
+}

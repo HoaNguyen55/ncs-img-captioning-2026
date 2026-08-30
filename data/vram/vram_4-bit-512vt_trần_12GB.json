@@ -1,0 +1,23 @@
+{
+  "config": "4-bit/512vt trần 12GB",
+  "four_bit": true,
+  "cap_gb": 12.0,
+  "max_vision_tokens": 512,
+  "adapter": null,
+  "device_total_gb": 23.6,
+  "fits": true,
+  "images_measured": 8,
+  "max_allocated_gb": 7.72,
+  "max_reserved_gb": 7.87,
+  "seconds_per_image": 0.87,
+  "captions": {
+    "1": "Nhà phố ba tầng với cửa xe hơi mở ra, cây xanh và ô tô đỗ bên cạnh.",
+    "1004": "Bức ảnh cho thấy một bia đá đặt trước một hang động lớn với các hình khắc và chữ khắc trên bia.",
+    "1029": "Một xe tăng quân sự được trưng bày trong một bảo tàng.",
+    "10321": "Bức ảnh cho thấy một quầy hải sản tươi sống với nhiều loại cá và cua được bày biện trên đáy lạnh.",
+    "10332": "Hình ảnh trưng bày các áo đấu và giày cầu lông của các vận động viên nổi tiếng từ Indonesia và Malaysia tại cửa hàng Yonex.",
+    "10341": "Hàng hóa bày bán tại một cửa hàng nhỏ.",
+    "10357": "Bức ảnh cho thấy một con phố với xe máy đỗ bên đường, cây xanh và các cửa hàng trên hai bên.",
+    "10361": "Hàng hóa bày bán tại một chợ lớn với nhiều người mua sắm."
+  }
+}

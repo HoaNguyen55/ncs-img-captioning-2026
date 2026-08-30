@@ -1,0 +1,20 @@
+{
+  "dropped_by_selection:A": 19513,
+  "dropped_by_selection:B": 2756,
+  "ngan_lui_ve_A": 74,
+  "ngoai_tap_test": 3,
+  "pair:A>B_hedge_beats_silence": 341,
+  "pair:A>C_hedge_beats_overclaim:rejected_included": 545,
+  "pair:A>C_hedge_beats_overclaim:uncertain_asserted": 358,
+  "pair:B>C_silence_beats_overclaim:rejected_included": 481,
+  "pair:B>C_silence_beats_overclaim:uncertain_asserted": 341,
+  "pair_unavailable:A>B_hedge_beats_silence": 217,
+  "pair_unavailable:A>C_hedge_beats_overclaim:rejected_included": 13,
+  "pair_unavailable:A>C_hedge_beats_overclaim:uncertain_asserted": 200,
+  "pair_unavailable:B>C_silence_beats_overclaim:rejected_included": 77,
+  "pair_unavailable:B>C_silence_beats_overclaim:uncertain_asserted": 217,
+  "selected:A": 2381,
+  "selected:B": 2217,
+  "sft": 558,
+  "sft_short": 484
+}

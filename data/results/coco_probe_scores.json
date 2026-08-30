@@ -1,0 +1,42 @@
+{
+  "protocol": " (nhật ký NC) đóng băng trước khi thấy kết quả; commit trước khi probe xong",
+  "gold": "instances_val2014 ∪ ref-caption (synonyms.txt Rohrbach)",
+  "results": {
+    "zeroshot-short": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 1.224,
+      "chair_i": 0.082,
+      "chair_s": 0.096,
+      "abs_halluc_per_caption": 0.1
+    },
+    "zeroshot-detailed": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 2.258,
+      "chair_i": 0.1953,
+      "chair_s": 0.342,
+      "abs_halluc_per_caption": 0.441
+    },
+    "distill-short": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 0.692,
+      "chair_i": 0.1282,
+      "chair_s": 0.0848,
+      "abs_halluc_per_caption": 0.089
+    },
+    "distill-detailed": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 1.303,
+      "chair_i": 0.1388,
+      "chair_s": 0.1644,
+      "abs_halluc_per_caption": 0.181
+    }
+  }
+}

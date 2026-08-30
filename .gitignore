@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+ncs-data/
+*.tar.gz.extracted/
+.DS_Store

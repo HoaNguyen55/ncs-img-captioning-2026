@@ -1,0 +1,25 @@
+{
+  "adapter": "/root/runs/main_s42_sft",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "n": 60,
+  "warmup_excluded": 3,
+  "batch": 1,
+  "modes": {
+    "short": {
+      "max_new_tokens": 60,
+      "mean_s": 0.864,
+      "median_s": 0.812,
+      "p90_s": 1.359,
+      "min_s": 0.418,
+      "max_s": 1.668
+    },
+    "detailed": {
+      "max_new_tokens": 160,
+      "mean_s": 2.061,
+      "median_s": 1.882,
+      "p90_s": 3.059,
+      "min_s": 0.83,
+      "max_s": 3.953
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "protocol": " (nhật ký NC) đóng băng trước khi thấy kết quả; commit trước khi probe xong",
+  "gold": "instances_val2014 ∪ ref-caption (synonyms.txt Rohrbach)",
+  "results": {
+    "distill-short": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 0.817,
+      "chair_i": 0.0583,
+      "chair_s": 0.0468,
+      "abs_halluc_per_caption": 0.048
+    },
+    "distill-detailed": {
+      "n_captions": 2500,
+      "n_missing": 0,
+      "missing_sample": [],
+      "mentions_per_caption": 1.38,
+      "chair_i": 0.1142,
+      "chair_s": 0.1496,
+      "abs_halluc_per_caption": 0.158
+    }
+  }
+}

@@ -1,0 +1,4394 @@
+{
+ "image_id": "833",
+ "file_name": "00000000833.jpg",
+ "reference_captions": [
+  "không có ai đang đến khu trưng bày của nhà xuất bản phụ nữ",
+  "không có ai đến khu trưng bày của nhà xuất bản đông a",
+  "không có người nào đang xuất hiện ở trong khung hình này",
+  "có ba chậu cây cảnh đang được đặt ở giữa lòng đường",
+  "đây là khung cảnh lúc vắng của một phố sách"
+ ],
+ "entities": [
+  {
+   "id": "nha_1",
+   "category_vi": "nhà",
+   "classifier": "ngôi",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một tòa nhà"
+  },
+  {
+   "id": "cua_2",
+   "category_vi": "cửa",
+   "classifier": "cái",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một cửa hàng"
+  },
+  {
+   "id": "bien_hieu_3",
+   "category_vi": "biển hiệu",
+   "classifier": "tấm",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một biển hiệu"
+  },
+  {
+   "id": "xanh_4",
+   "category_vi": "xanh",
+   "classifier": "cây",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một cây xanh"
+  },
+  {
+   "id": "cay_5",
+   "category_vi": "cây",
+   "classifier": "cây",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một bồn cây"
+  },
+  {
+   "id": "bien_quang_6",
+   "category_vi": "biển quảng",
+   "classifier": "tấm",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một tấm biển quảng cáo"
+  },
+  {
+   "id": "ghe_7",
+   "category_vi": "ghế",
+   "classifier": "chiếc",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một chiếc ghế"
+  },
+  {
+   "id": "tuong_8",
+   "category_vi": "tường",
+   "classifier": "bức",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.6641734577715397,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một bức tường"
+  }
+ ],
+ "propositions": [
+  {
+   "id": "P1",
+   "type": "entity",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một tòa nhà không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một tòa nhà không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P2",
+   "type": "counting",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 ngôi nhà không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Có.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 ngôi nhà không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.2417,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "counting": 0.1
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "ngôi",
+    "entity_category_vi": "nhà",
+    "exact": true
+   }
+  },
+  {
+   "id": "P3",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "màu vàng nhạt"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà màu vàng nhạt",
+   "confidence": 0.7816935761554821,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có màu vàng nhạt không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG có màu vàng nhạt không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có màu vàng nhạt không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG có màu vàng nhạt không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 1.0
+    }
+   }
+  },
+  {
+   "id": "P4",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "có chiều cao khoảng 3 tầng"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà có chiều cao khoảng 3 tầng",
+   "confidence": 0.7816935761554821,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có có chiều cao khoảng 3 tầng không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không. Ảnh không cho thấy",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG có chiều cao khoảng 3 tầng không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Hình ảnh cho thấy một tòa",
+       "Không. Hình ảnh cho thấy một tòa",
+       "Không. Hình ảnh cho thấy một tòa"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.7875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "attribute": 0.8
+    }
+   }
+  },
+  {
+   "id": "P5",
+   "type": "action",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "trong ảnh có nhiều cửa hàng và biển hiệu"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà trong ảnh có nhiều cửa hàng và biển hiệu",
+   "confidence": 0.6623949070771535,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có đang trong ảnh có nhiều cửa hàng và biển hiệu không",
+      "answer": "Có. Trong ảnh có ít",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Trong ảnh có ít",
+       "Có.  Trong ảnh,",
+       "Có. Trong ảnh có ít",
+       "Có. Ảnh cho thấy",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG trong ảnh có nhiều cửa hàng và biển hiệu không",
+      "answer": "Không. Hình ảnh cho thấy một tòa",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy một tòa",
+       "Không. Trong ảnh, ta thấy",
+       "Không. Hình ảnh cho thấy một tòa",
+       "Không. Trong ảnh có nhiều cửa",
+       "Không. Trong ảnh có một tòa"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9375,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 1.0
+    }
+   }
+  },
+  {
+   "id": "P6",
+   "type": "entity",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một cửa hàng không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một cửa hàng không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P7",
+   "type": "counting",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 cái cửa không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 cái cửa không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P6"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.7667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "counting": 0.8
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "cái",
+    "entity_category_vi": "cửa",
+    "exact": true
+   }
+  },
+  {
+   "id": "P8",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "nâu, xám, trắng, đỏ"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng nâu, xám, trắng, đỏ",
+   "confidence": 0.7193383413056532,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có màu nâu, xám, trắng, đỏ không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG có màu nâu, xám, trắng, đỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Cửa hàng trong ảnh có",
+       "Không.",
+       "Không. Cửa hàng trong ảnh có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có màu nâu, xám, trắng, đỏ không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG có màu nâu, xám, trắng, đỏ không",
+      "answer": "không",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "có",
+       "không",
+       "Không.",
+       "có",
+       "Không."
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P6"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 1.0
+    }
+   }
+  },
+  {
+   "id": "P9",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "có chiều dài khoảng 10 mét và chiều rộng khoảng 5 mét"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng có chiều dài khoảng 10 mét và chiều rộng khoảng 5 mét",
+   "confidence": 0.7193383413056532,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có có chiều dài khoảng 10 mét và chiều rộng khoảng 5 mét không",
+      "answer": "Không.  Dựa vào hình ảnh",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.  Dựa vào hình ảnh",
+       "Không. Hình ảnh không cho thấy một",
+       "Không.",
+       "Không. Cửa hàng trong ảnh có",
+       "Không. Ảnh không cung"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG có chiều dài khoảng 10 mét và chiều rộng khoảng 5 mét không",
+      "answer": "Không. Hình ảnh cho thấy một cửa",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy một cửa",
+       "Không.",
+       "Không. Cửa hàng trong ảnh có",
+       "Không. Hình ảnh cho thấy một cửa",
+       "Không. Hình ảnh cho thấy một cửa"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P6",
+      "P8"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.1875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P10",
+   "type": "action",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "\"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng \"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật",
+   "confidence": 0.6231395027467183,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có đang \"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật không",
+      "answer": "Có. Cửa hàng \"Đ",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Cửa hàng \"Đ",
+       "Có. Cửa hàng có tên",
+       "Có. Cửa hàng Đồngga",
+       "Có. Cửa hàng có tên",
+       "Có. Cửa hàng \"Đ"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG \"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật không",
+      "answer": "Không. Bảng hiệu \"ĐỒ",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Bảng hiệu \"ĐỒ",
+       "Không. Hình ảnh chỉ cho thấy một",
+       "Không. Cửa hàng có bảng hiệu",
+       "Không. Bảng hiệu của một cửa",
+       "Không. Cửa hàng \"ĐỒ"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P6",
+      "P8"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9375,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 1.0
+    }
+   }
+  },
+  {
+   "id": "P11",
+   "type": "action",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "\"PHU NỮ\" cũng có bảng hiệu riêng biệt"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng \"PHU NỮ\" cũng có bảng hiệu riêng biệt",
+   "confidence": 0.6231395027467183,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có đang \"PHU NỮ\" cũng có bảng hiệu riêng biệt không",
+      "answer": "Có. Một cửa hàng có tên",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Một cửa hàng có tên",
+       "Có.",
+       "Có. Cửa hàng có bảng",
+       "Không. Cửa hàng \"DONG",
+       "Không. Chỉ có hai cửa hàng trong"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG \"PHU NỮ\" cũng có bảng hiệu riêng biệt không",
+      "answer": "Không. Bảng hiệu riêng biệt chỉ",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Bảng hiệu riêng biệt chỉ",
+       "Không. Cửa hàng \"DONG",
+       "Không. Không có bảng hiệu riêng biệt",
+       "Không. Cả hai cửa hàng đều",
+       "Không. Bảng hiệu riêng biệt của"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P10",
+      "P6",
+      "P8"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.8
+    }
+   }
+  },
+  {
+   "id": "P12",
+   "type": "action",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có nhiều biển quảng cáo nhỏ treo trên cửa hàng"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cửa hàng có nhiều biển quảng cáo nhỏ treo trên cửa hàng",
+   "confidence": 0.6231395027467183,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có đang có nhiều biển quảng cáo nhỏ treo trên cửa hàng không",
+      "answer": "Có. Có nhiều biển quảng cáo",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Có nhiều biển quảng cáo",
+       "Có. Hình ảnh cho thấy có",
+       "Có.",
+       "Có.  Có nhiều biển quảng",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG có nhiều biển quảng cáo nhỏ treo trên cửa hàng không",
+      "answer": "Không. Cửa hàng trong ảnh có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Cửa hàng trong ảnh có",
+       "Không. Có nhiều biển quảng cáo nhỏ",
+       "Không. Hình ảnh không cho thấy nhiều",
+       "Không. Có nhiều biển quảng cáo nhỏ",
+       "Không. Có rất nhiều biển quảng cáo"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P10",
+      "P6",
+      "P8"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.95,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 1.0
+    }
+   }
+  },
+  {
+   "id": "P13",
+   "type": "entity",
+   "subject": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một biển hiệu",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một biển hiệu không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một biển hiệu không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "existence": 0.9
+    }
+   }
+  },
+  {
+   "id": "P14",
+   "type": "counting",
+   "subject": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một biển hiệu",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 tấm biển hiệu không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 tấm biển hiệu không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì sự tồn tại của bien_hieu_3 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the existence of bien_hieu_3 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "counting": 1.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "tấm",
+    "entity_category_vi": "biển hiệu",
+    "exact": true
+   }
+  },
+  {
+   "id": "P15",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "xanh dương"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một biển hiệu xanh dương",
+   "confidence": 0.8702716821432114,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một biển hiệu có màu xanh dương không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Có.",
+       "Không.",
+       "Không. Biển hiệu trong ảnh không",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một biển hiệu KHÔNG có màu xanh dương không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không. Biển hiệu trong ảnh có",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một biển hiệu có màu xanh dương không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một biển hiệu KHÔNG có màu xanh dương không",
+      "answer": "không",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "không",
+       "không",
+       "không",
+       "có",
+       "Không."
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {},
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.5,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781
+   }
+  },
+  {
+   "id": "P16",
+   "type": "action",
+   "subject": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "predicate": {
+    "lemma_vi": "\"ĐỒNGA\" đang treo trên cửa hàng"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một biển hiệu \"ĐỒNGA\" đang treo trên cửa hàng",
+   "confidence": 0.7222723960876465,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một biển hiệu có đang \"ĐỒNGA\" đang treo trên cửa hàng không",
+      "answer": "Có. Biển hiệu \"Đ",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Biển hiệu \"Đ",
+       "Có. Biển hiệu \"D",
+       "Có. Biển hiệu \"Đ",
+       "Có. Biển hiệu \"Đ",
+       "Có. Biển hiệu \"D"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một biển hiệu KHÔNG \"ĐỒNGA\" đang treo trên cửa hàng không",
+      "answer": "Không. Biển hiệu \"ĐỒ",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Biển hiệu \"ĐỒ",
+       "Không. Biển hiệu \"ĐỒ",
+       "Không. Biển hiệu \"ĐỒ",
+       "Không.",
+       "Không. Biển hiệu \"ĐỒ"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì sự tồn tại của bien_hieu_3 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the existence of bien_hieu_3 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 1.0
+    }
+   }
+  },
+  {
+   "id": "P17",
+   "type": "entity",
+   "subject": {
+    "entity_id": "xanh_4",
+    "text_vi": "Một cây xanh",
+    "head_noun_vi": "xanh"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây xanh",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một cây xanh không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một cây xanh không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Có.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì mệnh đề dựa trên suy luận ngoài những gì nhìn thấy.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the claim rests on inference beyond what is visible.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P18",
+   "type": "counting",
+   "subject": {
+    "entity_id": "xanh_4",
+    "text_vi": "Một cây xanh",
+    "head_noun_vi": "xanh"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây xanh",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 cây xanh không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 cây xanh không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì mệnh đề dựa trên suy luận ngoài những gì nhìn thấy; sự tồn tại của xanh_4 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the claim rests on inference beyond what is visible; the existence of xanh_4 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "counting": 1.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "cây",
+    "entity_category_vi": "xanh",
+    "exact": true
+   }
+  },
+  {
+   "id": "P19",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "xanh_4",
+    "text_vi": "Một cây xanh",
+    "head_noun_vi": "xanh"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "lá"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cây xanh lá",
+   "confidence": 0.8809971225261688,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây xanh có màu lá không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây xanh KHÔNG có màu lá không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một cây xanh có màu lá không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một cây xanh KHÔNG có màu lá không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "không",
+       "Không",
+       "Không"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.9
+    }
+   }
+  },
+  {
+   "id": "P20",
+   "type": "action",
+   "subject": {
+    "entity_id": "xanh_4",
+    "text_vi": "Một cây xanh",
+    "head_noun_vi": "xanh"
+   },
+   "predicate": {
+    "lemma_vi": "đang đứng yên"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây xanh đang đứng yên",
+   "confidence": 0.6958257340722613,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây xanh có đang đứng yên không",
+      "answer": "Không. Cây xanh trong ảnh",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Cây xanh trong ảnh",
+       "Không.",
+       "Không. Cây xanh trong ảnh",
+       "Không. Cây xanh trong ảnh",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây xanh KHÔNG đứng yên không",
+      "answer": "Không. Cây xanh trong ảnh",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Cây xanh trong ảnh",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 0.0
+    }
+   }
+  },
+  {
+   "id": "P21",
+   "type": "entity",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một bồn cây không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một bồn cây không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P22",
+   "type": "counting",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 cây cây không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 cây cây không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không.",
+       "Có.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P21"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8417,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "counting": 0.9
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "cây",
+    "entity_category_vi": "cây",
+    "exact": true
+   }
+  },
+  {
+   "id": "P23",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "xanh dương"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây xanh dương",
+   "confidence": 0.8540737939917523,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một bồn cây có màu xanh dương không",
+      "answer": "Không. Bồn cây trong ảnh có",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Bồn cây trong ảnh có",
+       "Không. Bồn cây trong ảnh có",
+       "Không. Bồn cây trong ảnh có",
+       "Không. Bồn cây có màu x",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một bồn cây KHÔNG có màu xanh dương không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một bồn cây có màu xanh dương không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một bồn cây KHÔNG có màu xanh dương không",
+      "answer": "có",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "không"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {},
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P21"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.6667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781
+   }
+  },
+  {
+   "id": "P24",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "nhỏ"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây nhỏ",
+   "confidence": 0.8540737939917523,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một bồn cây có nhỏ không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một bồn cây KHÔNG nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P21"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 1.0
+    }
+   }
+  },
+  {
+   "id": "P25",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "chất_liệu",
+     "value_vi": "nhựa"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây nhựa",
+   "confidence": 0.8540737939917523,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một bồn cây có nhựa không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một bồn cây KHÔNG nhựa không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P21",
+      "P24"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.1875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P26",
+   "type": "action",
+   "subject": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "predicate": {
+    "lemma_vi": "bên trái đang đứng yên trên mặt đất"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bồn cây bên trái đang đứng yên trên mặt đất",
+   "confidence": 0.6017032643923392,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một bồn cây có đang bên trái đang đứng yên trên mặt đất không",
+      "answer": "Không. Hình ảnh không cho thấy b",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Bồn cây có vẻ đang",
+       "Không. Hình ảnh không cho thấy b",
+       "Không. Bồn cây đang đứng yên",
+       "Không. Bồn cây có vẻ đang",
+       "Không. Bồn cây đang đứng yên"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một bồn cây KHÔNG bên trái đang đứng yên trên mặt đất không",
+      "answer": "Không. Hình ảnh cho thấy một b",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy một b",
+       "Không. Bồn cây đang đứng trên",
+       "Không. Hình ảnh cho thấy một b",
+       "Không. Hình ảnh cho thấy một b",
+       "Không. Bồn cây không nằm ở"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P21",
+      "P24"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.3375,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.2
+    }
+   }
+  },
+  {
+   "id": "P27",
+   "type": "entity",
+   "subject": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tấm biển quảng cáo",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một tấm biển quảng cáo không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một tấm biển quảng cáo không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P28",
+   "type": "counting",
+   "subject": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tấm biển quảng cáo",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 tấm biển quảng không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 tấm biển quảng không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P27"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8417,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "counting": 0.9
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "tấm",
+    "entity_category_vi": "biển quảng",
+    "exact": true
+   }
+  },
+  {
+   "id": "P29",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "xanh dương"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một tấm biển quảng cáo xanh dương",
+   "confidence": 0.8549234637369713,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tấm biển quảng cáo có màu xanh dương không",
+      "answer": "Không. Tấm biển quảng cáo trong",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Tấm biển quảng cáo trong",
+       "Không. Tấm biển quảng cáo trong",
+       "Không.",
+       "Không. Tấm biển quảng cáo trong",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tấm biển quảng cáo KHÔNG có màu xanh dương không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một tấm biển quảng cáo có màu xanh dương không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một tấm biển quảng cáo KHÔNG có màu xanh dương không",
+      "answer": "có",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "không",
+       "Không",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {},
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P27"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không rõ ràng: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "The evidence is inconclusive: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.6667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655
+   }
+  },
+  {
+   "id": "P30",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "nhỏ"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một tấm biển quảng cáo nhỏ",
+   "confidence": 0.8549234637369713,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tấm biển quảng cáo có nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tấm biển quảng cáo KHÔNG nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P27"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.3167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "attribute": 0.2
+    }
+   }
+  },
+  {
+   "id": "P31",
+   "type": "action",
+   "subject": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "predicate": {
+    "lemma_vi": "amazon đang đứng trên đường phố"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tấm biển quảng cáo amazon đang đứng trên đường phố",
+   "confidence": 0.5847986663381258,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tấm biển quảng cáo có đang amazon đang đứng trên đường phố không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Không. Tấm biển quảng cáo Amazon",
+       "Không. Hình ảnh không cho thấy sự",
+       "Có.",
+       "Có. Tấm biển quảng cáo"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tấm biển quảng cáo KHÔNG amazon đang đứng trên đường phố không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P27"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.7667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.8
+    }
+   }
+  },
+  {
+   "id": "P32",
+   "type": "entity",
+   "subject": {
+    "entity_id": "ghe_7",
+    "text_vi": "Một chiếc ghế",
+    "head_noun_vi": "ghế"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc ghế",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một chiếc ghế không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một chiếc ghế không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 0.0
+    }
+   }
+  },
+  {
+   "id": "P33",
+   "type": "counting",
+   "subject": {
+    "entity_id": "ghe_7",
+    "text_vi": "Một chiếc ghế",
+    "head_noun_vi": "ghế"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc ghế",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 chiếc ghế không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 chiếc ghế không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của ghe_7 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of ghe_7 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "counting": 0.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "chiếc",
+    "entity_category_vi": "ghế",
+    "exact": true
+   }
+  },
+  {
+   "id": "P34",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "ghe_7",
+    "text_vi": "Một chiếc ghế",
+    "head_noun_vi": "ghế"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "nhỏ"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc ghế nhỏ",
+   "confidence": 0.7623807599670008,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc ghế có nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc ghế KHÔNG nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của ghe_7 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of ghe_7 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P35",
+   "type": "action",
+   "subject": {
+    "entity_id": "ghe_7",
+    "text_vi": "Một chiếc ghế",
+    "head_noun_vi": "ghế"
+   },
+   "predicate": {
+    "lemma_vi": "không đang làm gì"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc ghế không đang làm gì",
+   "confidence": 0.6552489366796281,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc ghế có đang không đang làm gì không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc ghế KHÔNG không đang làm gì không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của ghe_7 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of ghe_7 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "action": 0.0
+    }
+   }
+  },
+  {
+   "id": "P36",
+   "type": "entity",
+   "subject": {
+    "entity_id": "tuong_8",
+    "text_vi": "Một bức tường",
+    "head_noun_vi": "tường"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bức tường",
+   "confidence": 0.6641734577715397,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một bức tường không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một bức tường không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "existence": 0.0
+    }
+   }
+  },
+  {
+   "id": "P37",
+   "type": "counting",
+   "subject": {
+    "entity_id": "tuong_8",
+    "text_vi": "Một bức tường",
+    "head_noun_vi": "tường"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bức tường",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 bức tường không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 bức tường không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của tuong_8 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of tuong_8 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "counting": 0.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "bức",
+    "entity_category_vi": "tường",
+    "exact": true
+   }
+  },
+  {
+   "id": "P38",
+   "type": "action",
+   "subject": {
+    "entity_id": "tuong_8",
+    "text_vi": "Một bức tường",
+    "head_noun_vi": "tường"
+   },
+   "predicate": {
+    "lemma_vi": "trong ảnh có nhiều cửa sổ"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một bức tường trong ảnh có nhiều cửa sổ",
+   "confidence": 0.6403384146591028,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một bức tường có đang trong ảnh có nhiều cửa sổ không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không. Hình ảnh chỉ hiển thị một"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một bức tường KHÔNG trong ảnh có nhiều cửa sổ không",
+      "answer": "Không. Bức tường trong ảnh có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Bức tường trong ảnh có",
+       "Không.",
+       "Không. Ảnh không cho thấy",
+       "Không. Bức tường trong ảnh có",
+       "Không. Ảnh không cho thấy"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của tuong_8 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of tuong_8 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.725,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.8
+    }
+   }
+  },
+  {
+   "id": "P39",
+   "type": "relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "hàng"
+   },
+   "object": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một tòa nhà hàng Một cửa hàng",
+   "confidence": 0.8002982600168749,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có hàng Một cửa hàng không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Không. Ảnh cho thấy một",
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG hàng Một cửa hàng không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.8,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "relation": 0.8
+    }
+   }
+  },
+  {
+   "id": "P40",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một tòa nhà nằm trên một tòa nhà Một biển hiệu",
+   "confidence": 0.8187422969124534,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có ở trên Một biển hiệu không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG ở trên Một biển hiệu không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì hình học không kết luận được: thiếu hộp giới hạn của đối tượng; sự tồn tại của bien_hieu_3 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because geometry is inconclusive: missing bounding box; the existence of bien_hieu_3 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.95,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "spatial": 1.0
+    }
+   }
+  },
+  {
+   "id": "P41",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "xanh_4",
+    "text_vi": "Một cây xanh",
+    "head_noun_vi": "xanh"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một tòa nhà ở trên Một cây xanh Một cây xanh",
+   "confidence": 0.7941517209013303,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có ở trên Một cây xanh không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG ở trên Một cây xanh không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì hình học không kết luận được: thiếu hộp giới hạn của đối tượng; sự tồn tại của xanh_4 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because geometry is inconclusive: missing bounding box; the existence of xanh_4 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.95,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "spatial": 1.0
+    }
+   }
+  },
+  {
+   "id": "P42",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "cay_5",
+    "text_vi": "Một bồn cây",
+    "head_noun_vi": "cây"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một tòa nhà ở trên Một bồn cây Một bồn cây",
+   "confidence": 0.8223928461472193,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có ở trên Một bồn cây không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG ở trên Một bồn cây không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.35,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "spatial": 0.2
+    }
+   }
+  },
+  {
+   "id": "P43",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "bien_quang_6",
+    "text_vi": "Một tấm biển quảng cáo",
+    "head_noun_vi": "biển quảng"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một tòa nhà có một tấm biển quảng cáo trên nó Một tấm biển quảng cáo",
+   "confidence": 0.7451726709093366,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có ở trên Một tấm biển quảng cáo không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG ở trên Một tấm biển quảng cáo không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "spatial": 0.9
+    }
+   }
+  },
+  {
+   "id": "P44",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "nha_1",
+    "text_vi": "Một tòa nhà",
+    "head_noun_vi": "nhà"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "tuong_8",
+    "text_vi": "Một bức tường",
+    "head_noun_vi": "tường"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một tòa nhà nằm trên một bức tường Một bức tường",
+   "confidence": 0.8103355927900835,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một tòa nhà có ở trên Một bức tường không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một tòa nhà KHÔNG ở trên Một bức tường không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P1",
+      "P3",
+      "P5"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của tuong_8 (object), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of tuong_8 (object) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "spatial": 0.9
+    }
+   }
+  },
+  {
+   "id": "P45",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "cua_2",
+    "text_vi": "Một cửa hàng",
+    "head_noun_vi": "cửa"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "bien_hieu_3",
+    "text_vi": "Một biển hiệu",
+    "head_noun_vi": "biển hiệu"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một cửa hàng có một biển hiệu. Quan hệ vị trí: trên Một biển hiệu",
+   "confidence": 0.7298570796847343,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cửa hàng có ở trên Một biển hiệu không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cửa hàng KHÔNG ở trên Một biển hiệu không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P10",
+      "P12",
+      "P6",
+      "P8"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6667
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì hình học không kết luận được: thiếu hộp giới hạn của đối tượng; sự tồn tại của bien_hieu_3 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because geometry is inconclusive: missing bounding box; the existence of bien_hieu_3 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T02:08:00+00:00",
+    "support_score": 0.9583,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.8655,
+    "channel_scores": {
+     "spatial": 1.0
+    }
+   }
+  }
+ ],
+ "selected_ids": [
+  "P10",
+  "P12",
+  "P24",
+  "P3",
+  "P45"
+ ],
+ "hedged_ids": [
+  "P45"
+ ],
+ "caption": {
+  "text_vi": "Một cái cửa \"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật và có nhiều biển quảng cáo nhỏ treo trên cửa hàng có vẻ như ở trên một tấm biển hiệu, còn có một cây nhỏ. Còn có một ngôi nhà màu màu vàng nhạt.",
+  "spans": [
+   {
+    "text": "Một cái cửa",
+    "char_start": 0,
+    "char_end": 11,
+    "proposition_ids": [
+     "P10"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   },
+   {
+    "text": "\"ĐỒNGA\" có bảng hiệu lớn và màu sắc nổi bật",
+    "char_start": 12,
+    "char_end": 55,
+    "proposition_ids": [
+     "P10"
+    ],
+    "span_role": "predicate",
+    "is_factual": true
+   },
+   {
+    "text": "có nhiều biển quảng cáo nhỏ treo trên cửa hàng",
+    "char_start": 59,
+    "char_end": 105,
+    "proposition_ids": [
+     "P12"
+    ],
+    "span_role": "predicate",
+    "is_factual": true
+   },
+   {
+    "text": "có vẻ như",
+    "char_start": 106,
+    "char_end": 115,
+    "proposition_ids": [
+     "P45"
+    ],
+    "span_role": "hedge",
+    "is_factual": false
+   },
+   {
+    "text": "ở trên một tấm biển hiệu",
+    "char_start": 116,
+    "char_end": 140,
+    "proposition_ids": [
+     "P45"
+    ],
+    "span_role": "spatial",
+    "is_factual": false
+   },
+   {
+    "text": "một cây nhỏ",
+    "char_start": 149,
+    "char_end": 160,
+    "proposition_ids": [
+     "P24"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   },
+   {
+    "text": "một ngôi nhà màu màu vàng nhạt",
+    "char_start": 169,
+    "char_end": 199,
+    "proposition_ids": [
+     "P3"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   }
+  ],
+  "ungrounded_spans": [],
+  "hedged_spans": [
+   "có vẻ như",
+   "ở trên một tấm biển hiệu"
+  ],
+  "generator": "template",
+  "decoding": {
+   "temperature": 0.3,
+   "seed": 42,
+   "strategy": "constrained_lm",
+   "grounding_constraint": true,
+   "retries": 0,
+   "template_fallback": true,
+   "alignment_degraded": false,
+   "spans_by_alignment": {
+    "planner": 7
+   },
+   "unrealised_ids": [],
+   "unhedged_uncertain": [],
+   "prompt_hash": null
+  }
+ },
+ "verdicts": {
+  "SUPPORTED": 10,
+  "UNCERTAIN": 24,
+  "REJECTED": 11
+ },
+ "stats": {
+  "generation": {
+   "entities": 21,
+   "probes": 24,
+   "by_type": {
+    "entity": 8,
+    "counting": 8,
+    "attribute": 12,
+    "action": 10,
+    "relation": 1,
+    "spatial_relation": 6
+   },
+   "by_epistemic": {
+    "OBSERVATION": 43,
+    "INFERENCE": 2
+   },
+   "truncations": [
+    "loại từ không rõ cho 'xanh'",
+    "loại từ không rõ cho 'biển quảng'",
+    "loại từ không rõ cho 'tường'",
+    "loại từ không rõ cho 'cối'",
+    "loại từ không rõ cho 'biển quảng'",
+    "cắt còn 8/21 đối tượng — độ phủ KHÔNG đầy đủ",
+    "cắt còn 8/28 cặp quan hệ — độ phủ KHÔNG đầy đủ"
+   ],
+   "parse_degraded": 0
+  },
+  "verification_notes": [
+   "5CD-AI/Vintern-1B-v3_5 không cung cấp xác suất token — độ tin cậy lấy bằng tự nhất quán, k=5 (tự chọn) (formulation/08 §8.2). Chi phí: gấp 5× số lượt probe.",
+   "bộ ngưỡng mặc định từ formulation/07 §9 CHƯA hiệu chỉnh trên tập dev",
+   "không đối tượng nào có hộp giới hạn: kênh hình học (§3.2) không chạy được"
+  ],
+  "colour_cross_checked": 6,
+  "colour_disagreements": 3,
+  "probe_calls": 102,
+  "seconds": 103.9
+ }
+}

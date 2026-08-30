@@ -1,0 +1,4615 @@
+{
+ "image_id": "2",
+ "file_name": "00000000002.jpg",
+ "reference_captions": [
+  "ba chiếc thuyền đang di chuyển ở trên con sông",
+  "có ba con thuyền đang di chuyển trên con sông",
+  "trên dòng sông có ba con thuyền đang di chuyển",
+  "ba con thuyền đang di chuyển bên một cánh đồng lúa",
+  "ba chiếc thuyền đang chuyển động trên một con sông"
+ ],
+ "entities": [
+  {
+   "id": "dan_ong_1",
+   "category_vi": "đàn ông",
+   "classifier": "người",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "nam",
+    "evidence": "inferred_from_clothing"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một người đàn ông"
+  },
+  {
+   "id": "dan_ong_2",
+   "category_vi": "đàn ông",
+   "classifier": "người",
+   "number": {
+    "value": 2,
+    "marker": null,
+    "countable": true
+   },
+   "gender": {
+    "value": "nam",
+    "evidence": "inferred_from_clothing"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Hai người đàn ông"
+  },
+  {
+   "id": "thuyen_3",
+   "category_vi": "thuyền",
+   "classifier": "chiếc",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một chiếc thuyền"
+  },
+  {
+   "id": "thuyen_4",
+   "category_vi": "thuyền",
+   "classifier": "chiếc",
+   "number": {
+    "value": 2,
+    "marker": null,
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Hai chiếc thuyền"
+  },
+  {
+   "id": "thuyen_5",
+   "category_vi": "thuyền",
+   "classifier": "chiếc",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một chiếc thuyền nhỏ"
+  },
+  {
+   "id": "thuyen_6",
+   "category_vi": "thuyền",
+   "classifier": "chiếc",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một chiếc thuyền lớn"
+  },
+  {
+   "id": "co_7",
+   "category_vi": "cỏ",
+   "classifier": "cây",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một cây cỏ"
+  },
+  {
+   "id": "co_cao_8",
+   "category_vi": "cỏ cao",
+   "classifier": "cây",
+   "number": {
+    "value": 1,
+    "marker": "một",
+    "countable": true
+   },
+   "gender": {
+    "value": "khong_xac_dinh",
+    "evidence": "not_determinable"
+   },
+   "confidence": 0.8749559330940246,
+   "detector": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "surface": "Một cây cỏ cao"
+  }
+ ],
+ "propositions": [
+  {
+   "id": "P1",
+   "type": "entity",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 0.0
+    }
+   }
+  },
+  {
+   "id": "P2",
+   "type": "counting",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [
+      "P6"
+     ],
+     "consistency_score": -0.3333
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.0833,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "counting": 0.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "người",
+    "entity_category_vi": "đàn ông",
+    "exact": true
+   },
+   "contradicts": [
+    "P6"
+   ]
+  },
+  {
+   "id": "P3",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "tư_thế",
+     "value_vi": "đứng trên thuyền"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông đứng trên thuyền",
+   "confidence": 0.826051957332171,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có đứng trên thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Ảnh cho thấy có",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG đứng trên thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Hình ảnh cho thấy có một",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P4",
+   "type": "action",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "đang ngồi trên một chiếc thuyền nhỏ"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông đang ngồi trên một chiếc thuyền nhỏ",
+   "confidence": 0.7652225068637303,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có đang ngồi trên một chiếc thuyền nhỏ không",
+      "answer": "Không.  Trong ảnh không có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.  Trong ảnh không có",
+       "Không. Trong ảnh không có một",
+       "Không. Hình ảnh không cho thấy bất",
+       "Không. Hình ảnh không cho thấy người",
+       "Không. Hình ảnh cho thấy không có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ngồi trên một chiếc thuyền nhỏ không",
+      "answer": "Không. Hình ảnh cho thấy rõ ràng",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy rõ ràng",
+       "Không. Hình ảnh cho thấy rõ ràng",
+       "Không. Hình ảnh cho thấy rõ ràng",
+       "Không. Hình ảnh cho thấy tất cả",
+       "Không. Có một người đàn ông đang"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "action": 0.0
+    }
+   }
+  },
+  {
+   "id": "P5",
+   "type": "entity",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Hai người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Hai người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 0.0
+    }
+   }
+  },
+  {
+   "id": "P6",
+   "type": "counting",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "INFERENCE",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": true,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 2 người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 2 người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Có hai người đàn ông trong",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [
+      "P2"
+     ],
+     "consistency_score": -0.3333
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_2 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_2 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.0833,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "counting": 0.0
+    }
+   },
+   "count": {
+    "value": 2,
+    "classifier": "người",
+    "entity_category_vi": "đàn ông",
+    "exact": true
+   },
+   "contradicts": [
+    "P2"
+   ]
+  },
+  {
+   "id": "P7",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "tư_thế",
+     "value_vi": "đều đang ngồi trên thuyền"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông đều đang ngồi trên thuyền",
+   "confidence": 0.659769722205751,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai người đàn ông có đều đang ngồi trên thuyền không",
+      "answer": "Không. Trong ảnh có hai người",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Trong ảnh có hai người",
+       "Không. Một trong hai người đàn ông",
+       "Không. Hai người đàn ông trong ảnh",
+       "Không. Hai người đàn ông trong ảnh",
+       "Không. Trong ảnh có hai người"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai người đàn ông KHÔNG đều đang ngồi trên thuyền không",
+      "answer": "Không. Một người đàn ông đang ngồi",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Một người đàn ông đang ngồi",
+       "Không. Có hai người đàn ông,",
+       "Không. Một người đàn ông có vẻ",
+       "Không. Một người đàn ông đang ngồi",
+       "Không. Có hai người đàn ông,"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_2 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_2 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P8",
+   "type": "action",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "đang ngồi trên một chiếc thuyền nhỏ"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông đang ngồi trên một chiếc thuyền nhỏ",
+   "confidence": 0.7406486996582576,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai người đàn ông có đang ngồi trên một chiếc thuyền nhỏ không",
+      "answer": "Không. Hình ảnh không cho thấy rõ",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh không cho thấy rõ",
+       "Không. Hình ảnh không cho thấy rõ",
+       "Không. Trong ảnh có hai người",
+       "Có. Trong ảnh có hai",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai người đàn ông KHÔNG ngồi trên một chiếc thuyền nhỏ không",
+      "answer": "Không. Hình ảnh cho thấy có ít",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy có ít",
+       "Không.  Có hai người đàn ông",
+       "Không. Hình ảnh cho thấy có nhiều",
+       "Không. Hình ảnh cho thấy có hai",
+       "Không. Có hai người đàn ông đang"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_2 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_2 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.275,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.2
+    }
+   }
+  },
+  {
+   "id": "P9",
+   "type": "entity",
+   "subject": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một chiếc thuyền không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P10",
+   "type": "counting",
+   "subject": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Có hai chiếc thuyền trong ảnh",
+       "Không.",
+       "Không. Có nhiều chiếc thuyền khác nh",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Có nhiều chiếc thuyền xuất hiện",
+       "Không.",
+       "Có. Trong ảnh có thể"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P9"
+     ],
+     "contradicting_ids": [
+      "P13"
+     ],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Có bằng chứng phủ định: mâu thuẫn với P13 (số lượng mâu thuẫn: 1 / 2).",
+    "explanation_en": "There is evidence against this: contradicted by P13 (số lượng mâu thuẫn: 1 / 2).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.9,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "counting": 0.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "chiếc",
+    "entity_category_vi": "thuyền",
+    "exact": true
+   },
+   "contradicts": [
+    "P13"
+   ]
+  },
+  {
+   "id": "P11",
+   "type": "action",
+   "subject": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "một người đang ngồi trên thuyền, cầm một thanh gậy dài"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền một người đang ngồi trên thuyền, cầm một thanh gậy dài",
+   "confidence": 0.5238253281396978,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc thuyền có đang một người đang ngồi trên thuyền, cầm một thanh gậy dài không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Có",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc thuyền KHÔNG một người đang ngồi trên thuyền, cầm một thanh gậy dài không",
+      "answer": "Không.  Hình ảnh cho thấy rõ",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.  Hình ảnh cho thấy rõ",
+       "Không. Hình ảnh cho thấy rõ ràng",
+       "Không. Có nhiều thuyền đang có người",
+       "Không. Hình ảnh cho thấy có nhiều",
+       "Không. Hình ảnh cho thấy có ít"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P9"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2417,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "action": 0.1
+    }
+   }
+  },
+  {
+   "id": "P12",
+   "type": "entity",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Hai chiếc thuyền không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Hai chiếc thuyền không",
+      "answer": "Không. Ảnh không có hai",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Ảnh không có hai",
+       "Không. Có hai chiếc thuyền trong ảnh",
+       "Không.",
+       "Không. Ảnh có ba chiếc",
+       "Có. Có hai chiếc thuyền trong"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P13",
+   "type": "counting",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 2 chiếc thuyền không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có. Có hai chiếc thuyền trong"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 2 chiếc thuyền không",
+      "answer": "Không. Có hai chiếc thuyền trong ảnh",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Có hai chiếc thuyền trong ảnh",
+       "Không.",
+       "Có. Trong ảnh có ít",
+       "Có.",
+       "Không. Có hai chiếc thuyền trong ảnh"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [
+      "P10",
+      "P24",
+      "P27"
+     ],
+     "consistency_score": -0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.7583,
+    "contradiction_score": 0.2,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "counting": 0.9
+    }
+   },
+   "count": {
+    "value": 2,
+    "classifier": "chiếc",
+    "entity_category_vi": "thuyền",
+    "exact": true
+   },
+   "contradicts": [
+    "P10",
+    "P24",
+    "P27"
+   ]
+  },
+  {
+   "id": "P14",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "mô tả về màu sắc của hai chiếc thuyền:"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền mô tả về màu sắc của hai chiếc thuyền:",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có mô tả về màu sắc của hai chiếc thuyền: không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG mô tả về màu sắc của hai chiếc thuyền: không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.1667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P15",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "có màu xanh dương"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền có màu xanh dương",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có có màu xanh dương không",
+      "answer": "Không. Hai chiếc thuyền trong ảnh có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Không. Hai chiếc thuyền trong ảnh có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG có màu xanh dương không",
+      "answer": "Không. Hai chiếc thuyền trong ảnh đều",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hai chiếc thuyền trong ảnh đều",
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Không. Hai chiếc thuyền có màu trắng",
+       "Không. Có hai chiếc thuyền trong ảnh",
+       "Không. Hai chiếc thuyền có màu đỏ"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.1667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P16",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "có màu đỏ"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền có màu đỏ",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có có màu đỏ không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Không. Hai chiếc thuyền trong ảnh có",
+       "Có. Hai chiếc thuyền có màu",
+       "Có. Hai chiếc thuyền trong ảnh",
+       "Không. Hai chiếc thuyền trong ảnh đều"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG có màu đỏ không",
+      "answer": "Không. Có hai chiếc thuyền có màu",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Có hai chiếc thuyền có màu",
+       "Không. Có hai chiếc thuyền có màu",
+       "Không. Có hai chiếc thuyền có màu",
+       "Không. Cả hai chiếc thuyền đều",
+       "Không. Hai chiếc thuyền trong ảnh đều"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.7667,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "attribute": 0.8
+    }
+   }
+  },
+  {
+   "id": "P17",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "kích thước của hai chiếc thuyền:"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền kích thước của hai chiếc thuyền:",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có kích thước của hai chiếc thuyền: không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG kích thước của hai chiếc thuyền: không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.8417,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.9
+    }
+   }
+  },
+  {
+   "id": "P18",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người không",
+      "answer": "Có. Hai chiếc thuyền trong ảnh",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Hai chiếc thuyền trong ảnh",
+       "Có. Hai chiếc thuyền có kích",
+       "Có. Hai chiếc thuyền có kích",
+       "Có.  Theo hình ảnh,",
+       "Có. Cả hai chiếc thuyền"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người không",
+      "answer": "Không. Một chiếc thuyền có kích thước",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Một chiếc thuyền có kích thước",
+       "Có. Hình ảnh cho thấy hai",
+       "Có. Hai chiếc thuyền nhỏ ở",
+       "Không. Một chiếc thuyền có kích thước",
+       "Không. Hai chiếc thuyền có kích thước"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.9167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 1.0
+    }
+   }
+  },
+  {
+   "id": "P19",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "tư thế của hai chiếc thuyền:"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền tư thế của hai chiếc thuyền:",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có tư thế của hai chiếc thuyền: không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Có.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG tư thế của hai chiếc thuyền: không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12",
+      "P18"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2625,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.1
+    }
+   }
+  },
+  {
+   "id": "P20",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "trạng_thái",
+     "value_vi": "đều đang di chuyển trên sông, hướng về phía trước"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền đều đang di chuyển trên sông, hướng về phía trước",
+   "confidence": 0.7823900058064409,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có đều đang di chuyển trên sông, hướng về phía trước không",
+      "answer": "Có. Hai chiếc thuyền trong ảnh",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Hai chiếc thuyền trong ảnh",
+       "Có. Trong ảnh, có",
+       "Không. Hai chiếc thuyền trong ảnh đều",
+       "Có. Trong ảnh, có",
+       "Có. Hai chiếc thuyền trong ảnh"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG đều đang di chuyển trên sông, hướng về phía trước không",
+      "answer": "Không. Một chiếc thuyền đang di chuyển",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Một chiếc thuyền đang di chuyển",
+       "Không. Một chiếc thuyền đang di chuyển",
+       "Không. Hai chiếc thuyền đều đang di",
+       "Không. Một chiếc thuyền đang di chuyển",
+       "Không. Một chiếc thuyền đang di chuyển"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12",
+      "P18"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.8625,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.9
+    }
+   }
+  },
+  {
+   "id": "P21",
+   "type": "action",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "phía trước đang chèo"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền phía trước đang chèo",
+   "confidence": 0.7193975065435682,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có đang phía trước đang chèo không",
+      "answer": "Có. Ảnh cho thấy",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Ảnh cho thấy",
+       "Có.  Hai chiếc thuyền trong",
+       "Có. Hai chiếc thuyền đang ch",
+       "Có. Hai chiếc thuyền đang ở",
+       "Có. Hai chiếc thuyền đang ch"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG phía trước đang chèo không",
+      "answer": "Không. Có hai chiếc thuyền đang ch",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Có hai chiếc thuyền đang ch",
+       "Có. Có ít nhất hai chiếc",
+       "Không. Hình ảnh cho thấy có ít",
+       "Không. Hai chiếc thuyền ở phía trước",
+       "Không. Hai chiếc thuyền KHÔNG"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12",
+      "P18"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.5
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.9375,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "action": 1.0
+    }
+   }
+  },
+  {
+   "id": "P22",
+   "type": "action",
+   "subject": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "phía sau cũng đang chèo"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai chiếc thuyền phía sau cũng đang chèo",
+   "confidence": 0.7193975065435682,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai chiếc thuyền có đang phía sau cũng đang chèo không",
+      "answer": "Có.",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Không. Hai chiếc thuyền chèo",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai chiếc thuyền KHÔNG phía sau cũng đang chèo không",
+      "answer": "Không. Hai chiếc thuyền phía sau không",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hai chiếc thuyền phía sau không",
+       "Không. Có hai chiếc thuyền phía sau",
+       "Không. Hai chiếc thuyền phía sau không",
+       "Không. Có hai chiếc thuyền đang ch",
+       "Không. Hai chiếc thuyền phía sau đều"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P12",
+      "P18",
+      "P21"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.6
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "action": 0.9
+    }
+   }
+  },
+  {
+   "id": "P23",
+   "type": "entity",
+   "subject": {
+    "entity_id": "thuyen_5",
+    "text_vi": "Một chiếc thuyền nhỏ",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền nhỏ",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một chiếc thuyền nhỏ không",
+      "answer": "Có. Có ít nhất một chiếc",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Có ít nhất một chiếc",
+       "Có.",
+       "Có",
+       "Có.",
+       "Có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một chiếc thuyền nhỏ không",
+      "answer": "Không. Ảnh có nhiều thuyền",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Ảnh có nhiều thuyền",
+       "Không.",
+       "Không.",
+       "Không. Có nhiều chiếc thuyền nhỏ đang",
+       "Không. Ảnh có nhiều thuyền"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "SUPPORTED",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác.",
+    "explanation_en": "Supported by visual evidence.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 1.0
+    }
+   }
+  },
+  {
+   "id": "P24",
+   "type": "counting",
+   "subject": {
+    "entity_id": "thuyen_5",
+    "text_vi": "Một chiếc thuyền nhỏ",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền nhỏ",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không. Có ít nhất 4 chiếc",
+       "Có. Có ít nhất 3",
+       "Không. Ảnh có nhiều thuyền"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 chiếc thuyền không",
+      "answer": "Không. Có nhiều chiếc thuyền trên sông",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Có nhiều chiếc thuyền trên sông",
+       "Không.",
+       "Không.",
+       "Không. Có nhiều chiếc thuyền xuất hiện",
+       "Có. Có ít nhất hai chiếc"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P23"
+     ],
+     "contradicting_ids": [
+      "P13"
+     ],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.9,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "counting": 0.1
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "chiếc",
+    "entity_category_vi": "thuyền",
+    "exact": true
+   },
+   "contradicts": [
+    "P13"
+   ]
+  },
+  {
+   "id": "P25",
+   "type": "action",
+   "subject": {
+    "entity_id": "thuyen_5",
+    "text_vi": "Một chiếc thuyền nhỏ",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "một người đang ngồi trên thuyền nhỏ, cầm một thanh gậy dài"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền nhỏ một người đang ngồi trên thuyền nhỏ, cầm một thanh gậy dài",
+   "confidence": 0.5246166893177562,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc thuyền nhỏ có đang một người đang ngồi trên thuyền nhỏ, cầm một thanh gậy dài không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc thuyền nhỏ KHÔNG một người đang ngồi trên thuyền nhỏ, cầm một thanh gậy dài không",
+      "answer": "Không. Hình ảnh cho thấy có ít",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy có ít",
+       "Không. Hình ảnh cho thấy một chiếc",
+       "Không.",
+       "Không. Hình ảnh cho thấy có nhiều",
+       "Không. Hình ảnh cho thấy có ít"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [
+      "P23"
+     ],
+     "contradicting_ids": [],
+     "consistency_score": 0.3333
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.3167,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "action": 0.2
+    }
+   }
+  },
+  {
+   "id": "P26",
+   "type": "entity",
+   "subject": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền lớn",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một chiếc thuyền lớn không",
+      "answer": "Không. Trong ảnh không có một",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Trong ảnh không có một",
+       "Không. Trong ảnh chỉ có các",
+       "Không. Trong ảnh chỉ có hai",
+       "Không. Trong ảnh có ba chiếc",
+       "Không. Trong ảnh không có một"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một chiếc thuyền lớn không",
+      "answer": "Không. Có một chiếc thuyền lớn trong",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Có một chiếc thuyền lớn trong",
+       "Không. Ảnh có nhiều chiếc",
+       "Không. Ảnh cho thấy nhiều",
+       "Không. Ảnh cho thấy có",
+       "Không.  Trong ảnh có nhiều"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "existence": 0.0
+    }
+   }
+  },
+  {
+   "id": "P27",
+   "type": "counting",
+   "subject": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền lớn",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Ảnh có hai chiếc",
+       "Có.",
+       "Có. Trong ảnh có một",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [
+      "P13"
+     ],
+     "consistency_score": -0.3333
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của thuyen_6 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of thuyen_6 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2333,
+    "contradiction_score": 0.9,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "counting": 0.2
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "chiếc",
+    "entity_category_vi": "thuyền",
+    "exact": true
+   },
+   "contradicts": [
+    "P13"
+   ]
+  },
+  {
+   "id": "P28",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "lớn"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền lớn lớn",
+   "confidence": 0.8394200863509342,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc thuyền lớn có lớn không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không. Chiếc thuyền lớn chỉ có",
+       "Không. Chiếc thuyền lớn trong ảnh"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc thuyền lớn KHÔNG lớn không",
+      "answer": "Không.  Hình ảnh cho thấy có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.  Hình ảnh cho thấy có",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của thuyen_6 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of thuyen_6 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 0.0
+    }
+   }
+  },
+  {
+   "id": "P29",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "tư_thế",
+     "value_vi": "đang di chuyển trên sông"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền lớn đang di chuyển trên sông",
+   "confidence": 0.8394200863509342,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc thuyền lớn có đang di chuyển trên sông không",
+      "answer": "Không. Trong ảnh, không có",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Có. Hình ảnh cho thấy một",
+       "Không. Trong ảnh, không có",
+       "Không. Hình ảnh cho thấy một số",
+       "Không. Ảnh chỉ cho thấy",
+       "Không. Hình ảnh chỉ cho thấy một"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc thuyền lớn KHÔNG đang di chuyển trên sông không",
+      "answer": "Không. Hình ảnh cho thấy rõ ràng",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy rõ ràng",
+       "Không. Hình ảnh cho thấy có một",
+       "Không. Hình ảnh cho thấy có ít",
+       "Không. Có nhiều thuyền nhỏ, được",
+       "Không. Hình ảnh cho thấy có ít"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của thuyen_6 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of thuyen_6 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.1
+    }
+   }
+  },
+  {
+   "id": "P30",
+   "type": "action",
+   "subject": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "predicate": {
+    "lemma_vi": "đang di chuyển trên sông"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một chiếc thuyền lớn đang di chuyển trên sông",
+   "confidence": 0.7436229735612869,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một chiếc thuyền lớn có đang di chuyển trên sông không",
+      "answer": "Không. Trong ảnh, chỉ có",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Trong ảnh, chỉ có",
+       "Không. Trong ảnh, chỉ có",
+       "Không. Hình ảnh không cho thấy một",
+       "Không. Hình ảnh không cho thấy một",
+       "Không. Trong ảnh không thấy một"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một chiếc thuyền lớn KHÔNG di chuyển trên sông không",
+      "answer": "Không. Hình ảnh cho thấy một chiếc",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Hình ảnh cho thấy một chiếc",
+       "Không. Trong ảnh có nhiều chiếc",
+       "Không. Hình ảnh cho thấy có ba",
+       "Không.  Hình ảnh cho thấy có",
+       "Không.  Hình ảnh cho thấy có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của thuyen_6 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of thuyen_6 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "action": 0.0
+    }
+   }
+  },
+  {
+   "id": "P31",
+   "type": "entity",
+   "subject": {
+    "entity_id": "co_7",
+    "text_vi": "Một cây cỏ",
+    "head_noun_vi": "cỏ"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một cây cỏ không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một cây cỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "existence": 0.1
+    }
+   }
+  },
+  {
+   "id": "P32",
+   "type": "counting",
+   "subject": {
+    "entity_id": "co_7",
+    "text_vi": "Một cây cỏ",
+    "head_noun_vi": "cỏ"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 cây cỏ không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 cây cỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.725,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "counting": 0.8
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "cây",
+    "entity_category_vi": "cỏ",
+    "exact": true
+   }
+  },
+  {
+   "id": "P33",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "co_7",
+    "text_vi": "Một cây cỏ",
+    "head_noun_vi": "cỏ"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "xanh lá"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ xanh lá",
+   "confidence": 0.8720553057889143,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ có màu xanh lá không",
+      "answer": "Có. Cây cỏ trong",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Cây cỏ trong",
+       "Có.",
+       "Có.",
+       "Có.",
+       "Không. Cây cỏ trong ảnh"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ KHÔNG có màu xanh lá không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không. Cây cỏ trong ảnh"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ có màu xanh lá không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ KHÔNG có màu xanh lá không",
+      "answer": "không",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "không",
+       "Không.",
+       "Không",
+       "có",
+       "Không."
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.9,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.8,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "attribute": 0.9
+    }
+   }
+  },
+  {
+   "id": "P34",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "co_7",
+    "text_vi": "Một cây cỏ",
+    "head_noun_vi": "cỏ"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "lớn"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ lớn",
+   "confidence": 0.8720553057889143,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ có lớn không",
+      "answer": "Không.",
+      "answer_prob": 0.6,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không. Cây cỏ trong ảnh",
+       "Có.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ KHÔNG lớn không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.2,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.275,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "attribute": 0.2
+    }
+   }
+  },
+  {
+   "id": "P35",
+   "type": "action",
+   "subject": {
+    "entity_id": "co_7",
+    "text_vi": "Một cây cỏ",
+    "head_noun_vi": "cỏ"
+   },
+   "predicate": {
+    "lemma_vi": "không có hành động"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ không có hành động",
+   "confidence": 0.7336276277899743,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ có đang không có hành động không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ KHÔNG không có hành động không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không có bằng chứng hỗ trợ trong ảnh: mức hỗ trợ thị giác nằm giữa hai ngưỡng quyết định.",
+    "explanation_en": "No supporting evidence in the image: visual support falls between the decision thresholds.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "action": 0.0
+    }
+   }
+  },
+  {
+   "id": "P36",
+   "type": "entity",
+   "subject": {
+    "entity_id": "co_cao_8",
+    "text_vi": "Một cây cỏ cao",
+    "head_noun_vi": "cỏ cao"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ cao",
+   "confidence": 0.8749559330940246,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có Một cây cỏ cao không",
+      "answer": "Có.",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Không.",
+       "Không.",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có Một cây cỏ cao không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không. Ảnh cho thấy có"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.725,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "existence": 0.8
+    }
+   }
+  },
+  {
+   "id": "P37",
+   "type": "counting",
+   "subject": {
+    "entity_id": "co_cao_8",
+    "text_vi": "Một cây cỏ cao",
+    "head_noun_vi": "cỏ cao"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ cao",
+   "confidence": 0.0,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh có đúng 1 cây cỏ cao không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có. Có một cây cỏ",
+       "Có. Trong ảnh có một",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là trong ảnh KHÔNG có 1 cây cỏ cao không",
+      "answer": "Không. Ảnh có nhiều cây",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Ảnh có nhiều cây",
+       "Không. Có một cây cỏ ca",
+       "Không. Có 1 cây cỏ",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì sự tồn tại của co_cao_8 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the existence of co_cao_8 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "counting": 1.0
+    }
+   },
+   "count": {
+    "value": 1,
+    "classifier": "cây",
+    "entity_category_vi": "cỏ cao",
+    "exact": true
+   }
+  },
+  {
+   "id": "P38",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "co_cao_8",
+    "text_vi": "Một cây cỏ cao",
+    "head_noun_vi": "cỏ cao"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "màu_sắc",
+     "value_vi": "xanh lá"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ cao xanh lá",
+   "confidence": 0.8640569560229778,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ cao có màu xanh lá không",
+      "answer": "Có.",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "Có.",
+       "Có.",
+       "Có",
+       "Có.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ cao KHÔNG có màu xanh lá không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ cao có màu xanh lá không",
+      "answer": "có",
+      "answer_prob": 1.0,
+      "polarity": "affirms",
+      "samples": [
+       "có",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ cao KHÔNG có màu xanh lá không",
+      "answer": "có",
+      "answer_prob": 0.8,
+      "polarity": "affirms",
+      "samples": [
+       "Không.",
+       "có",
+       "có",
+       "có",
+       "có"
+      ],
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 1.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Được hỗ trợ bởi bằng chứng thị giác. Mức tối đa có thể đạt là UNCERTAIN vì sự tồn tại của co_cao_8 chưa được xác nhận.",
+    "explanation_en": "Supported by visual evidence. Capped at UNCERTAIN because the existence of co_cao_8 is itself unconfirmed.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.875,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "attribute": 1.0
+    }
+   }
+  },
+  {
+   "id": "P39",
+   "type": "attribute",
+   "subject": {
+    "entity_id": "co_cao_8",
+    "text_vi": "Một cây cỏ cao",
+    "head_noun_vi": "cỏ cao"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": null,
+   "attributes": [
+    {
+     "kind": "kích_thước",
+     "value_vi": "lớn"
+    }
+   ],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ cao lớn",
+   "confidence": 0.8640569560229778,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ cao có lớn không",
+      "answer": "Có",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có",
+       "Không.",
+       "Có.",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ cao KHÔNG lớn không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.725,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.029,
+    "channel_scores": {
+     "attribute": 0.8
+    }
+   }
+  },
+  {
+   "id": "P40",
+   "type": "action",
+   "subject": {
+    "entity_id": "co_cao_8",
+    "text_vi": "Một cây cỏ cao",
+    "head_noun_vi": "cỏ cao"
+   },
+   "predicate": {
+    "lemma_vi": "đang đứng yên"
+   },
+   "object": null,
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một cây cỏ cao đang đứng yên",
+   "confidence": 0.7564181644808162,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một cây cỏ cao có đang đứng yên không",
+      "answer": "Không. Cây cỏ đứng thẳng",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Cây cỏ đứng thẳng",
+       "Không. Cây cỏ trong ảnh",
+       "Có.",
+       "Không. Cây cỏ trong ảnh",
+       "Không. Cây cỏ đứng trên"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một cây cỏ cao KHÔNG đứng yên không",
+      "answer": "Không. Cây cỏ trong ảnh",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Cây cỏ trong ảnh",
+       "Không.",
+       "Không. Có cây cỏ đứng yên",
+       "Không. Cây cỏ đứng yên",
+       "Không. Hình ảnh cho thấy một cây"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "UNCERTAIN",
+    "explanation_vi": "Bằng chứng không đủ để kết luận (mô hình trả lời không nhất quán giữa các lần hỏi).",
+    "explanation_en": "Not enough evidence to decide (the model's answers disagree across resamples).",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "action": 0.1
+    }
+   }
+  },
+  {
+   "id": "P41",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trong",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một người đàn ông trong hình ảnh này, không có thông tin cụ thể về mối quan hệ giữa \"Một người đàn ông\" và \"Hai người đàn ông\". Chúng ta chỉ thấy họ đang ngồi trên các con thuyền và đang di chuyển trên sông. Không có thông tin về vị trí, hành động hay bất kỳ mối quan hệ nào giữa họ Hai người đàn ông",
+   "confidence": 0.7195809846871519,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có ở trong Hai người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ở trong Hai người đàn ông không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), dan_ong_2 (object), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject), dan_ong_2 (object) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "spatial": 0.0
+    }
+   }
+  },
+  {
+   "id": "P42",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trong",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một người đàn ông trong ảnh, một người đàn ông đang đẩy một chiếc thuyền Một chiếc thuyền",
+   "confidence": 0.7250810235738754,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có ở trong Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ở trong Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "spatial": 0.0
+    }
+   }
+  },
+  {
+   "id": "P43",
+   "type": "relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "đang đẩy một chiếc thuyền"
+   },
+   "object": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông đang đẩy một chiếc thuyền Hai chiếc thuyền",
+   "confidence": 0.7749948466525358,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có đẩy một chiếc thuyền Hai chiếc thuyền không",
+      "answer": "Có. Có ít nhất hai chiếc",
+      "answer_prob": 0.6,
+      "polarity": "affirms",
+      "samples": [
+       "Có. Có ít nhất hai chiếc",
+       "Có. Trong ảnh có thể",
+       "Không. Trong ảnh có nhiều thuyền",
+       "Có. Có ít nhất 4",
+       "Có. Trong ảnh có ít"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG đẩy một chiếc thuyền Hai chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Có hai chiếc thuyền.",
+       "Không.",
+       "Không. Có ít nhất hai chiếc thuyền",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.8,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.725,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.135,
+    "channel_scores": {
+     "relation": 0.8
+    }
+   }
+  },
+  {
+   "id": "P44",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trên",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một người đàn ông đang ngồi trên một chiếc thuyền Hai chiếc thuyền",
+   "confidence": 0.7749948466525358,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có ở trên Hai chiếc thuyền không",
+      "answer": "Không. Trong ảnh, chỉ có",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Trong ảnh, chỉ có",
+       "Không. Trong ảnh, không có",
+       "Không. Hình ảnh không cho thấy một",
+       "Không.",
+       "Có."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ở trên Hai chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Hình ảnh cho thấy có ít",
+       "Không.",
+       "Không.",
+       "Không. Có một người đàn ông trên"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "spatial": 0.1
+    }
+   }
+  },
+  {
+   "id": "P45",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "thuyen_4",
+    "text_vi": "Hai chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "bên cạnh",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một người đàn ông nằm bên cạnh nhau Hai chiếc thuyền",
+   "confidence": 0.7749948466525358,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có ở bên cạnh Hai chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ở bên cạnh Hai chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không. Có đúng. Hình ảnh cho",
+       "Không.",
+       "Không. Có một người đàn ông ngồi",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "spatial": 0.0
+    }
+   }
+  },
+  {
+   "id": "P46",
+   "type": "spatial_relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "có"
+   },
+   "object": {
+    "entity_id": "thuyen_5",
+    "text_vi": "Một chiếc thuyền nhỏ",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": {
+    "relation_vi": "trong",
+    "frame_of_reference": "image_relative",
+    "geometric_check": {
+     "depth_order": "unknown",
+     "consistent": null
+    }
+   },
+   "text_vi": "Một người đàn ông trong ảnh, một người đàn ông đang đẩy một chiếc thuyền nhỏ Một chiếc thuyền nhỏ",
+   "confidence": 0.7672218531370163,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có ở trong Một chiếc thuyền nhỏ không",
+      "answer": "Không. Ảnh không có một",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không. Ảnh không có một",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG ở trong Một chiếc thuyền nhỏ không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.  Có một người đàn ông",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "spatial": 0.0
+    }
+   }
+  },
+  {
+   "id": "P47",
+   "type": "relation",
+   "subject": {
+    "entity_id": "dan_ong_1",
+    "text_vi": "Một người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "lớn"
+   },
+   "object": {
+    "entity_id": "thuyen_6",
+    "text_vi": "Một chiếc thuyền lớn",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Một người đàn ông lớn Một chiếc thuyền lớn",
+   "confidence": 0.8033696023317484,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Một người đàn ông có lớn Một chiếc thuyền lớn không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không. Ảnh chỉ cho thấy"
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Một người đàn ông KHÔNG lớn Một chiếc thuyền lớn không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_1 (subject), thuyen_6 (object), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_1 (subject), thuyen_6 (object) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "relation": 0.0
+    }
+   }
+  },
+  {
+   "id": "P48",
+   "type": "relation",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "đang cầm một chiếc thuyền"
+   },
+   "object": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông đang cầm một chiếc thuyền Một chiếc thuyền",
+   "confidence": 0.7223084613128945,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai người đàn ông có cầm một chiếc thuyền Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Có.",
+       "Không. Trong ảnh có hai người",
+       "Không. Trong ảnh có hai chiếc",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai người đàn ông KHÔNG cầm một chiếc thuyền Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 0.8,
+      "polarity": "refutes",
+      "samples": [
+       "Có.",
+       "Không.",
+       "Không. Ảnh cho thấy có",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.1,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_2 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_2 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.2,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.2781,
+    "channel_scores": {
+     "relation": 0.1
+    }
+   }
+  },
+  {
+   "id": "P49",
+   "type": "relation",
+   "subject": {
+    "entity_id": "dan_ong_2",
+    "text_vi": "Hai người đàn ông",
+    "head_noun_vi": "đàn ông"
+   },
+   "predicate": {
+    "lemma_vi": "không rõ vị trí so với chiếc thuyền"
+   },
+   "object": {
+    "entity_id": "thuyen_3",
+    "text_vi": "Một chiếc thuyền",
+    "head_noun_vi": "thuyền"
+   },
+   "attributes": [],
+   "spatial_relation": null,
+   "text_vi": "Hai người đàn ông không rõ vị trí so với chiếc thuyền Một chiếc thuyền",
+   "confidence": 0.7223084613128945,
+   "generator": "Qwen/Qwen2.5-VL-7B-Instruct",
+   "epistemic": "OBSERVATION",
+   "evidence": {
+    "external_knowledge": {
+     "requires_inference": false,
+     "inference_type": "none"
+    },
+    "probes": [
+     {
+      "question_vi": "Trong ảnh, Hai người đàn ông có không rõ vị trí so với chiếc thuyền Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     },
+     {
+      "question_vi": "Có đúng là Hai người đàn ông KHÔNG không rõ vị trí so với chiếc thuyền Một chiếc thuyền không",
+      "answer": "Không.",
+      "answer_prob": 1.0,
+      "polarity": "refutes",
+      "samples": [
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không.",
+       "Không."
+      ],
+      "model": "5CD-AI/Vintern-1B-v3_5"
+     }
+    ],
+    "visual_grounding": {
+     "grounding_score": 0.0,
+     "method": "vqa_probe"
+    },
+    "geometric": {
+     "checks_passed": [],
+     "checks_failed": []
+    },
+    "cross_proposition": {
+     "supporting_ids": [],
+     "contradicting_ids": [],
+     "consistency_score": 0.0
+    }
+   },
+   "verification": {
+    "status": "REJECTED",
+    "explanation_vi": "Không xác nhận được sự tồn tại của dan_ong_2 (subject), nên mệnh đề này bị bác bỏ theo dây chuyền — đây là lỗi kế thừa, không phải lỗi sơ cấp.",
+    "explanation_en": "The existence of dan_ong_2 (subject) was not confirmed, so this proposition is rejected by cascade — an inherited error, not a primary one.",
+    "verifier": "5CD-AI/Vintern-1B-v3_5 + geometric",
+    "decision_rule_version": "v1.0-doc07-UNTUNED+mode=three_way+E=min-prereq/max-channel",
+    "verified_at": "2026-08-18T00:00:53+00:00",
+    "support_score": 0.125,
+    "contradiction_score": 0.0,
+    "evidence_sufficiency": 0.9594,
+    "channel_scores": {
+     "relation": 0.0
+    }
+   }
+  }
+ ],
+ "selected_ids": [
+  "P18",
+  "P21",
+  "P23",
+  "P33",
+  "P9"
+ ],
+ "hedged_ids": [
+  "P33"
+ ],
+ "caption": {
+  "text_vi": "Một vài con thuyền đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người phía trước đang chèo, còn có một cây cỏ có vẻ màu xanh lá, còn có một con thuyền.",
+  "spans": [
+   {
+    "text": "Một vài con thuyền đều có kích thước tương đối lớn, phù hợp cho việc chở nhiều người",
+    "char_start": 0,
+    "char_end": 84,
+    "proposition_ids": [
+     "P18"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   },
+   {
+    "text": "phía trước đang chèo",
+    "char_start": 85,
+    "char_end": 105,
+    "proposition_ids": [
+     "P21"
+    ],
+    "span_role": "predicate",
+    "is_factual": true
+   },
+   {
+    "text": "một cây cỏ",
+    "char_start": 114,
+    "char_end": 124,
+    "proposition_ids": [
+     "P33"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   },
+   {
+    "text": "có vẻ màu xanh lá",
+    "char_start": 125,
+    "char_end": 142,
+    "proposition_ids": [
+     "P33"
+    ],
+    "span_role": "hedge",
+    "is_factual": false
+   },
+   {
+    "text": "một con thuyền",
+    "char_start": 151,
+    "char_end": 165,
+    "proposition_ids": [
+     "P9"
+    ],
+    "span_role": "subject",
+    "is_factual": true
+   }
+  ],
+  "ungrounded_spans": [],
+  "hedged_spans": [
+   "có vẻ màu xanh lá"
+  ],
+  "generator": "template",
+  "decoding": {
+   "temperature": 0.3,
+   "seed": 42,
+   "strategy": "constrained_lm",
+   "grounding_constraint": true,
+   "retries": 0,
+   "template_fallback": true,
+   "alignment_degraded": false,
+   "spans_by_alignment": {
+    "planner": 5
+   },
+   "unrealised_ids": [],
+   "unhedged_uncertain": [],
+   "prompt_hash": null
+  }
+ },
+ "verdicts": {
+  "REJECTED": 26,
+  "SUPPORTED": 5,
+  "UNCERTAIN": 18
+ },
+ "stats": {
+  "generation": {
+   "entities": 22,
+   "probes": 24,
+   "by_type": {
+    "entity": 8,
+    "counting": 8,
+    "attribute": 15,
+    "action": 9,
+    "spatial_relation": 5,
+    "relation": 4
+   },
+   "by_epistemic": {
+    "INFERENCE": 4,
+    "OBSERVATION": 45
+   },
+   "truncations": [
+    "loại từ không rõ cho 'cỏ'",
+    "loại từ không rõ cho 'cỏ cao'",
+    "loại từ không rõ cho 'cỏ thấp'",
+    "loại từ không rõ cho 'cỏ xanh'",
+    "loại từ không rõ cho 'cỏ'",
+    "loại từ không rõ cho 'cỏ xanh'",
+    "loại từ không rõ cho 'c'",
+    "cắt còn 8/22 đối tượng — độ phủ KHÔNG đầy đủ",
+    "cắt còn 8/28 cặp quan hệ — độ phủ KHÔNG đầy đủ"
+   ],
+   "parse_degraded": 0
+  },
+  "verification_notes": [
+   "5CD-AI/Vintern-1B-v3_5 không cung cấp xác suất token — độ tin cậy lấy bằng tự nhất quán, k=5 (tự chọn) (formulation/08 §8.2). Chi phí: gấp 5× số lượt probe.",
+   "bộ ngưỡng mặc định từ formulation/07 §9 CHƯA hiệu chỉnh trên tập dev",
+   "không đối tượng nào có hộp giới hạn: kênh hình học (§3.2) không chạy được"
+  ],
+  "colour_cross_checked": 2,
+  "colour_disagreements": 0,
+  "probe_calls": 102,
+  "seconds": 67.2
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "vi_ktvic": {
+    "captions": 21635,
+    "person_mentions": 14393,
+    "gendered_person": 10825,
+    "gendered_share": 0.7521,
+    "xanh_mentions": 1055,
+    "xanh_unresolved": 584,
+    "xanh_unresolved_share": 0.5536
+  },
+  "en_coco_karpathy": {
+    "captions": 616767,
+    "person_mentions": 232349,
+    "gendered_person": 151637,
+    "gendered_share": 0.6526,
+    "blue_mentions": 14343,
+    "green_mentions": 13178,
+    "blue_green_merged_share": 0.0
+  },
+  "en_lexicon": {
+    "gendered": [
+      "man",
+      "men",
+      "woman",
+      "women",
+      "boy",
+      "boys",
+      "girl",
+      "girls",
+      "lady",
+      "ladies",
+      "guy",
+      "guys",
+      "gentleman",
+      "gentlemen",
+      "male",
+      "female"
+    ],
+    "neutral": [
+      "person",
+      "people",
+      "someone",
+      "somebody",
+      "individual",
+      "human",
+      "pedestrian",
+      "child",
+      "children",
+      "kid",
+      "kids",
+      "adult",
+      "adults"
+    ]
+  },
+  "note": "VI dùng rescap.vi.color.parse_color + GENDERED_NOUNS của pipeline; EN dùng danh sách khai báo trên. So sánh mô tả ngữ liệu, không phải phán xét chú thích viên."
+}

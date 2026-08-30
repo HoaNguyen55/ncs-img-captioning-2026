@@ -1,0 +1,25 @@
+{
+  "adapter": "/root/ncs-data/runs/off4090_sft",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "n": 60,
+  "warmup_excluded": 3,
+  "batch": 1,
+  "modes": {
+    "short": {
+      "max_new_tokens": 60,
+      "mean_s": 1.128,
+      "median_s": 0.982,
+      "p90_s": 1.934,
+      "min_s": 0.429,
+      "max_s": 2.962
+    },
+    "detailed": {
+      "max_new_tokens": 160,
+      "mean_s": 1.913,
+      "median_s": 1.752,
+      "p90_s": 3.014,
+      "min_s": 1.03,
+      "max_s": 3.779
+    }
+  }
+}

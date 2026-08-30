@@ -1,0 +1,110 @@
+#!/usr/bin/env python
+"""Vẽ Hình 1 của bài báo — sơ đồ quy trình VSPS + nhánh chưng cất, nhãn tiếng Việt.
+
+    python research/scripts/plot_workflow.py --out research/paper/figures/hinh1_quytrinh.png
+
+Yêu cầu trưởng nhóm (18/08): hình quy trình rõ ràng, hoàn toàn tiếng Việt.
+Sinh bằng script thay vì vẽ tay để: (1) sửa một nhãn là chạy lại 5 giây,
+(2) phong cách đồng nhất với Hình 2, (3) có cả PNG 300dpi lẫn PDF cho LaTeX.
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--out", default="research/paper/figures/hinh1_quytrinh.png")
+    args = parser.parse_args()
+
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+
+    fig, ax = plt.subplots(figsize=(11.5, 6.2))
+    ax.set_xlim(0, 100); ax.set_ylim(0, 56); ax.axis("off")
+
+    C_MAIN = "#eaf2f6"; C_EDGE = "#1f6f8b"      # chặng chính
+    C_EXT  = "#fdf1e7"; C_EEDG = "#c96f2f"      # chặng mở rộng (đóng góp)
+    C_DIS  = "#eef7ee"; C_DEDG = "#2e933c"      # nhánh chưng cất
+
+    def box(x, y, w, h, text, fc, ec, fs=8.6, bold=False, ls="-", lw=1.4):
+        # Category is encoded TWICE -- colour AND border style -- because the
+        # grayscale proof showed all three box families collapsing into the
+        # same light gray. Proceedings may print in black and white, and a
+        # figure whose meaning lives only in hue does not survive that.
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.35",
+                                    fc=fc, ec=ec, lw=lw, linestyle=ls))
+        ax.text(x + w/2, y + h/2, text, ha="center", va="center", fontsize=fs,
+                fontweight="bold" if bold else "normal", color="#1a1a1a")
+
+    def arrow(x1, y1, x2, y2, color="#555", style="-|>", lw=1.4, ls="-"):
+        ax.add_patch(FancyArrowPatch((x1, y1), (x2, y2), arrowstyle=style,
+                                     mutation_scale=13, color=color, lw=lw,
+                                     linestyle=ls))
+
+    # ---- hàng trên: giai đoạn 1, các chặng chính ----
+    y1 = 42; h = 9
+    box(1,  y1, 10, h, "ẢNH\nĐẦU VÀO", "#f2f2f2", "#666", bold=True)
+    box(13, y1, 15, h, "M1\nSinh mệnh đề\ncó cấu trúc", C_MAIN, C_EDGE)
+    box(30, y1, 13, h, "M2 ★\nNeo\nvùng ảnh", C_EXT, C_EEDG, ls=(0, (4, 2)))
+    box(45, y1, 17, h, "M3\nKiểm chứng 3 trạng thái\n(probe + phủ định,\nkiểm màu KÉP)", C_MAIN, C_EDGE, fs=8)
+    ax.text(53.5, y1 - 1.6, "~110 mệnh đề dò/ảnh", ha="center", fontsize=7,
+            style="italic", color=C_EDGE)
+    box(64, y1, 13, h, "M4 ★\nTái kiểm\nUNCERTAIN", C_EXT, C_EEDG, ls=(0, (4, 2)))
+    box(79, y1, 13, h, "M5 ★\nKiểm mâu thuẫn\nnội bộ", C_EXT, C_EEDG, ls=(0, (4, 2)))
+    for xa, xb in ((11, 13), (28, 30), (43, 45), (62, 64), (77, 79)):
+        arrow(xa, y1 + h/2, xb, y1 + h/2)
+
+    # ---- hàng giữa: chọn & sinh câu ----
+    y2 = 27
+    box(79, y2, 13, h, "M6\nChọn mệnh đề\n(ngân sách 9)", C_MAIN, C_EDGE)
+    arrow(85.5, y1, 85.5, y2 + h)
+    box(58, y2, 18, h, "M7\nSinh câu + CHÍNH SÁCH KẾT XUẤT ★\nUNCERTAIN → im lặng (hệ chính)\nhoặc “có vẻ như” (biến thể, Mục 5)", C_EXT, C_EEDG, fs=7.2, ls=(0, (4, 2)))
+    arrow(79, y2 + h/2, 76, y2 + h/2)
+    box(41, y2, 14, h, "M8 ★\nHậu kiểm tiếng Việt\n(loại từ, màu,\ngiới tính)", C_EXT, C_EEDG, fs=7.8, ls=(0, (4, 2)))
+    arrow(58, y2 + h/2, 55, y2 + h/2)
+    box(20, y2, 18, h, "CAPTION CHI TIẾT\n+ bảng truy vết\n(cụm ← mệnh đề ← phán quyết)", "#f2f2f2", "#666", fs=7.8, bold=True)
+    arrow(41, y2 + h/2, 38, y2 + h/2)
+
+    # ---- hàng dưới: nhánh chưng cất (giai đoạn 2) ----
+    y3 = 8
+    box(1, y3, 22, 12,
+        "PHÁN QUYẾT 3 TRẠNG THÁI\nSUPPORTED / UNCERTAIN / REJECTED\n= nguồn GIÁM SÁT, không tốn công gán nhãn",
+        C_DIS, C_DEDG, fs=7.8, bold=True, lw=2.4)
+    # Đường xuống nhánh chưng cất đi theo HÀNH LANG trống giữa các hộp
+    # (x=56.5 nằm giữa M8 và M7), rồi rẽ trái dưới hàng giữa — bản đầu vẽ
+    # đường chéo thẳng cắt ngang hộp CAPTION lẫn tiêu đề giai đoạn 2.
+    ax.plot([53.5, 53.5], [y1, y2 + h + 1.5], color=C_DEDG, ls="--", lw=1.4)
+    ax.plot([53.5, 56.7], [y2 + h + 1.5, y2 + h + 1.5], color=C_DEDG, ls="--", lw=1.4)
+    ax.plot([56.7, 56.7], [y2 + h + 1.5, y3 + 14.5], color=C_DEDG, ls="--", lw=1.4)
+    ax.plot([56.7, 12], [y3 + 14.5, y3 + 14.5], color=C_DEDG, ls="--", lw=1.4)
+    arrow(12, y3 + 14.5, 12, y3 + 12, color=C_DEDG, ls="--")
+    box(27, y3, 24, 12,
+        "BA BIẾN THỂ KẾT XUẤT\nA  rào đón  ·  B  im lặng  ·  C  nói bừa\nGIÁM SÁT = bậc B, im lặng\n(thứ bậc ưu tiên mã hóa vào dữ liệu)",
+        C_DIS, C_DEDG, fs=7.6, lw=2.4)
+    arrow(23, y3 + 6, 27, y3 + 6, color=C_DEDG)
+    box(55, y3, 19, 12, "SFT QLoRA 4-bit\n(2 phong cách:\nchi tiết + một câu ngắn)", C_DIS, C_DEDG, fs=8, lw=2.4)
+    arrow(51, y3 + 6, 55, y3 + 6, color=C_DEDG)
+    box(78, y3, 20, 12, "MÔ HÌNH CHƯNG CẤT\nsuy luận 1 lượt ~2 giây/ảnh\ntrên MỘT card", C_DIS, C_DEDG, fs=8, bold=True, lw=2.4)
+    arrow(74, y3 + 6, 78, y3 + 6, color=C_DEDG)
+
+    ax.text(1, 54.5, "PHA 1a — TIỀN XỬ LÝ: sinh giám sát đã kiểm chứng (chạy MỘT lần):", fontsize=9.5,
+            fontweight="bold", color=C_EDGE)
+    ax.text(1, 24.6, "PHA 1b — HUẤN LUYỆN (chưng cất) → PHA 2 — SUY LUẬN một lượt:", fontsize=9.5,
+            fontweight="bold", color=C_DEDG)
+    ax.text(99, 1.2, "★ / viền nét đứt = chặng mở rộng (đóng góp của bài) · viền đậm = nhánh chưng cất", fontsize=8,
+            ha="right", color="#c96f2f")
+
+    fig.tight_layout()
+    out = Path(args.out); out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out, dpi=300); fig.savefig(out.with_suffix(".pdf"))
+    print(f"  đã ghi {out} và {out.with_suffix('.pdf')}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

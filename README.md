@@ -24,6 +24,10 @@ shell command whose printed numbers can be checked against the tables in the pap
 
 ## 1. Environment
 
+Requires **Python 3.10–3.12** (with the `venv` module), a JDK (for VnCoreNLP), and
+`git`. `setup.sh` refuses newer Pythons: the pinned torch-cu121 wheel line stops at
+Python 3.12.
+
 ```bash
 bash setup.sh          # venv + torch cu121 + pinned transformers==4.51.3 + VnCoreNLP
 source .venv/bin/activate && export NCS_DATA=$PWD/ncs-data

@@ -4,7 +4,7 @@ set -e
 export NCS_DATA=${NCS_DATA:-$PWD/ncs-data}
 KT=$NCS_DATA/datasets/ktvic
 # Annotation: theo hướng dẫn repo KTVIC (github.com/anhtu293/ktvic hoặc trang bài báo KTVIC FAIR'23)
-echo ">> Đặt train_data.json + test_data.json vào $KT/ (tải từ repo chính thức KTVIC)"
+# annotations (train_data.json/test_data.json) come with the same Drive folder and are copied below
 # Ảnh (train ~563MB + test 77MB) — Google Drive folder chính thức của KTVIC:
 python -m gdown --folder 16e8cd3AKusPS1H-h55JModiINM0og-ke -O /tmp/ktvic_zip || true
 python - <<'PY'
@@ -16,6 +16,12 @@ for z in glob.glob("/tmp/ktvic_zip/*.zip"):
             if m.lower().endswith((".jpg",".jpeg",".png")):
                 open(os.path.join(dst, os.path.basename(m)),"wb").write(f.read(m))
 print("ảnh KTVIC:", len(os.listdir(dst)))
+for j in ("train_data.json", "test_data.json"):
+    src = os.path.join("/tmp/ktvic_zip", j)
+    if os.path.exists(src):
+        import shutil; shutil.copy(src, os.path.join(os.path.dirname(dst), j))
+print("annotation:", [f for f in os.listdir(os.path.dirname(dst)) if f.endswith(".json")])
+
 PY
 # COCO probe (chỉ cần cho thí nghiệm xuyên ngôn ngữ):
 # python scripts/download_coco_images.py --out $NCS_DATA/coco_images

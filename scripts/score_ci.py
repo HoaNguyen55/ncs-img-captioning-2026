@@ -122,7 +122,7 @@ def main() -> int:
     parser.add_argument("--b", default=None, help="predictions file for system B (paired comparison)")
     parser.add_argument("--name-a", default="A")
     parser.add_argument("--name-b", default="B")
-    parser.add_argument("--split", default="test")
+    parser.add_argument("--split", default="test_data.json")
     parser.add_argument("--segmenter", default="rdrsegmenter")
     parser.add_argument("--rounds", type=int, default=B_DEFAULT)
     parser.add_argument("--out", default=None)

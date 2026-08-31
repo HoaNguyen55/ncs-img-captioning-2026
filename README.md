@@ -54,7 +54,10 @@ data/
   stage1_records/  3,700 verified Phase-1a records, one per training image (27 MB packed)
   supervision/     pre-built supervision store (sft.jsonl) — ready to train on
   coco_probe/      COCO manifests + the frozen Vietnamese→COCO object dictionary
-  results/         raw numbers behind every table in the paper
+  results/         raw numbers behind every table in the paper, including the test-split
+                   predictions of the main system (main_s42/s43/s44-*.preds.json), the three
+                   controlled variants (vsps_base/clean/neutral-detailed.preds.json), VCD, and
+                   the untrained pipeline (vsps-*.preds.json)
   screening/, stress50/, vram/   auxiliary experiment data
 ```
 
@@ -65,19 +68,23 @@ data/
 ```bash
 tar -xzf data/stage1_records/stage1_records.tar.gz -C $NCS_DATA   # use shipped records
 # OR regenerate from scratch:
-python scripts/generate_stage1.py --split train --out $NCS_DATA/stage1
-python scripts/person_backoff.py --in $NCS_DATA/stage1 --out $NCS_DATA/stage1_person
-python scripts/person_uncap.py  --in $NCS_DATA/stage1_person --out $NCS_DATA/stage1_final
+python scripts/generate_stage1.py --split train --out $NCS_DATA/stage1   # generation + dual-query verification + ceilings
+python scripts/person_uncap.py --in $NCS_DATA/stage1 --out $NCS_DATA/stage1_final   # offline neutralization (un-capping)
 ```
 
-`person_backoff.py` re-verifies person entities with the neutral noun (neutralization);
-`person_uncap.py` performs the offline un-capping from stored evidence (τ = 0.9,
-recovers 11,769 propositions on 2,351 images — printed at the end of the run).
+`generate_stage1.py` runs steps (1)–(2) of the paper's Fig. 2 and stores the evidence
+record of every proposition. `person_uncap.py` is step (3), the main system's
+neutralization: it recovers UNCERTAIN person propositions **offline from the stored
+evidence** (τ = 0.9, no model call; recovers 11,769 propositions on 2,351 images —
+printed at the end of the run). `person_backoff.py` is the alternative that re-queries
+the verifier with the neutral noun; it was explored but is not part of the main system.
 
 ### Phase 1b — build supervision + fine-tune (QLoRA, ~2 h per run on an RTX 4090)
 
 ```bash
-# use the shipped store data/supervision/sft.jsonl, or rebuild it from stage-1 records
+# step (4): selection + rendering are stored in the stage-1 records; this turns them into the store
+python scripts/build_dpo_data.py --stage1 $NCS_DATA/stage1_final --out $NCS_DATA/supervision   # writes sft.jsonl (and dpo.jsonl)
+# or use the shipped store data/supervision/sft.jsonl directly
 python scripts/train_stage2.py --data data/supervision --out $NCS_DATA/runs/sft --seed 42
 # controls: --no-4bit (bf16 LoRA, no quantization) or --use-8bit
 ```
@@ -94,7 +101,8 @@ contributes supervision.
 ```bash
 python scripts/evaluate.py --adapter $NCS_DATA/runs/sft --split test \
     --out $NCS_DATA/results/eval.json
-python scripts/score_ci.py $NCS_DATA/results/eval.json     # 10k-sample bootstrap CI
+python scripts/score_ci.py --a data/results/zeroshot-detailed.preds.json --name-a zero-shot \
+    --b data/results/main_s42-detailed.preds.json --name-b VSPS      # paired bootstrap, 5,000 rounds, seed 42
 ```
 
 Expected numbers (main system, seed 42 — the paper's main tables): hallucinated
@@ -103,6 +111,20 @@ objects/caption **1.57** · CHAIR_s **79.2** · CHAIR_i **50.1** · objects ment
 Across seeds 42/43/44: 1.55 ± 0.04 · CHAIR_s 78.3 ± 0.9 · CHAIR_i 49.7 ± 0.4.
 Zero-shot on the same backbone: 4.26 hallucinated objects/caption, CHAIR_s 98.0%.
 Template-only variant (VSPS-Base): 1.15 hallucinated objects · CHAIR_s 70.4%.
+
+Object precision / recall / F1 over unique classes per image (Table VII of the paper) are
+reproduced from the shipped predictions with one command:
+
+```bash
+python scripts/object_prf.py                                   # KTVIC block
+python scripts/object_prf.py --coco-preds <out-dir of coco_probe.py>   # + COCO block
+```
+
+Expected (KTVIC, detailed mode): zero-shot 31.6 / 57.1 / 40.7 · VCD 31.9 / 55.9 / 40.6 ·
+P1 78.3 / 42.7 / 55.3 · P2 39.0 / 42.0 / 40.4 · Untrained VSPS 42.9 / 37.2 / 39.8 ·
+VSPS-Base 39.1 / 23.3 / 29.2 · VSPS-Clean 38.6 / 23.9 / 29.5 · VSPS-Neutral 39.9 / 37.7 / 38.8 ·
+VSPS seed 42 41.5 / 36.7 / 39.0 (three seeds 41.9 ± 0.5 / 37.1 ± 0.3 / 39.3 ± 0.4).
+COCO-2014: zero-shot 80.5 / 63.3 / 70.9 · VSPS 88.2 / 45.9 / 60.4.
 
 ### Satellite experiments
 

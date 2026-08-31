@@ -1,4 +1,4 @@
-"""Reproducibility utilities (PHASE 13).
+"""Reproducibility utilities.
 
 Every result must trace back to:
 
@@ -223,7 +223,7 @@ class ExperimentRun:
 
 
 def load_config(path: str | Path, overrides: list[str] | None = None) -> dict[str, Any]:
-    """Load a YAML config, apply `key.sub=value` CLI overrides (PHASE 13).
+    """Load a YAML config, apply `key.sub=value` command-line overrides.
 
     No hyper-parameter may be hard-coded in an experiment's source; everything
     flows through here.

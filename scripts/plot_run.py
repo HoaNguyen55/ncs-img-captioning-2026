@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Regenerate every figure for a training run (PHASE 15).
+"""Regenerate every figure for a training run.
 
     python scripts/plot_run.py <run_dir>
     python scripts/plot_run.py <run_dir> --outdir research/figures

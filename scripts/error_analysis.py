@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Automatic error triage for generated captions (PHASE 17).
+"""Automatic error triage for generated captions.
 
     python scripts/error_analysis.py \
         --predictions <run>/results/test_predictions.json \

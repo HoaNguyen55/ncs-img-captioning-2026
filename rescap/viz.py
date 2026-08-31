@@ -1,4 +1,4 @@
-"""Figure generation (PHASE 15).
+"""Figure generation.
 
 Every figure in the paper must be regenerable by a script -- never edited by
 hand.  Each function here takes data (or a path to a run's `metrics.jsonl`) and
@@ -124,7 +124,7 @@ def plot_ablation(
     name: str = "ablation",
     outdir: str | Path | None = None,
 ):
-    """Horizontal bar chart of an ablation ladder (PHASE 16).
+    """Horizontal bar chart of an ablation ladder.
 
     `results` maps variant id -> metric dict, e.g.
         {"A0 baseline": {"CIDEr": 0.52}, "A1 +attention": {"CIDEr": 0.61}}
@@ -164,7 +164,7 @@ def plot_qualitative(
 
     `samples`: [{"image": path_or_array, "gt": str, "pred": str}, ...]
     Used for both the qualitative results figure and the error-analysis
-    appendix (PHASE 17).
+    appendix.
     """
     _style()
     import matplotlib.pyplot as plt
@@ -197,7 +197,7 @@ def plot_error_distribution(
     name: str = "error_distribution",
     outdir: str | Path | None = None,
 ):
-    """Bar chart of error categories (PHASE 17)."""
+    """Bar chart of error categories."""
     _style()
     import matplotlib.pyplot as plt
 

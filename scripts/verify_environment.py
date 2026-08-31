@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Verify the research environment (PHASE 23).
+"""Verify the research environment.
 
 Runs a battery of import / capability checks and prints a table plus a JSON
 summary.  Exit code is 0 even when optional components are missing -- the point

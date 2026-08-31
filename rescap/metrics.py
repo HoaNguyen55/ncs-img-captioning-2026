@@ -1,4 +1,4 @@
-"""Image-captioning evaluation (PHASE 14).
+"""Image-captioning evaluation.
 
 Wraps `pycocoevalcap` so every experiment reports the same numbers computed the
 same way.  Never report a single metric -- each one is blind to something:

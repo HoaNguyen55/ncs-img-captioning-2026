@@ -32,10 +32,11 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-HOME = Path.home()
-PROBE_DATA = Path(__file__).resolve().parents[1] / "paper" / "data" / "coco_probe"
-ANN = HOME / "ncs-data" / "datasets" / "coco_probe" / "annotations"
-KARPATHY = HOME / "ncs-data" / "datasets" / "karpathy" / "dataset_coco.json"
+import os
+NCS_DATA = Path(os.environ.get("NCS_DATA", Path.home() / "ncs-data"))
+PROBE_DATA = Path(__file__).resolve().parents[1] / "data" / "coco_probe"
+ANN = NCS_DATA / "datasets" / "coco_probe" / "annotations"
+KARPATHY = NCS_DATA / "datasets" / "karpathy" / "dataset_coco.json"
 
 _LETTER = r"a-zA-ZÀ-ỹ"
 

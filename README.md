@@ -45,7 +45,7 @@ the adapter still loads but inference goes wrong *silently*.
 ```
 rescap/            core library
   pipeline/generate.py   proposition generation (typed, atomic) from an image
-  pipeline/verify.py     dual-query verification, K=5 sampling, 3 states + lower-only ceilings
+  pipeline/verify.py     dual-query verification, K = 5 repeated decoding runs, 3 states + lower-only ceilings
   pipeline/select.py     budgeted redundancy-aware selection (default budget 9)
   pipeline/realize.py    rendering: template path / constrained-LM path
   chair.py               CHAIR-vi (object matching over VnCoreNLP word segmentation)
